@@ -1,7 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+.font-bold {
+    font-weight: 900;
+}
 .header-bg {
     background-color: #ffffff4d;
     background-image: linear-gradient(96.3deg, #9eeba5ff 15%, #60ebe6ff 77%, #fffbebff 100%),

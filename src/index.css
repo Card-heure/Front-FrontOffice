@@ -27,3 +27,61 @@
     background: radial-gradient(circle, rgba(96, 235, 230, 1) 20%, rgba(200, 228, 227, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#60ebe6", endColorstr="#c8e4e3", GradientType=1);
 }
+
+.introCard {
+    border: 1px solid black;
+    border-radius: 40px;
+    box-shadow: -10px 11px 2px rgb(199,199,201);
+    width: 950px;
+    height: 350px;
+    margin: 80px auto 0; /*top: 80px, left + right: auto, bottom: 0 */
+    padding: 50px 30px 15px 0px;
+    display: flex;
+}
+.introCard .title {
+    width: 47%;
+}
+
+.introCard .title h2 {
+    font-size: 375%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.introCard .title p {
+    margin-left: 80px;
+    margin-top: 0;
+    width: 50%;
+    font-size: 115%;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.introCard .title .two {
+    font-size: 150%;
+    font-weight: 300;
+    margin-top: 15px;
+ }
+
+.introCard .definition {
+    width: 53%;
+}
+
+.introCard .definition ol {
+    list-style-type: decimal;
+    padding: 11% 8% 0 6%;
+    font-size: 112%;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.introCard .definition ol li::marker {
+    font-weight: bold;
+    font-style: normal
+}
+
+.introCard .definition .one {
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 40px;
+}

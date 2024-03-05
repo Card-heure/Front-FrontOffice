@@ -1,5 +1,6 @@
 import Header from "#ComponentsFiles/Header.tsx";
 import TitleCard from "#ComponentsFiles/TitleCard.tsx";
+import AboutSection from "#ComponentsFiles/AboutSection.tsx";
 
 export default function Main() {
   return (
@@ -7,6 +8,7 @@ export default function Main() {
       <Header/>
       <div>Home</div>
         <TitleCard/>
+        <AboutSection/>
     </>
   )
 }

@@ -52,6 +52,12 @@
     font-style: normal
 }
 
+.button {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
 /* .introCard {
     border: 1px solid black;
     border-radius: 40px;
@@ -110,3 +116,5 @@
 .bold {
     font-weight: 400;
 }
+
+

@@ -6,7 +6,6 @@ export default function Main() {
   return (
     <>
       <Header/>
-      <div>Home</div>
         <TitleCard/>
         <AboutSection/>
     </>

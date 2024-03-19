@@ -7,6 +7,7 @@ export default function AboutSection() {
         createdCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
         processText.className = "buttonText text-[68%] ml-[18px] w-[235px]";
         processCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
+        circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto";
         circleText.innerHTML = '<p> WHAT WAS THE INSPIRATION BEHIND CARD\'HEURE ? </p>';
         changeAbout.innerHTML = '<p> Card’heure a été conçu pour répondre à <span style = "font-weight: 400">un besoin en croissance constante des étudiants : ' +
             '                   La possibilité de créer et de partager du matériel d’étude sans être limité par un paywall.</span>' +
@@ -25,6 +26,7 @@ export default function AboutSection() {
         createdCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";
         processText.className = "buttonText text-[68%] ml-[18px] w-[235px]";
         processCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
+        circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto";
         circleText.innerHTML = '<p> WHO CREATED CARD’HEURE ?</p>';
         changeAbout.innerHTML = '<p><span style = "font-weight: 400">Hugo Combe</span> is the backend developper... Lorem ipsum dolor sit ' +
             '                   amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ' +
@@ -42,6 +44,7 @@ export default function AboutSection() {
         createdCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
         processText.className = "buttonText text-[80%] ml-[18px] w-[235px]";
         processCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";
+        circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[140%] italic m-auto";
         circleText.innerHTML = '<p> WHAT WAS THE DESIGN AND DEVELOPMENT PROCESS OF CARD’HEURE ?</p>';
         changeAbout.innerHTML = '<p>At vero eos et <span style = "font-weight: 400">accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium ' +
             '                   </span> voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non ' +
@@ -54,7 +57,7 @@ export default function AboutSection() {
     }
     return (
         <>
-        <div className = "aboutContainer mt-[250px] mx-auto w-[1100px] h-[500px] flex items-center">
+        <div className = "aboutContainer pt-[60px] mx-auto w-[1100px] h-[560px] flex items-center" id = "about">
 
             <div className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto"
                             id = "circleText">
@@ -78,7 +81,7 @@ export default function AboutSection() {
         </div>
 
             {/*  button w-[350px] h-[80px] flex items-center*/}
-        <div className = "aboutButtons w-[950px] h-[80px] mx-auto mt-[50px] mb-[200px] flex justify-around">
+        <div className = "aboutButtons w-[950px] h-[80px] mx-auto mt-[50px] flex justify-around">
 
             <button className = "button inspiration" onClick = {inspirationClick}>
                 <div className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]" id = "inspirationCircle"></div>

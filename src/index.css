@@ -16,11 +16,17 @@
 
 .header-bg {
     background-color: #ffffff4d;
+    /*
     background-image: linear-gradient(96.3deg, #9eeba5ff 15%, #60ebe6ff 77%, #fffbebff 100%),
     linear-gradient(263.9deg, #fcffebff 0%, #a8f2afff 16%, #12bbe0ff 74%, #fffbebff 96%);
+    */
+    background: rgb(252,255,235);
+    background: linear-gradient(57deg, rgba(252,255,235,70%) 0%, rgba(158,235,165,90%) 7%, rgba(96,235,230,70%) 30%,
+                rgba(38,202,238,65%) 48%, rgba(96,235,230,70%) 67%, rgba(158,235,165,90%) 90%, rgba(255,251,235,70%) 100%);
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto, auto;
+    border-bottom: 1px solid black;
 }
 
 /* TitleCard.tsx --------------------------------------------- */
@@ -45,61 +51,6 @@
     font-style: normal
 }
 
-/* .introCard {
-    border: 1px solid black;
-    border-radius: 40px;
-    box-shadow: -10px 11px 2px rgb(199, 199, 201);
-    width: 950px;
-    height: 350px;
-    margin: 80px auto 0;
-    padding: 50px 30px 15px 0px;
-    display: flex;
-}
-*/
-
-/* .introCard .title {
-    width: 47%;
-}
-*/
-
-/* .introCard .title h2 {
-    font-size: 375%;
-    font-weight: bold;
-    text-align: center;
-}
-*/
-
-/* .introCard .definition {
-    width: 53%;
-}
-*/
-
-/* .introCard .definition ol {
-    list-style-type: decimal;
-    padding: 11% 8% 0 6%;
-    font-size: 112%;
-    font-weight: 200;
-    font-style: normal;
-}
-*/
-
-/*.introCard .definition .one {
-    font-weight: 400;
-    font-style: italic;
-    margin-bottom: 40px;
-}
-*/
-
-/*
-.circle-gradient {
-    background: rgb(96, 235, 230);
-    background: -moz-radial-gradient(circle, rgba(96, 235, 230, 1) 20%, rgba(200, 228, 227, 1) 100%);
-    background: -webkit-radial-gradient(circle, rgba(96, 235, 230, 1) 20%, rgba(200, 228, 227, 1) 100%);
-    background: radial-gradient(circle, rgba(96, 235, 230, 1) 20%, rgba(200, 228, 227, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#60ebe6", endColorstr="#c8e4e3", GradientType=1);
-}
- */
-
 /* AboutSection.tsx --------------------------------------------- */
 .bold {
     font-weight: 400;
@@ -112,6 +63,11 @@
 
 .aboutText {
     font-weight: 200;
+}
+
+.greetingText {
+    font-weight: 200;
+    font-size: 135%;
 }
 
 .button {
@@ -130,4 +86,9 @@
     flex-wrap: wrap;
     align-items: center;
     font-size: 80%;
+}
+
+/* Header.tsx --------------------------------------------- */
+.profileBox {
+    background-color: rgb(255, 255, 255, 60%);
 }

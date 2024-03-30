@@ -1,7 +1,7 @@
 export default function Scroll() {
 
     const toHome = () => {
-        document.getElementById("loginHeader").scrollIntoView({behavior: "smooth"});
+        document.getElementById("landingHeader").scrollIntoView({behavior: "smooth"});
         document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
         document.getElementById("aboutCircle").className = "scrollCircle about w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
         document.getElementById("loginCircle").className = "scrollCircle login w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";

@@ -2,7 +2,7 @@ import {Route, Routes} from "react-router-dom";
 import {Suspense} from "react";
 import Loading from "#Components/Loading/Loading.tsx";
 import Main from "#Components/Main/Main.tsx";
-import HomeP from "#Components/Main/Home.tsx";
+import Home from "#Components/Main/Home.tsx";
 
 export default function App() {
   return (
@@ -19,7 +19,7 @@ export default function App() {
             path={"/home"}
             element={
                 <Suspense fallback={<Loading/>}>
-                    <HomeP/>
+                    <Home/>
                 </Suspense>
             }
         />

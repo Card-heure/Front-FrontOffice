@@ -108,3 +108,13 @@
     display: none;
 }
 
+/* CreateStudySearch.tsx --------------------------------------------- */
+.subjectSearchBar::placeholder, .subjectSearchBar {
+    color: white;
+    opacity: 1;
+    font-size: 98%;
+}
+
+.subjectSearchBar:focus {
+    outline: none;
+}

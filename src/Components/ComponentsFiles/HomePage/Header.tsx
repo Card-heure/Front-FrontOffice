@@ -7,7 +7,6 @@ export default function Header() {
     useEffect(() => {
         const date = new Date();
         const hour = date.getHours();
-        console.log(hour);
         if (5 <= hour && hour < 12) {
             setGreeting("Good Morning, User");
             setGreetingIcon("src/assets/sun.png");

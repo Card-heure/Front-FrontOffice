@@ -1,26 +1,35 @@
-import {Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 export default function Breadcrumbs() {
-    const location = useLocation()
+    const location = useLocation();
 
-    let currentPage = ''
-    const crumbs = location.pathname.split('/')
-        .filter(crumb => crumb !== '')
-        .map(crumb => {
-            currentPage += `/${crumb}`
+    const [currentPage, setCurrentPage] = useState([]);
 
-            return (
-                <div className = "crumb" key = {crumb}>
-                    <Link to = {currentPage}>{crumb}</Link>
-                </div>
-            )
-        })
+    useEffect(() => {
+        // Update currentPage whenever location changes
+        // @ts-ignore
+        setCurrentPage(location.pathname.split('/').filter(crumb => crumb != '').map(crumb => crumb.trim()));
+    }, [location.pathname]);
+
+    const crumbs = currentPage.map((crumb, index) => {
+
+        if (crumb == 'newSubject') {
+            crumb = "New Subject";
+        }
+
+        return (
+        <span className="crumb ml-[2px]" key={index}>
+            <Link to={`/${currentPage.slice(0, index + 1).join('/')}`}>{crumb}</Link>
+        </span>
+        )
+    });
 
     return (
         <>
-            <div className = "breadcrumbs capitalize mx-[68px] mt-[50px]">
+            <div className="breadcrumbs capitalize w-[90%] mx-[5%] mt-[50px] flex flex-nowrap">
                 {crumbs}
             </div>
         </>
-    )
+    );
 }

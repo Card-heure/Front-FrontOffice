@@ -13,6 +13,7 @@ export default function SubjectSort() {
     const [subjects, setSubjects] = useState(originalSubjects);
 
     const [searchInput, setSearchInput] = useState("");
+    // @ts-ignore
     const handleSearchInput = (event) => {
         const inputValue = event.target.value;
         setSearchInput(inputValue);
@@ -28,6 +29,7 @@ export default function SubjectSort() {
         setSortOptionsHidden(!sortOptionsHidden); // the "!" means that it will set the boolean value to the opposite of whatever it currently is
     };
 
+    // @ts-ignore
     const sortSubjects = (type) => {
         let sortedSubjects = [...subjects]; // the ellipses mean that "subjects" is an array (creating a new constant -sortedSubjects-
         // which copies the subjects array
@@ -55,12 +57,14 @@ export default function SubjectSort() {
     // sortOptions is being used in the CSS file
     return (
         <>
+            <a href = 'http://localhost:5173/home/newSubject'>
             <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
                 <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
                     <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]"/>
                 </div>
                 <h1 className="createText ml-[20px] text-[110%]"> Create a new subject to begin adding material </h1>
             </button>
+            </a>
 
             <div className="orDivider w-[100px] mx-[auto] mt-[35px] text-center">
                 <p className="or italic text-[120%]"> Or </p>
@@ -137,7 +141,9 @@ export default function SubjectSort() {
 
                 <ul className = "subject flex mx-[auto] w-[80%] flex-wrap pl-[3%] mt-[65px]">
                     {subjects.map((subject, index) => (
-                        <li key={index}>{subject}</li>
+                        <li key={index}>
+                            <button>{subject}</button>
+                        </li>
                     ))}
                 </ul>
             </div>

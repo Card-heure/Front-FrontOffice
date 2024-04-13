@@ -1,4 +1,14 @@
+/*
+import {useState} from "react";
+
 export default function CreateStudySearch() {
+
+    const [search, setSearch] = useState(true);
+    const startSearch = () => {
+
+    }
+
+
     return (
         <>
             <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
@@ -22,8 +32,10 @@ export default function CreateStudySearch() {
                 </button>
 
                 <div className="search flex items-center justify-center w-[30%] mr-[16%] ml-[4%]">
-                    <input type="search" placeholder="Search All Subjects..."
-                           className="subjectSearchBar w-[100%] h-[45px] bg-[rgb(18,_18,_18)] rounded-[16px] p-[22px] ml-[4%]"/>
+                    <input type="text"
+                           placeholder="Search All Subjects..."
+                           onChange = {startSearch}
+                           className= {"subjectSearchBar w-[100%] h-[45px] bg-[rgb(18,_18,_18)] rounded-[16px] p-[22px] ml-[4%]"}/>
                     <button
                         className="subjectSearchButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[7%] mr-[11%]">
                         <img src="/src/assets/searchIcon.png" className="searchIcon w-[44px] h-[auto]"/>
@@ -33,3 +45,4 @@ export default function CreateStudySearch() {
         </>
     )
 }
+*/

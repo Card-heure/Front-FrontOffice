@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default function SubjectSort() {
+export default function HomePage() {
 
     const originalSubjects = [
         "Economics",
@@ -150,14 +150,3 @@ export default function SubjectSort() {
         </>
     );
 }
-/* original
-    const handleSearchInput = (event) => {
-        setSearchInput(event.target.value);
-        if (searchInput.trim().length > 0) {
-            setSubjects(originalSubjects.filter((subject) => subject.toLowerCase().includes(searchInput.toLowerCase())));
-        }
-        else {
-            setSubjects(originalSubjects)
-        }
-    }
- */

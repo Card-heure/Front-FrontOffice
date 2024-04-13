@@ -1,12 +1,12 @@
-import Header from "#ComponentsFiles/HomePage/Header.tsx"
-import Breadcrumbs from "#ComponentsFiles/HomePage/Breadcrumbs.tsx";
-import SubjectSort from "#ComponentsFiles/HomePage/SubjectSort.tsx";
+import Header from "#ComponentsFiles/HomePage/Header.tsx";
+import Breadcrumbs from "#ComponentsFiles/General/Breadcrumbs.tsx";
+import HomePage from "#ComponentsFiles/HomePage/HomePage.tsx";
 export default function Home () {
     return (
         <>
             <Header/>
             <Breadcrumbs/>
-            <SubjectSort/>
+            <HomePage/>
         </>
     )
 }

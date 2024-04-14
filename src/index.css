@@ -163,3 +163,29 @@
     background-color: rgb(18, 18, 18);
     color: rgb(255, 255, 255);
 }
+
+.checkmark {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background-color: rgb(179, 217, 190);
+}
+.checkmark::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left: 8px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border-color: currentColor;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    transform-origin: bottom left;
+    transform: rotate(45deg)
+}

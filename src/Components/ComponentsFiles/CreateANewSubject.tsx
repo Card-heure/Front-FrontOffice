@@ -4,6 +4,9 @@ export default function CreateANewSubject() {
     const [titleEntered, setTitleEntered] = useState(false);
     const [titleSave, setTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
+    const [enterTitle, setEnterTitle] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] rounded-[50%] bg-[black] text-[white] text-center");
+
+
     const handleTitleEntered = (event) => {
         const inputValue = event.target.value;
         setTitleSave(inputValue);
@@ -16,8 +19,29 @@ export default function CreateANewSubject() {
     }
     const initiateSubject = () => {
         setDisplayOptions(true);
-        console.log(titleSave);
+        setEnterTitle("enterButtonIcon cursor-auto");
+        setSaveTitle(
+            <h1
+                className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-light italic"
+                onChange={handleTitleEntered}> {titleSave} </h1>);
     }
+
+    const [saveTitle, setSaveTitle] = useState(
+        <input
+            type="text"
+            className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-extralight"
+            onChange={handleTitleEntered}/>);
+
+    const addOrSave = () => {
+        return displayOptions ? <p className="checkmark"></p> : '+';
+    };
+
+    const [disableButton, setDisableButton] = useState(
+        <button
+        className={titleEntered ? enterTitle : "enterButtonIcon hidden"}
+        onClick={initiateSubject}>
+        {addOrSave()}
+        </button>);
 
     // border-[1px] border-[solid] border-[black]
     return (
@@ -26,15 +50,13 @@ export default function CreateANewSubject() {
                 Enter the title of your new subject below</h1>
 
             <div className="createTitle w-[35%] h-[50px] mx-[auto] mt-[4%] flex text-[150%]">
-                <input
-                    type = "text"
-                    className={"enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-extralight"}
-                    onChange = {handleTitleEntered}/>
+                {saveTitle}
 
                 <div className="enterButton w-[18%] ml-[6%] mt-[15px] h-[30px]">
                     <button
-                        className = {titleEntered ? "enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] rounded-[50%] bg-[black] text-[white] text-center" : "enterButtonIcon hidden"}
-                        onClick = {initiateSubject}>+
+                        className = {titleEntered ? enterTitle : "enterButtonIcon hidden"}
+                        onClick = {initiateSubject}>
+                        {addOrSave()}
                     </button>
                 </div>
             </div>

@@ -8,6 +8,7 @@
     padding: 0;
     margin: 0;
     font-family: "Roboto", sans-serif;
+    overflow: clip;
 }
 
 .font-bold {
@@ -173,6 +174,7 @@
     height: 30px;
     border-radius: 100px;
     background-color: rgb(179, 217, 190);
+    margin-top: 8px;
 }
 .checkmark::after {
     content: "";

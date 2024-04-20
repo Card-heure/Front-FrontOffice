@@ -4,7 +4,7 @@ export default function CreateANewSubject() {
     const [titleEntered, setTitleEntered] = useState(false);
     const [titleSave, setTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
-    const [enterTitle, setEnterTitle] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] rounded-[50%] bg-[black] text-[white] text-center");
+    const [enterTitle, setEnterTitle] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] mt-[8px] leading-[30px] rounded-[50%] bg-[black] text-[white] text-center");
     // @ts-ignore
     const handleTitleEntered = (event) => {
         const inputValue = event.target.value;
@@ -44,7 +44,7 @@ export default function CreateANewSubject() {
             <div className="createTitle w-[35%] h-[50px] mx-[auto] mt-[4%] flex text-[150%]">
                 {saveTitle}
 
-                <div className="enterButton w-[18%] ml-[6%] mt-[15px] h-[30px]">
+                <div className="enterButton w-[18%] ml-[6%] h-[50px]">
                     <button
                         className = {titleEntered ? enterTitle : "enterButtonIcon hidden"}
                         onClick = {initiateSubject}>

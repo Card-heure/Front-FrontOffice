@@ -15,7 +15,12 @@ export default function Breadcrumbs() {
     const crumbs = currentPage.map((crumb, index) => {
 
         if (crumb == 'newSubject') {
+            // @ts-ignore
             crumb = "New Subject";
+        }
+        if (crumb == 'newflashcard') {
+            // @ts-ignore
+            crumb = "New Flash Card";
         }
 
         return (

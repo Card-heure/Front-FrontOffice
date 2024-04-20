@@ -5,11 +5,11 @@ export default function CreateANewSubject() {
     const [titleSave, setTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
     const [enterTitle, setEnterTitle] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] rounded-[50%] bg-[black] text-[white] text-center");
-
-
+    // @ts-ignore
     const handleTitleEntered = (event) => {
         const inputValue = event.target.value;
         setTitleSave(inputValue);
+        localStorage.setItem('titleSave', inputValue);
         if (inputValue.trim().length > 2) {
             setTitleEntered(true);
         }
@@ -36,14 +36,6 @@ export default function CreateANewSubject() {
         return displayOptions ? <p className="checkmark"></p> : '+';
     };
 
-    const [disableButton, setDisableButton] = useState(
-        <button
-        className={titleEntered ? enterTitle : "enterButtonIcon hidden"}
-        onClick={initiateSubject}>
-        {addOrSave()}
-        </button>);
-
-    // border-[1px] border-[solid] border-[black]
     return (
         <>
             <h1 className="titlePrompt h-[50px] leading-[50px] mt-[3%] w-[60%] mx-[auto] text-center text-[180%] font-extralight">
@@ -66,11 +58,13 @@ export default function CreateANewSubject() {
                     adding content</h1>
                 <div
                     className="createtOptions mt-[80px] mb-[70px] mx-[auto] w-[100%] justify-between flex">
-                    <button className="createContent flashcard">Create a Flashcard Set</button>
-                    <button className="createContent test">Create a Test</button>
-                    <button className="createContent mindmap">Create a Mind Map</button>
+                    <a href='http://localhost:5173/home/newSubject/newflashcard'>
+                        <button className="createContent flashcard">Create a Flashcard Set</button>
+                    </a>
+                        <button className="createContent test">Create a Test</button>
+                        <button className="createContent mindmap">Create a Mind Map</button>
                 </div>
             </div>
         </>
-    );
+);
 }

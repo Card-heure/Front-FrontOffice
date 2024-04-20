@@ -4,7 +4,7 @@ import Loading from "#Components/Loading/Loading.tsx";
 import Main from "#Components/Main/Main.tsx";
 import Home from "#Components/Main/Home.tsx";
 import NewSubject from "#Components/Main/NewSubject.tsx";
-
+import NewFlashcard from "#Components/Main/NewFlashcard.tsx";
 export default function App() {
   return (
     <Routes>
@@ -29,6 +29,14 @@ export default function App() {
             element={
                 <Suspense fallback={<Loading/>}>
                     <NewSubject/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/NewSubject/NewFlashCard"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <NewFlashcard/>
                 </Suspense>
             }
         />

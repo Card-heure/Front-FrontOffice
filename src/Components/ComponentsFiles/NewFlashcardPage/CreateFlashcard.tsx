@@ -39,7 +39,21 @@ export default function CreateFlashcard() {
     const [cardTitleSave, setCardTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
 
-    // 4% extra
+    const [allCards, setAllCards] = useState([{
+        id: 1,
+        question: "",
+        answer: "",
+    }]);
+    const [newCard, setNewCard] = useState("");
+
+    function handleCardEntry(event) {
+
+    }
+
+    function addCard() {
+
+    }
+
     return (
         <>
             <div className="subjectAndTitle flex h-[50px] items-center w-[55%] mx-[auto] mt-[75px] text-[160%] font-extralight text-left justify-center">
@@ -59,7 +73,31 @@ export default function CreateFlashcard() {
             </div>
 
             <div className = {displayOptions ? "cardSection" : "cardSection hidden"}>
-                <h1> Test </h1>
+                <div className = "frontAndBack w-[100%] flex mt-[75px] min-h-[500px] mb-[75px]">
+
+                    <div className = "front w-[50%] border-r-[black] border-r-[solid] border-r-[1px]">
+
+                        <h1 className = "frontHeader font-light italic text-center text-[120%] mt-[20px] mb-[50px]"> Front </h1>
+
+                        <div className = "frontWithNum flex justify-between items-center w-[70%] mx-[auto]">
+
+                            <h2 className = "cardNumber text-center leading-[30px] h-[30px] w-[30px] bg-[rgb(18,_18,_18)] text-[white] text-[110%] border-[black] border-[1px] border-[solid] rounded-[50%]"> 1 </h2>
+
+                            <input
+                                className = "frontOfCard w-[85%] pl-[20px] min-h-[60px] outline-[none] border-[1px] border-[black] border-[solid] rounded-[8px]"
+                                type = "text"
+                                placeholder = "Term"
+                                value = {newCard}
+                                onChange = {handleCardEntry}
+                            />
+                        </div>
+
+                    </div>
+
+                    <div className="back w-[50%]">
+                        <h1 className="backHeader font-light italic text-center text-[120%] mt-[20px]"> Back </h1>
+                    </div>
+                </div>
             </div>
 
         </>

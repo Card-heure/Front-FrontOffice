@@ -8,7 +8,6 @@
     padding: 0;
     margin: 0;
     font-family: "Roboto", sans-serif;
-    overflow: clip;
 }
 
 .font-bold {
@@ -116,7 +115,7 @@
     font-size: 98%;
 }
 
-.subjectSearchBar:focus, .enterTitle:focus {
+.subjectSearchBar:focus, .enterTitle:focus, .frontOfCard:focus {
     outline: none;
 }
 

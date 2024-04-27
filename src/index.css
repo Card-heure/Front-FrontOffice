@@ -17,7 +17,7 @@
 .landingHeader, .header {
     background: rgb(252,255,235);
     background: linear-gradient(57deg, rgba(252,255,235,70%) 0%, rgba(158,235,165,90%) 7%, rgba(96,235,230,70%) 30%,
-                rgba(38,202,238,65%) 48%, rgba(96,235,230,70%) 67%, rgba(158,235,165,90%) 90%, rgba(255,251,235,70%) 100%);
+    rgba(38,202,238,65%) 48%, rgba(96,235,230,70%) 67%, rgba(158,235,165,90%) 90%, rgba(255,251,235,70%) 100%);
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto, auto;
@@ -115,7 +115,7 @@
     font-size: 98%;
 }
 
-.subjectSearchBar:focus, .enterTitle:focus, .frontOfCard:focus {
+.subjectSearchBar:focus, .enterTitle:focus {
     outline: none;
 }
 
@@ -189,4 +189,13 @@
     border-style: solid;
     transform-origin: bottom left;
     transform: rotate(45deg)
+}
+/* CardDetails.tsx --------------------------------------------- */
+.flashcardBox {
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding-left: 5%;
+    padding-top: 5%;
+    font-weight: 300;
 }

@@ -22,6 +22,10 @@ export default function Breadcrumbs() {
             // @ts-ignore
             crumb = "New Flash Card";
         }
+        if (crumb == "StudyFlashCardSet") {
+            // @ts-ignore
+            crumb = "Study Flashcard Set";
+        }
 
         return (
         <span className="crumb ml-[2px]" key={index}>

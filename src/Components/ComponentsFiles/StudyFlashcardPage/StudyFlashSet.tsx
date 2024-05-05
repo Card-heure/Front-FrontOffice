@@ -8,14 +8,17 @@ export default function StudyFlashSet() {
     const [n, setN] = useState(0);
     const [nCopy, setNCopy] = useState(n);
     const [c, setC] = useState(0);
-    const [w, setW] = useState(0);
     const [v, setV] = useState(1);
     const [arrowDirection, setArrowDirection] = useState(<span>&#8594;</span>); // necessary for html symbol
     const [flipTo, setFlipTo] = useState('Flip to Definition');
     const [cardFlipEnd, setCardFlipEnd] = useState("cardAndFlip w-[60%] items-center mx-auto flex justify-between");
-    const [resultCount, setResultCout] = useState("resultAndCount flex items-center justify-between h-[70px] w-[55%] mx-[auto] mt-[50px] mb-[50px]")
+    const [resultCount, setResultCount] = useState("resultAndCount flex items-center justify-between h-[70px] w-[55%] mx-[auto] mt-[50px] mb-[50px]")
     const [cardText, setCardText] = useState(flashcards[n].term);
     const [endReview, setEndReview]  = useState(false);
+    const [score, setScore] = useState(0);
+    const [overallScore, setOverallScore] = useState(0);
+    const [correctViewedStats, setCorrectViewedStats] = useState("correctViewed correctStats w-[50%]");
+    const [correctTotalStats, setCorrectTotalStats] = useState("correctTotal w-[50%]");
 
     // @ts-ignore
     const flipCard = (event) => {
@@ -42,6 +45,8 @@ export default function StudyFlashSet() {
             setC(newCorrect);
             setCardText(flashcards[newIndex].definition);
             setCardText(flashcards[newIndex].term);
+            setScore(Math.round((newCorrect / (v+1)) * 100));
+            setOverallScore(Math.round((newCorrect / flashcards.length) * 100));
         }
         if (n == (flashcards.length) -2) {
             setEndReview(true);
@@ -52,16 +57,61 @@ export default function StudyFlashSet() {
             const newCorrect = c + 1;
             setC(newCorrect);
             console.log('tester')
+            setScore(Math.round((newCorrect / (v+1)) * 100));
+            setOverallScore(Math.round((newCorrect / flashcards.length) * 100));
         }
         if (v < flashcards.length) {
             const newV = v + 1;
             setV(newV);
+            setScore(Math.round(((c+1) / (v+1)) * 100));
+            setOverallScore(Math.round(((c+1) / flashcards.length) * 100));
         }
         if (endReview) {
             setCardFlipEnd("hidden");
-            setResultCout("hidden");
+            setResultCount("hidden");
+            setScore(Math.round(((c+1) / (v+1)) * 100));
+            setOverallScore(Math.round(((c+1) / flashcards.length) * 100));
+            setCorrectViewedStats("hidden");
+            setCorrectTotalStats("incorrectStats w-[100%]")
         }
     };
+
+    // @ts-ignore
+    const markIncorrect = (event) => {
+        if ((n < flashcards.length - 1) && !endReview) { // -2 because originally it's -1 (index 0), but n is always an extra 1 behind
+            const newIndex = n + 1;
+            setN(newIndex);
+            setNCopy(newIndex);
+            setCardText(flashcards[newIndex].definition);
+            setCardText(flashcards[newIndex].term);
+            setScore(Math.round((c / (v+1)) * 100));
+            setOverallScore(Math.round((c / flashcards.length) * 100));
+        }
+        if (n == (flashcards.length) -2) {
+            setEndReview(true);
+        }
+        if ( n == (flashcards.length - 1)) {
+            setN(0);
+            setNCopy(flashcards.length)
+            setScore(Math.round((c / (v+1)) * 100));
+            setOverallScore(Math.round((c / flashcards.length) * 100));
+        }
+        if (v < flashcards.length) {
+            const newV = v + 1;
+            setV(newV);
+            setScore(Math.round((c / (v+1)) * 100));
+            setOverallScore(Math.round((c / flashcards.length) * 100));
+        }
+        if (endReview) {
+            setCardFlipEnd("hidden");
+            setResultCount("hidden");
+            setScore(Math.round((c / v) * 100));
+            setOverallScore(Math.round((c / flashcards.length) * 100));
+            setCorrectViewedStats("hidden");
+            setCorrectTotalStats("incorrectStats w-[100%]")
+        }
+    };
+
     return (
         <>
             <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
@@ -94,7 +144,8 @@ export default function StudyFlashSet() {
                         </button>
                     </div>
                     <div className = "incorrect flex w-[50%] justify-center">
-                        <button className = "incorrectCircle flex justify-center items-center text-[150%] font-bold w-[50px] h-[50px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(255,_106,_106,_.65)]">
+                        <button className = "incorrectCircle flex justify-center items-center text-[150%] font-bold w-[50px] h-[50px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(255,_106,_106,_.65)]"
+                        onClick = {markIncorrect}>
                             &#10005;
                         </button>
                     </div>
@@ -106,15 +157,15 @@ export default function StudyFlashSet() {
             </div>
 
             <div className = "resultsBar bg-[black] h-[150px] mb-[50px] text-white text-center">
-                <div className = "resultTsitle justify-center text-[140%] pt-[30px] mb-[30px]">
+                <div className = "resultTitle justify-center text-[140%] pt-[30px] mb-[30px]">
                     <h2>Results</h2>
                 </div>
                 <div className = "resultStats flex w-[100%] text-[120%] font-light">
-                    <div className = "correctStats w-[50%]">
-                        <h2> {c} / {v} viewed cards correct (50%)</h2>
+                    <div className = {correctViewedStats}>
+                        <h2> {c} / {v} viewed cards correct (<span className = "bold">{score}%</span>)</h2>
                     </div>
-                    <div className = "incorrectStats w-[50%]">
-                        <h2> {c} / {flashcards.length} total cards correct </h2>
+                    <div className = {correctTotalStats}>
+                        <h2> {c} / {flashcards.length} total cards correct (<span className = "bold">{overallScore}%</span>)</h2>
                     </div>
                 </div>
             </div>

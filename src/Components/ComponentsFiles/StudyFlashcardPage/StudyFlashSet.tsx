@@ -20,7 +20,7 @@ export default function StudyFlashSet() {
     // @ts-ignore
     const flipCard = (event) => {
         if (cardText == flashcards[n].term) {
-            setCardText(flashcards[n].definition);
+            setCardText(flashcards[nCopy].definition);
             setArrowDirection(<span>&#8592;</span>);
             setFlipTo('Flip to Term');
             console.log(true);

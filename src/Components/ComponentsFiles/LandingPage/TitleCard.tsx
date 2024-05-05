@@ -1,7 +1,7 @@
 export default function TitleCard() {
     return (
         <div className ="introCard border-[1px] border-[solid] border-[black]
-        rounded-[40px] c w-[950px]
+        rounded-[40px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] w-[950px]
         h-[350px] mt-[80px] mx-[auto] mb-[180px] pt-[50px] pr-[30px] pb-[15px] pl-[0] flex">
             <div className = "title w-[47%]">
                 <h2 className = "text-[375%] font-bold text-center"> Card'heure </h2>

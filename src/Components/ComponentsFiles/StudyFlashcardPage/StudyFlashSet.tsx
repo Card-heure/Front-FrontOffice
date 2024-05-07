@@ -19,6 +19,8 @@ export default function StudyFlashSet() {
     const [overallScore, setOverallScore] = useState(0);
     const [correctViewedStats, setCorrectViewedStats] = useState("correctViewed correctStats w-[50%]");
     const [correctTotalStats, setCorrectTotalStats] = useState("correctTotal w-[50%]");
+    const [correctCards, setCorrectCards] = useState([]);
+    const [incorrectCards, setIncorrectCards] = useState([]);
 
     // @ts-ignore
     const flipCard = (event) => {
@@ -26,7 +28,6 @@ export default function StudyFlashSet() {
             setCardText(flashcards[nCopy].definition);
             setArrowDirection(<span>&#8592;</span>);
             setFlipTo('Flip to Term');
-            console.log(true);
         }
         if (cardText == flashcards[n].definition) {
             setCardText(flashcards[n].term);
@@ -43,7 +44,7 @@ export default function StudyFlashSet() {
             setNCopy(newIndex);
             const newCorrect = c + 1;
             setC(newCorrect);
-            setCardText(flashcards[newIndex].definition);
+            //setCardText(flashcards[newIndex].definition);
             setCardText(flashcards[newIndex].term);
             setScore(Math.round((newCorrect / (v+1)) * 100));
             setOverallScore(Math.round((newCorrect / flashcards.length) * 100));
@@ -56,7 +57,6 @@ export default function StudyFlashSet() {
             setNCopy(flashcards.length)
             const newCorrect = c + 1;
             setC(newCorrect);
-            console.log('tester')
             setScore(Math.round((newCorrect / (v+1)) * 100));
             setOverallScore(Math.round((newCorrect / flashcards.length) * 100));
         }
@@ -74,6 +74,13 @@ export default function StudyFlashSet() {
             setCorrectViewedStats("hidden");
             setCorrectTotalStats("incorrectStats w-[100%]")
         }
+        const resetArrow = (<span>&#8594;</span>)
+        setArrowDirection(resetArrow);
+        const resetArrowText = ('Flip to Definition');
+        setFlipTo(resetArrowText);
+        // @ts-ignore
+        const newCorrectCards = ([...correctCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
+        setCorrectCards(newCorrectCards);
     };
 
     // @ts-ignore
@@ -82,7 +89,7 @@ export default function StudyFlashSet() {
             const newIndex = n + 1;
             setN(newIndex);
             setNCopy(newIndex);
-            setCardText(flashcards[newIndex].definition);
+            //setCardText(flashcards[newIndex].definition);
             setCardText(flashcards[newIndex].term);
             setScore(Math.round((c / (v+1)) * 100));
             setOverallScore(Math.round((c / flashcards.length) * 100));
@@ -108,8 +115,16 @@ export default function StudyFlashSet() {
             setScore(Math.round((c / v) * 100));
             setOverallScore(Math.round((c / flashcards.length) * 100));
             setCorrectViewedStats("hidden");
-            setCorrectTotalStats("incorrectStats w-[100%]")
+            setCorrectTotalStats("incorrectStats w-[100%]");
         }
+        const resetArrow = (<span>&#8594;</span>)
+        setArrowDirection(resetArrow);
+        const resetArrowText = ('Flip to Definition');
+        setFlipTo(resetArrowText);
+        // @ts-ignore
+        const newIncorrectCards = ([...incorrectCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
+        setIncorrectCards(newIncorrectCards);
+        console.log(incorrectCards);
     };
 
     return (
@@ -170,12 +185,53 @@ export default function StudyFlashSet() {
                 </div>
             </div>
 
-            <div className="correctCards">
-                <h1 className = "correctHeader font-semibold text-center text-[150%]">Correct</h1>
+            <div className="correctCards mb-[50px]">
+                <h1 className="correctHeader font-semibold text-center text-[150%] mb-[50px]">Correct</h1>
+
+                <div className="correctCountTermDefinition flex flex-wrap justify-center w-[80%] mx-[auto] text-center">
+
+                    <div className="correctTerms flex-wrap w-[50%]">
+                        {correctCards.slice().map((correctCards, index) => (
+                            <div className="correctTermList mx-[auto] pr-[12%] border-r-[black] border-r-[solid] border-r-[1px]"
+                                 key={index}>
+                                <h3 className="flashcardBox mb-[45px]"> {correctCards["term"]} {index + 1}</h3>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="correctDefinitions flex-wrap w-[50%]">
+                        {correctCards.slice().map((correctCards, index) => (
+                            <div className="correctDefinitionList mx-[auto] pl-[12%]"
+                                 key={index}>
+                                <h3 className="flashcardBox mb-[45px]"> {correctCards["definition"]} </h3>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
-            <div className = "incorrectCards">
-                <h1 className = "incorrectHeader font-semibold text-center text-[150%]">Incorrect</h1>
+            <div className="incorrectCards mb-[50px]">
+                <h1 className="incorrectHeader font-semibold text-center text-[150%] mb-[50px]">Incorrect</h1>
+
+                <div className="incorrectTermDefinition flex flex-wrap justify-center w-[80%] mx-[auto] text-center">
+
+                    <div className="incorrectTerms flex-wrap w-[50%]">
+                        {incorrectCards.slice().map((incorrectCards, index) => (
+                            <div className="incorrectTermList mx-[auto] pr-[12%] border-r-[black] border-r-[solid] border-r-[1px]" key={index}>
+                                <h3 className="flashcardBox mb-[45px]"> {incorrectCards["term"]} {index + 1}</h3>
+                            </div>
+                        ))}
+                    </div>
+
+
+                    <div className="incorrectDefinitions flex-wrap w-[50%]">
+                        {incorrectCards.slice().map((incorrectCards, index) => (
+                            <div className="incorrectDefinitionList mx-[auto] pl-[12%]" key={index}>
+                                <h3 className="flashcardBox mb-[45px]"> {incorrectCards["definition"]} </h3>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </>
     );

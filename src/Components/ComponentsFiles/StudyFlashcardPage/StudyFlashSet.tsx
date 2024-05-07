@@ -188,22 +188,25 @@ export default function StudyFlashSet() {
             <div className="correctCards mb-[50px]">
                 <h1 className="correctHeader font-semibold text-center text-[150%] mb-[50px]">Correct</h1>
 
-                <div className="correctCountTermDefinition flex flex-wrap justify-center w-[80%] mx-[auto] text-center">
+                <div className="correctCountTermDefinition flex flex-wrap justify-center w-[90%] mx-[auto] text-center">
 
                     <div className="correctTerms flex-wrap w-[50%]">
                         {correctCards.slice().map((correctCards, index) => (
-                            <div className="correctTermList mx-[auto] pr-[12%] border-r-[black] border-r-[solid] border-r-[1px]"
+                            <div className="correctTermList flex mx-[auto] pr-[12%] mb-[45px]"
                                  key={index}>
-                                <h3 className="flashcardBox mb-[45px]"> {correctCards["term"]} {index + 1}</h3>
+                                <div className = "correctCount flex justify-center w-[20%]">
+                                    <h3 className = "correctCountCircle w-[35px] h-[35px] flex justify-center items-center self-center rounded-[50%] bg-[rgba(197,_255,_203,_.65)] border-[black] border-[solid] border-[2px]"> {index + 1} </h3>
+                                </div>
+                                <h3 className="flashcardBox w-[80%]"> {correctCards["term"]}</h3>
                             </div>
                         ))}
                     </div>
 
                     <div className="correctDefinitions flex-wrap w-[50%]">
                         {correctCards.slice().map((correctCards, index) => (
-                            <div className="correctDefinitionList mx-[auto] pl-[12%]"
+                            <div className="correctDefinitionList mx-[auto] pl-[12%] border-l-[black] border-l-[solid] border-l-[1px]"
                                  key={index}>
-                                <h3 className="flashcardBox mb-[45px]"> {correctCards["definition"]} </h3>
+                                <h3 className="flashcardBox w-[85%] mr-[15%] mb-[45px]"> {correctCards["definition"]} </h3>
                             </div>
                         ))}
                     </div>
@@ -213,12 +216,16 @@ export default function StudyFlashSet() {
             <div className="incorrectCards mb-[50px]">
                 <h1 className="incorrectHeader font-semibold text-center text-[150%] mb-[50px]">Incorrect</h1>
 
-                <div className="incorrectTermDefinition flex flex-wrap justify-center w-[80%] mx-[auto] text-center">
+                <div className="incorrectCountTermDefinition flex flex-wrap justify-center w-[90%] mx-[auto] text-center">
 
                     <div className="incorrectTerms flex-wrap w-[50%]">
                         {incorrectCards.slice().map((incorrectCards, index) => (
-                            <div className="incorrectTermList mx-[auto] pr-[12%] border-r-[black] border-r-[solid] border-r-[1px]" key={index}>
-                                <h3 className="flashcardBox mb-[45px]"> {incorrectCards["term"]} {index + 1}</h3>
+                            <div className="incorrectTermList flex mx-[auto] pr-[12%] mb-[45px]"
+                                 key={index}>
+                                <div className="incorrectCount flex justify-center w-[20%]">
+                                    <h3 className="incorrectCountCircle w-[35px] h-[35px] flex justify-center items-center self-center rounded-[50%] bg-[rgba(255,_106,_106,_.65)] border-[black] border-[solid] border-[2px]"> {index + 1} </h3>
+                                </div>
+                                <h3 className="flashcardBox w-[80%]"> {incorrectCards["term"]}</h3>
                             </div>
                         ))}
                     </div>
@@ -226,8 +233,9 @@ export default function StudyFlashSet() {
 
                     <div className="incorrectDefinitions flex-wrap w-[50%]">
                         {incorrectCards.slice().map((incorrectCards, index) => (
-                            <div className="incorrectDefinitionList mx-[auto] pl-[12%]" key={index}>
-                                <h3 className="flashcardBox mb-[45px]"> {incorrectCards["definition"]} </h3>
+                            <div className="incorrectDefinitionList mx-[auto] pl-[12%] border-l-[black] border-l-[solid] border-l-[1px]"
+                                 key={index}>
+                                <h3 className="flashcardBox w-[85%] mr-[15%] mb-[45px]"> {incorrectCards["definition"]} </h3>
                             </div>
                         ))}
                     </div>

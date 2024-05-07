@@ -134,7 +134,7 @@ export default function StudyFlashSet() {
                 <h1 className="subjectTitle max-w-[25%] ml-[2%] font-bold">{titleSave}</h1>
                 <h1 className="divider w-[2%] mx-[2%] text-center"> | </h1>
                 <h1 className="flashcardSet max-w-[25%] h-[35px] items-baseline"> Flashcard Set: </h1>
-                <h1 className = "flashSetTitle ml-[2%] w-[26%] font-bold">{flashSetTitle}</h1>
+                <h1 className = "flashSetTitle ml-[2%] max-w-[25%] h-[35px] items-baseline font-bold">{flashSetTitle}</h1>
             </div>
 
             <div className ={cardFlipEnd}>
@@ -151,15 +151,15 @@ export default function StudyFlashSet() {
             </div>
 
             <div className ={resultCount}>
-                <div className = "result w-[25%] justify-center flex">
+                <div className = "result w-[22%] justify-center flex">
                     <div className = "correct flex w-[50%] justify-center">
-                        <button className = "correctCircle flex justify-center items-center text-[150%] w-[50px] h-[50px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(197,_255,_203,_.65)]"
+                        <button className = "correctCircle flex justify-center items-center text-[150%] w-[45px] h-[45px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(197,_255,_203,_.65)]"
                         onClick = {markCorrect}>
                             &#x2713;
                         </button>
                     </div>
                     <div className = "incorrect flex w-[50%] justify-center">
-                        <button className = "incorrectCircle flex justify-center items-center text-[150%] font-bold w-[50px] h-[50px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(255,_106,_106,_.65)]"
+                        <button className = "incorrectCircle flex justify-center items-center text-[150%] font-bold w-[45px] h-[45px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(255,_106,_106,_.65)]"
                         onClick = {markIncorrect}>
                             &#10005;
                         </button>
@@ -192,12 +192,14 @@ export default function StudyFlashSet() {
 
                     <div className="correctTerms flex-wrap w-[50%]">
                         {correctCards.slice().map((correctCards, index) => (
-                            <div className="correctTermList flex mx-[auto] pr-[12%] mb-[45px]"
+                            <div className="correctTermList flex mx-[auto] mr-[12%] mb-[45px]"
                                  key={index}>
                                 <div className = "correctCount flex justify-center w-[20%]">
-                                    <h3 className = "correctCountCircle w-[35px] h-[35px] flex justify-center items-center self-center rounded-[50%] bg-[rgba(197,_255,_203,_.65)] border-[black] border-[solid] border-[2px]"> {index + 1} </h3>
+                                    <h3 className = "correctCountCircle w-[35px] h-[35px] flex justify-center items-center self-center rounded-[50%] bg-[rgba(197,_255,_203,_.65)] border-[black] border-[solid] border-[1px]">
+                                        {index + 1}
+                                    </h3>
                                 </div>
-                                <h3 className="flashcardBox w-[80%]"> {correctCards["term"]}</h3>
+                                <h3 className="flashcardBox w-[80%] justify-center"> {correctCards["term"]}</h3>
                             </div>
                         ))}
                     </div>
@@ -206,7 +208,7 @@ export default function StudyFlashSet() {
                         {correctCards.slice().map((correctCards, index) => (
                             <div className="correctDefinitionList mx-[auto] pl-[12%] border-l-[black] border-l-[solid] border-l-[1px]"
                                  key={index}>
-                                <h3 className="flashcardBox w-[85%] mr-[15%] mb-[45px]"> {correctCards["definition"]} </h3>
+                                <h3 className="flashcardBox w-[85%] mr-[15%] mb-[45px] justify-center"> {correctCards["definition"]} </h3>
                             </div>
                         ))}
                     </div>
@@ -223,9 +225,9 @@ export default function StudyFlashSet() {
                             <div className="incorrectTermList flex mx-[auto] pr-[12%] mb-[45px]"
                                  key={index}>
                                 <div className="incorrectCount flex justify-center w-[20%]">
-                                    <h3 className="incorrectCountCircle w-[35px] h-[35px] flex justify-center items-center self-center rounded-[50%] bg-[rgba(255,_106,_106,_.65)] border-[black] border-[solid] border-[2px]"> {index + 1} </h3>
+                                    <h3 className="incorrectCountCircle w-[35px] h-[35px] flex justify-center items-center self-center rounded-[50%] bg-[rgba(255,_106,_106,_.65)] border-[black] border-[solid] border-[1px]"> {index + 1} </h3>
                                 </div>
-                                <h3 className="flashcardBox w-[80%]"> {incorrectCards["term"]}</h3>
+                                <h3 className="flashcardBox w-[80%] justify-center"> {incorrectCards["term"]}</h3>
                             </div>
                         ))}
                     </div>
@@ -235,7 +237,7 @@ export default function StudyFlashSet() {
                         {incorrectCards.slice().map((incorrectCards, index) => (
                             <div className="incorrectDefinitionList mx-[auto] pl-[12%] border-l-[black] border-l-[solid] border-l-[1px]"
                                  key={index}>
-                                <h3 className="flashcardBox w-[85%] mr-[15%] mb-[45px]"> {incorrectCards["definition"]} </h3>
+                                <h3 className="flashcardBox w-[85%] mr-[15%] mb-[45px] justify-center"> {incorrectCards["definition"]} </h3>
                             </div>
                         ))}
                     </div>

@@ -9,6 +9,7 @@ export default function CardDetails() {
     const [cardCount, setCardCount] = useState(0);
     const [saveButton, setSaveButton] = useState("hidden");
     const [cardOrCards, setCardOrCards] = useState("Card");
+    const termSide = document.getElementById('termSide');
 
     // @ts-ignore
     const handleTermChange = (event) => {
@@ -30,7 +31,8 @@ export default function CardDetails() {
             setTerms(newTerms);
             setCurrentTerm('');
             setCurrentDefinition('');
-            setCardCount(newTerms.length)
+            setCardCount(newTerms.length);
+            termSide.focus();
 
             if (newTerms.length > 0) {
                 setSaveButton("saveSet w-[170px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light min-h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
@@ -55,7 +57,8 @@ export default function CardDetails() {
                     <div className="termEntry w-[40%] justify-center mx-[auto] flex flex-wrap">
                         <h2 className="frontHeader text-center font-light italic text-[120%] w-[100%] h-[50px] mb-[20px]">Front</h2>
                         <textarea
-                            className="termSide focus:outline-none h-[75px] w-[95%] border-[1px] border-[solid] border-[black] rounded-[15px] pl-[5%] pt-[5%] font-light"
+                            className="termSide focus:outline-none h-[75px] w-[95%] border-[1px] border-[solid] border-[black] rounded-[15px] items-center self-center px-[5%] font-light"
+                            id = "termSide"
                             value={currentTerm}
                             onChange={handleTermChange}
                             onKeyDown={handleSave}

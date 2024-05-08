@@ -19,7 +19,7 @@ export default function CreateFlashcard() {
     const [flashSetTitle, setFlashSetTitle] = useState(
         <input
             type="text"
-            className="enterTitle flex ml-[2%] w-[26%] leading-[34px] items-baseline border-b-[1px] border-b-[solid] border-b-[black] font-extralight"
+            className="enterTitle w-[30%] items-baseline border-b-[1px] border-b-[solid] border-b-[black] font-extralight"
             onChange={handleTitleEntered}/>);
 
     const create = () => {
@@ -27,7 +27,7 @@ export default function CreateFlashcard() {
         setEnterButton("enterButtonIcon mb-[16px] cursor-auto");
         setFlashSetTitle(
             <h1
-                className="enterTitle flex mx-[2%] mt-[4px] font-semibold"
+                className="enterTitle font-semibold max-w-[30%]"
                 onChange={handleTitleEntered}> {cardTitleSave} </h1>);
     }
 
@@ -40,16 +40,17 @@ export default function CreateFlashcard() {
     const [cardTitleSave, setCardTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
 
+    //
     return (
         <>
             <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[100px] text-[160%] font-extralight text-left justify-center overflow-clip">
-                <h1 className="subject max-w-[10%]"> Subject:</h1>
-                <h1 className="subjectTitle max-w-[25%] ml-[2%] font-semibold">{titleSave}</h1>
-                <h1 className="divider w-[2%] mx-[2%] text-center"> | </h1>
-                <h1 className="flashcardSet max-w-[25%] h-[35px] items-baseline"> Flashcard Set: </h1>
+                <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
+                <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
+                <h1 className="divider w-[2%] mx-[18px] text-center"> | </h1>
+                <h1 className="flashcardSet max-w-[20%] mr-[12px]"> Flashcard Set: </h1>
                 {flashSetTitle}
 
-                <div className="enterButton w-[5%] mx-[3%] pt-[12px]">
+                <div className="enterButton w-[5%] mx-[28px] pt-[8px]">
                     <button
                         className={titleEntered ? enterButton : "enterButtonIcon hidden"}
                         onClick={create}>

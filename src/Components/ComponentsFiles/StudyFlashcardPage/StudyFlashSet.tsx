@@ -80,6 +80,7 @@ export default function StudyFlashSet() {
         setFlipTo(resetArrowText);
         // @ts-ignore
         const newCorrectCards = ([...correctCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
+        // @ts-ignore
         setCorrectCards(newCorrectCards);
     };
 
@@ -123,18 +124,19 @@ export default function StudyFlashSet() {
         setFlipTo(resetArrowText);
         // @ts-ignore
         const newIncorrectCards = ([...incorrectCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
+        // @ts-ignore
         setIncorrectCards(newIncorrectCards);
         console.log(incorrectCards);
     };
 
     return (
         <>
-            <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
-                <h1 className="subject max-w-[10%]"> Subject:</h1>
-                <h1 className="subjectTitle max-w-[25%] ml-[2%] font-bold">{titleSave}</h1>
-                <h1 className="divider w-[2%] mx-[2%] text-center"> | </h1>
-                <h1 className="flashcardSet max-w-[25%] h-[35px] items-baseline"> Flashcard Set: </h1>
-                <h1 className = "flashSetTitle ml-[2%] max-w-[25%] h-[35px] items-baseline font-bold">{flashSetTitle}</h1>
+            <div className = "subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
+                <h1 className = "subject max-w-[15%] mr-[12px]"> Subject:</h1>
+                <h1 className = "subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
+                <h1 className = "divider w-[2%] mx-[18px] text-center"> | </h1>
+                <h1 className = "flashcardSet max-w-[20%] mr-[12px]"> Flashcard Set: </h1>
+                <h1 className = "flashSetTitle font-semibold max-w-[30%]">{flashSetTitle}</h1>
             </div>
 
             <div className ={cardFlipEnd}>

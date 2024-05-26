@@ -26,6 +26,10 @@ export default function Breadcrumbs() {
             // @ts-ignore
             crumb = "Study Flashcard Set";
         }
+        if (crumb == "SubjectView") {
+            // @ts-ignore
+            crumb = "Subject";
+        }
 
         return (
         <span className="crumb ml-[2px]" key={index}>

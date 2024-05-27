@@ -26,7 +26,7 @@ export default function Breadcrumbs() {
             // @ts-ignore
             crumb = "Study Flashcard Set";
         }
-        if (crumb == "SubjectView") {
+        if (crumb == "SubjectView" || crumb == "subjectview")  {
             // @ts-ignore
             crumb = "Subject";
         }

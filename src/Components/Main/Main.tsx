@@ -1,10 +1,16 @@
-import Header from "#ComponentsFiles/Header.tsx";
-
+import LandingHeader from "#ComponentsFiles/LandingPage/LandingHeader.tsx";
+import TitleCard from "#ComponentsFiles/LandingPage/TitleCard.tsx";
+import AboutSection from "#ComponentsFiles/LandingPage/AboutSection.tsx";
+import Scroll from "#ComponentsFiles/LandingPage/Scroll.tsx";
+import GoogleLogIn from "#ComponentsFiles/LandingPage/GoogleLogIn.tsx";
 export default function Main() {
   return (
     <>
-      <Header/>
-      <div>Home</div>
+      <LandingHeader/>
+      <Scroll/>
+      <TitleCard/>
+      <AboutSection/>
+        <GoogleLogIn/>
     </>
   )
 }

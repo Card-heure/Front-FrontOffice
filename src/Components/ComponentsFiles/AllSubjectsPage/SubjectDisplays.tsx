@@ -2,6 +2,7 @@ import {useState} from "react";
 
 export default function SubjectDisplays () {
     const titleSave = localStorage.getItem('titleSave');
+    const exampleSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set']
 
     const [circlesFlashcard, setCirclesFlashcard] = useState(
     <div className = "displayCircles w-[25px] h-[34px] justify-center">
@@ -54,6 +55,16 @@ export default function SubjectDisplays () {
         "mindmapDisplay border-y-[1px] border-y-[black] border-y-[solid] flex items-center px-[20px] justify-between"
     );
 
+    const [displayFlashcards, setDisplayFlashcards] = useState(
+        "displayFlashcards hidden"
+    );
+    const [displayTests, setDisplayTests] = useState(
+        "displayTests hidden"
+    );
+    const [displayMindmaps, setDisplayMindmaps] = useState(
+        "displayMindmaps hidden"
+    );
+
     const [showHideFlashcard, setSHFlashcard] = useState (true);
     const [showHideTest, setSHTest] = useState (true);
     const [showHideMindmap, setSHMindmap] = useState (true);
@@ -78,6 +89,10 @@ export default function SubjectDisplays () {
             setTextColorFlashcard(
                 "flashcardDisplay border-y-[1px] border-y-[black] border-y-[solid] bg-[black] flex items-center px-[20px] justify-between text-[white]"
             );
+
+            setDisplayFlashcards(
+                "displayFlashcards border-b-[1px] border-b-[solid] border-b-[black] py-[50px] mx-[auto] justify-center flex"
+            );
         }
         else {
             setCirclesFlashcard(
@@ -96,12 +111,15 @@ export default function SubjectDisplays () {
             setTextColorFlashcard(
                 "flashcardDisplay border-y-[1px] border-y-[black] border-y-[solid] flex items-center px-[20px] justify-between"
             );
+
+            setDisplayFlashcards(
+                "displayFlashcards hidden"
+            );
         }
     };
 
     const displayDetailsTest = () => {
         showHideTest? setSHTest(false) : setSHTest(true)
-        console.log(showHideTest);
         if (showHideTest) {
             setCirclesTest(
                 <div className="displayCircles w-[25px] h-[34px] flex items-center">
@@ -119,6 +137,10 @@ export default function SubjectDisplays () {
 
             setTextColorTest(
                 "testDisplay bg-[black] flex items-center px-[20px] justify-between text-[white]"
+            );
+
+            setDisplayTests(
+                "displayTests border-b-[1px] border-b-[solid] border-b-[black] py-[50px] mx-[auto] justify-center flex"
             );
         }
         else {
@@ -138,12 +160,15 @@ export default function SubjectDisplays () {
             setTextColorTest(
                 "testDisplay flex items-center px-[20px] justify-between"
             );
+
+            setDisplayTests(
+                "displayTests hidden"
+            );
         }
     };
 
     const displayDetailsMindmap = () => {
         showHideMindmap ? setSHMindmap(false) : setSHMindmap(true)
-        console.log(showHideMindmap);
         if (showHideMindmap) {
             setCirclesMindmap(
                 <div className="displayCircles w-[25px] h-[34px] flex items-center">
@@ -161,6 +186,10 @@ export default function SubjectDisplays () {
 
             setTextColorMindmap(
                 "mindmapDisplay border-y-[1px] border-y-[black] border-y-[solid] bg-[black] flex items-center px-[20px] justify-between text-[white]"
+            );
+
+            setDisplayMindmaps(
+                "displayMindmaps border-b-[1px] border-b-[solid] border-b-[black] py-[50px] mx-[auto] justify-center flex"
             );
         }
         else {
@@ -180,6 +209,10 @@ export default function SubjectDisplays () {
             setTextColorMindmap(
                 "mindmapDisplay border-y-[1px] border-y-[black] border-y-[solid] flex items-center px-[20px] justify-between"
             );
+
+            setDisplayMindmaps(
+                "displayMindmaps hidden"
+            );
         }
     };
 
@@ -191,7 +224,7 @@ export default function SubjectDisplays () {
                 <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
             </div>
 
-            <div className = {textColorFlashcard} onClick = {displayDetailsFlashcard}>
+            <div className={textColorFlashcard} onClick={displayDetailsFlashcard}>
                 <button className="flashcardDisplayButton w-[60%] flex items-center">
                     {circlesFlashcard}
                     <h2 className="displayFlashcardText ml-[10px] pt-[25px] pb-[25px]"> Display all Flashcard Sets </h2>
@@ -204,8 +237,11 @@ export default function SubjectDisplays () {
                     <h2 className="createFlashcardText ml-[15px]">Create a new Flashcard Set </h2>
                 </button>
             </div>
+            <div className={displayFlashcards}>
+                <p> test </p>
+            </div>
 
-            <div className = {textColorTest} onClick = {displayDetailsTest}>
+            <div className={textColorTest} onClick={displayDetailsTest}>
                 <button className="testdDisplayButton w-[60%] flex items-center">
                     {circlesTest}
                     <h2 className="displayTestText ml-[10px] pt-[25px] pb-[25px]"> Display all Tests </h2>
@@ -218,8 +254,11 @@ export default function SubjectDisplays () {
                     <h2 className="createTestText ml-[15px]">Create a new Test </h2>
                 </button>
             </div>
+            <div className={displayTests}>
+                <p> test </p>
+            </div>
 
-            <div className = {textColorMindmap} onClick = {displayDetailsMindmap}>
+            <div className={textColorMindmap} onClick={displayDetailsMindmap}>
                 <button className="mindmapDisplayButton w-[60%] flex items-center">
                     {circlesMindmap}
                     <h2 className="displayMindmapText ml-[10px] pt-[25px] pb-[25px]"> Display all Mind Maps </h2>
@@ -231,6 +270,27 @@ export default function SubjectDisplays () {
                     </div>
                     <h2 className="createMindmapText ml-[15px]">Create a new Mind Map </h2>
                 </button>
+            </div>
+            <div className={displayMindmaps}>
+                <div className = "mindmapListContainer mx-[auto] justify-center flex flex-wrap text-[130%]">
+                    {exampleSet.slice().map((exampleSet, index) => (
+                        <div className="mindmapList w-[50%] mx-[1%] flex justify-center mb-[30px] items-center"
+                             key={index}>
+                            <h2 className = "indexNumber w-[8%] flex justify-center">
+                                <div className = "indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center">
+                                {index + 1}
+                                </div>
+                            </h2>
+                            <h1 className = "setTitle w-[75%] pl-[75px]">
+                                <button className = "titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px]">
+                                    {exampleSet}
+                                </button>
+
+                            </h1>
+                        </div>
+                    ))}
+
+                </div>
             </div>
         </>
     )

@@ -2,7 +2,9 @@ import {useState} from "react";
 
 export default function SubjectDisplays () {
     const titleSave = localStorage.getItem('titleSave');
-    const exampleSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set']
+    const flashcardSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
+    const testSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
+    const mindmapSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
 
     const [circlesFlashcard, setCirclesFlashcard] = useState(
     <div className = "displayCircles w-[25px] h-[34px] justify-center">
@@ -238,7 +240,25 @@ export default function SubjectDisplays () {
                 </button>
             </div>
             <div className={displayFlashcards}>
-                <p> test </p>
+                <div className="flashcardListContainer mx-[auto] justify-center flex flex-wrap text-[130%]">
+                    {flashcardSet.slice().map((flashcardSet, index) => (
+                        <div className="mindmapList w-[50%] mx-[1%] flex justify-center mb-[30px] items-center"
+                             key={index}>
+                            <h2 className="indexNumber w-[8%] flex justify-center">
+                                <div
+                                    className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
+                                    {index + 1}
+                                </div>
+                            </h2>
+                            <h1 className="setTitle w-[75%] pl-[75px]">
+                                <button
+                                    className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
+                                    {flashcardSet}
+                                </button>
+                            </h1>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className={textColorTest} onClick={displayDetailsTest}>
@@ -255,7 +275,25 @@ export default function SubjectDisplays () {
                 </button>
             </div>
             <div className={displayTests}>
-                <p> test </p>
+                <div className="flashcardListContainer mx-[auto] justify-center flex flex-wrap text-[130%]">
+                    {testSet.slice().map((testSet, index) => (
+                        <div className="mindmapList w-[50%] mx-[1%] flex justify-center mb-[30px] items-center"
+                             key={index}>
+                            <h2 className="indexNumber w-[8%] flex justify-center">
+                                <div
+                                    className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
+                                    {index + 1}
+                                </div>
+                            </h2>
+                            <h1 className="setTitle w-[75%] pl-[75px]">
+                                <button
+                                    className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
+                                    {testSet}
+                                </button>
+                            </h1>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className={textColorMindmap} onClick={displayDetailsMindmap}>
@@ -272,24 +310,24 @@ export default function SubjectDisplays () {
                 </button>
             </div>
             <div className={displayMindmaps}>
-                <div className = "mindmapListContainer mx-[auto] justify-center flex flex-wrap text-[130%]">
-                    {exampleSet.slice().map((exampleSet, index) => (
+                <div className="mindmapListContainer mx-[auto] justify-center flex flex-wrap text-[130%]">
+                    {mindmapSet.slice().map((mindmapSet, index) => (
                         <div className="mindmapList w-[50%] mx-[1%] flex justify-center mb-[30px] items-center"
                              key={index}>
-                            <h2 className = "indexNumber w-[8%] flex justify-center">
-                                <div className = "indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center">
+                            <h2 className="indexNumber w-[8%] flex justify-center">
+                                <div
+                                    className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
                                 {index + 1}
                                 </div>
                             </h2>
                             <h1 className = "setTitle w-[75%] pl-[75px]">
-                                <button className = "titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px]">
-                                    {exampleSet}
+                                <button className = "titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
+                                    {mindmapSet}
                                 </button>
 
                             </h1>
                         </div>
                     ))}
-
                 </div>
             </div>
         </>

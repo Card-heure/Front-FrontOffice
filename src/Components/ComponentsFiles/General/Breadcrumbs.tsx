@@ -30,6 +30,10 @@ export default function Breadcrumbs() {
             // @ts-ignore
             crumb = "Subject";
         }
+        if (crumb == "newtest" || crumb == "NewTest")  {
+            // @ts-ignore
+            crumb = "New Test";
+        }
 
         return (
         <span className="crumb ml-[2px]" key={index}>

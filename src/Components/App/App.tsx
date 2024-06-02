@@ -7,6 +7,9 @@ import NewSubject from "#Components/Main/NewSubject.tsx";
 import NewFlashcard from "#Components/Main/NewFlashcard.tsx";
 import StudyFlashcardSet from "#Components/Main/StudyFlashcardSet.tsx";
 import SubjectView from "#Components/Main/SubjectView.tsx";
+import NewTest from "#Components/Main/NewTest.tsx";
+
+
 export default function App() {
   return (
     <Routes>
@@ -47,6 +50,14 @@ export default function App() {
             element={
                 <Suspense fallback={<Loading/>}>
                     <StudyFlashcardSet/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/NewSubject/NewTest"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <NewTest/>
                 </Suspense>
             }
         />

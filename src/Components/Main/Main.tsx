@@ -10,7 +10,7 @@ export default function Main() {
       <Scroll/>
       <TitleCard/>
       <AboutSection/>
-        <GoogleLogIn/>
+      <GoogleLogIn/>
     </>
   )
 }

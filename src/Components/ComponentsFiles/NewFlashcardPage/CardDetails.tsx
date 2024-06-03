@@ -49,7 +49,7 @@ export default function CardDetails() {
                     <div className="termEntry w-[40%] justify-center mx-[auto] flex flex-wrap">
                         <h2 className="frontHeader text-center font-light italic text-[120%] w-[100%] h-[50px] mb-[20px]">Front</h2>
                         <textarea
-                            className="termSide focus:outline-none h-[75px] w-[95%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[5%] font-light"
+                            className="termSide focus:outline-none h-[85px] w-[95%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[5%] font-light overflow-hidden"
                             id = "termSide"
                             value={currentTerm}
                             onChange={handleTermChange}
@@ -68,7 +68,7 @@ export default function CardDetails() {
                     <div className="definitionEntry w-[40%] justify-center mx-[auto] flex flex-wrap">
                         <h2 className="backHeader text-center font-light italic text-[120%] w-[100%] h-[50px] mb-[20px]">Back</h2>
                         <textarea
-                            className="definitionSide focus:outline-none h-[75px] w-[95%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[5%] font-light"
+                            className="definitionSide focus:outline-none h-[85px] w-[95%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[5%] font-light overflow-hidden"
                             value={currentDefinition}
                             onChange={handleDefinitionChange}
                             onKeyDown={handleSave}

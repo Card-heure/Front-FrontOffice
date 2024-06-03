@@ -190,9 +190,9 @@
     transform-origin: bottom left;
     transform: rotate(45deg)
 }
-/* CardDetails.tsx --------------------------------------------- */
-.flashcardBox {
-    height: 75px;
+/* CardDetails.tsx ------------- TestQuestions.tsx------------- */
+.flashcardBox, .qaBox {
+    min-height: 85px;
     border: 1px solid black;
     border-radius: 15px;
     padding-left: 5%;
@@ -201,6 +201,9 @@
     align-self: center;
     font-weight: 300;
     display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+    word-break: break-word;
 }
 
 /* GoogleLogin.tsx --------------------------------------------- */

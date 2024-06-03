@@ -10,13 +10,26 @@ export default function TestQuestions() {
     const [singleOrPlural, setSingleOrPlural] = useState("Test Question");
 
     // @ts-ignore
+    const autoResize = (textarea) => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    };
+
+    const resetCursorToBeginning = (input: HTMLInputElement | HTMLTextAreaElement): void => {
+        input.setSelectionRange(0, 0);
+        input.focus();
+    };
+
+    // @ts-ignore
     const handleQuestionChange = (event) => {
         setCurrentQuestion(event.target.value);
+        autoResize(event.target)
     };
 
     // @ts-ignore
     const handleAnswerChange = (event) => {
         setCurrentAnswer(event.target.value);
+        autoResize(event.target);
     };
 
     // @ts-ignore
@@ -30,6 +43,12 @@ export default function TestQuestions() {
             setCurrentQuestion('');
             setCurrentAnswer('');
             setQACount(newQA.length);
+
+            const inputElement = document.getElementById('questionSide') as HTMLInputElement;
+            resetCursorToBeginning(inputElement);
+
+            event.preventDefault(); // prevents the enter key from going to a new line by default
+            event.dispatchEvent(new Event('submit')); // ensures that the enter key's only action is submitting the text
 
             if (newQA.length > 0) {
                 setSaveButton("saveSet w-[250px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light min-h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")

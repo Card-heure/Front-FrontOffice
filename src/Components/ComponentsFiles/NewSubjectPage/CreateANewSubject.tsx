@@ -1,25 +1,33 @@
 import {useState} from 'react';
+import {apiRequest} from "../../../Utils/ApiRequest.ts";
+import {TSubject} from "../../../Types/TSubject.ts";
+
 export default function CreateANewSubject() {
 
     const [titleEntered, setTitleEntered] = useState(false);
+    const [newSubject, setNewSubject] = useState<TSubject|null>(null);
     const [titleSave, setTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
     const [enterTitle, setEnterTitle] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] mt-[8px] leading-[30px] rounded-[50%] bg-[black] text-[white] text-center");
-    // @ts-ignore
     const handleTitleEntered = (event) => {
         const inputValue = event.target.value;
         setTitleSave(inputValue);
         localStorage.setItem('titleSave', inputValue);
         if (inputValue.trim().length > 2) {
             setTitleEntered(true);
-        }
-        else {
+        } else {
             setTitleEntered(false);
         }
     }
     const initiateSubject = () => {
         setDisplayOptions(true);
         setEnterTitle("enterButtonIcon cursor-auto");
+        apiRequest('api/subject', 'POST', {name: titleSave})
+            .then(r => {
+                if (r.status === 200) {
+                    setNewSubject(r.response[0] as TSubject);
+                }
+            });
         setSaveTitle(
             <h1
                 className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-light italic"
@@ -46,14 +54,14 @@ export default function CreateANewSubject() {
 
                 <div className="enterButton w-[18%] ml-[6%] h-[50px]">
                     <button
-                        className = {titleEntered ? enterTitle : "enterButtonIcon hidden"}
-                        onClick = {initiateSubject}>
+                        className={titleEntered ? enterTitle : "enterButtonIcon hidden"}
+                        onClick={initiateSubject}>
                         {addOrSave()}
                     </button>
                 </div>
             </div>
 
-            <div className={ displayOptions ? "addContent mt-[8%] w-[70%] mx-[auto]" : "hidden"}>
+            <div className={displayOptions ? "addContent mt-[8%] w-[70%] mx-[auto]" : "hidden"}>
                 <h1 className="getStarted h-[50px] leading-[50px] text-center text-[160%] font-light">Get started by
                     adding content</h1>
                 <div
@@ -61,10 +69,10 @@ export default function CreateANewSubject() {
                     <a href='http://localhost:5173/home/newSubject/newflashcard'>
                         <button className="createContent flashcard">Create a Flashcard Set</button>
                     </a>
-                        <button className="createContent test">Create a Test</button>
-                        <button className="createContent mindmap">Create a Mind Map</button>
+                    <button className="createContent test">Create a Test</button>
+                    <button className="createContent mindmap">Create a Mind Map</button>
                 </div>
             </div>
         </>
-);
+    );
 }

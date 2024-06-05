@@ -2,6 +2,6 @@ export type TSubject = {
   id: number
   name: string
   creatorId: number
-  createdAt: Date | null
+  createdAt: Date
   updatedAt: Date | null
 }

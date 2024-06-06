@@ -9,11 +9,17 @@ export default function TestQuestions() {
     const [saveButton, setSaveButton] = useState("hidden");
     const [singleOrPlural, setSingleOrPlural] = useState("Test Question");
 
-    // @ts-ignore
-    const autoResize = (textarea) => {
+    const autoResize = ({textarea}: { textarea: any }) => {
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
     };
+
+    const resetSize = () => {
+        // @ts-ignore
+        document.getElementById(`questionSide`).setAttribute('style', 'height: 85px;');
+        // @ts-ignore
+        document.getElementById(`answerSide`).setAttribute('style', 'height: 85px;');
+    }
 
     const resetCursorToBeginning = (input: HTMLInputElement | HTMLTextAreaElement): void => {
         input.setSelectionRange(0, 0);
@@ -23,13 +29,13 @@ export default function TestQuestions() {
     // @ts-ignore
     const handleQuestionChange = (event) => {
         setCurrentQuestion(event.target.value);
-        autoResize(event.target)
+        autoResize({textarea: event.target})
     };
 
     // @ts-ignore
     const handleAnswerChange = (event) => {
         setCurrentAnswer(event.target.value);
-        autoResize(event.target);
+        autoResize({textarea: event.target});
     };
 
     // @ts-ignore
@@ -44,11 +50,12 @@ export default function TestQuestions() {
             setCurrentAnswer('');
             setQACount(newQA.length);
 
+            resetSize();
+
             const inputElement = document.getElementById('questionSide') as HTMLInputElement;
             resetCursorToBeginning(inputElement);
 
             event.preventDefault(); // prevents the enter key from going to a new line by default
-            event.dispatchEvent(new Event('submit')); // ensures that the enter key's only action is submitting the text
 
             if (newQA.length > 0) {
                 setSaveButton("saveSet w-[250px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light min-h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
@@ -61,6 +68,58 @@ export default function TestQuestions() {
     };
 
     return (
+        <>
+            <div className="headers flex w-[80%] mx-[auto]">
+                <h2 className="questionHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Question</h2>
+                <h2 className="answerHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Answer</h2>
+            </div>
+
+            <div className="entriesAndListsContainer w-[100%] h-[auto]">
+
+                <div className="Entries flex items-start justify-around w-[80%] mx-[auto] h-[auto]">
+                    <textarea
+                        className="questionSide focus:outline-none min-h-[140px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
+                        id="questionSide"
+                        value={currentQuestion}
+                        onChange={handleQuestionChange}
+                        onKeyDown={handleSave}
+                    />
+
+                    <textarea
+                        className="answerSide questionSide focus:outline-none min-h-[140px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
+                        id="answerSide"
+                        value={currentAnswer}
+                        onChange={handleAnswerChange}
+                        onKeyDown={handleSave}
+                    />
+                </div>
+
+                <div className="lists flex flex-wrap w-[80%] mx-[auto] h-[auto] mt-[60px]">
+                    {questions.slice().reverse().map((question, index) => (
+                        <div className="questionList w-[100%] flex flex-wrap items-start" key={index}>
+                            <div className="w-[50%] mb-[50px]">
+                                <h3 className="qaBox w-[80%] mx-[auto] justify-center"> {question["question"]} </h3>
+                            </div>
+                            <div className="flex w-[50%] mb-[50px]">
+                                <h3 className="qaBox w-[80%] mx-[auto] justify-center">{question["answer"]}</h3>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="questionCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
+                <button
+                    className={saveButton}>
+                    <a href="http://localhost:5173/home/newSubject/newflashcard/StudyFlashCardSet">
+                        Save {qaCount} {singleOrPlural}
+                    </a>
+                </button>
+            </div>
+        </>
+    )
+}
+/*
         <>
             <div>
                 <div className = "flex justify-around w-[80%] mx-[auto] h-[auto]">
@@ -87,6 +146,7 @@ export default function TestQuestions() {
                         <h2 className = "answerHeader text-center font-light italic text-[120%] w-[100%] h-[50px] mb-[20px]">Answer</h2>
                         <textarea
                             className = "answerSide focus:outline-none h-[85px] w-[95%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[5%] font-light overflow-hidden"
+                            id = "answerSide"
                             value = {currentAnswer}
                             onChange = {handleAnswerChange}
                             onKeyDown = {handleSave}
@@ -111,5 +171,4 @@ export default function TestQuestions() {
 
             </div>
         </>
-    )
-}
+ */

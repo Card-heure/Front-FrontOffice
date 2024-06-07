@@ -17,18 +17,16 @@ export default function CreateTest() {
     }
 
     const [testTitle, setTestTitle] = useState(
-        <input
-            type="text"
+        <input type="text"
             maxLength={45}
-            className="enterTitle flex w-[60%] max-w-[80%] border-b-[1px] border-b-[solid] border-b-[black] font-extralight"
+            className="enterTitle flex max-w-[80%] border-b-[1px] border-b-[solid] border-b-[black] font-extralight"
             onChange={handleTitleEntered}/>);
 
     const create = () => {
         setDisplayOptions(true);
         setEnterButton("enterButtonIcon mb-[16px] cursor-auto");
         setTestTitle(
-            <h1
-                className="enterTitle flex max-w-[70%] font-semibold"
+            <h1 className="enterTitle flex font-semibold"
                 onChange={handleTitleEntered}> {testTitleSave} </h1>);
     }
 
@@ -41,21 +39,18 @@ export default function CreateTest() {
     const [testTitleSave, setTestTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
 
-    //
+
     return (
         <>
-            <div className="subjectTitle flex items-center w-[50%] mx-[auto] mt-[55px] text-[140%] font-extralight text-left justify-center overflow-clip">
-                <h1 className="subject flex w-[10%] mr-[20px]"> Subject:</h1>
-                <h1 className="subjectTitle flex max-w-[70%] font-semibold">{titleSave}</h1>
-            </div>
-
-            <div className="testTitle flex items-center h-[35px] w-[50%] mx-[auto] mt-[25px] mb-[100px] text-[140%] font-extralight text-left justify-center">
-                <h1 className="flashcardSet flex w-[10%]"> Test: </h1>
+            <div className = "subjectTitle flex items-center w-[80%] mx-[auto] justify-center mt-[55px] text-[140%] font-extralight text-left overflow-clip mb-[100px]">
+                <h1 className = "subject mr-[20px]"> Subject:</h1>
+                <h1 className = "subjectTitle flex font-semibold">{titleSave}</h1>
+                <h1 className = "divider mx-[30px]">|</h1>
+                <h1 className = "testSet flex mr-[20px]"> Test: </h1>
                 {testTitle}
 
-                <div className="enterButton w-[5%] ml-[28px] pt-[5px]">
-                    <button
-                        className={titleEntered ? enterButton : "enterButtonIcon hidden"}
+                <div className = "enterButton flex ml-[28px] pt-[5px]">
+                    <button className={titleEntered ? enterButton : "enterButtonIcon hidden"}
                         onClick={create}>
                         {addOrSave()}
                     </button>

@@ -16,9 +16,9 @@ export default function TestQuestions() {
 
     const resetSize = () => {
         // @ts-ignore
-        document.getElementById(`questionSide`).setAttribute('style', 'height: 85px;');
+        document.getElementById(`questionSide`).setAttribute('style', 'height: 75px;');
         // @ts-ignore
-        document.getElementById(`answerSide`).setAttribute('style', 'height: 85px;');
+        document.getElementById(`answerSide`).setAttribute('style', 'height: 75px;');
     }
 
     const resetCursorToBeginning = (input: HTMLInputElement | HTMLTextAreaElement): void => {
@@ -40,6 +40,7 @@ export default function TestQuestions() {
 
     // @ts-ignore
     const handleSave = (event) => {
+        console.log("test");
         if (currentQuestion.trim() !== '' && currentAnswer.trim() !== '' && event.key === 'Enter') {
             // @ts-ignore
             const newQA = ([...questions, {question: currentQuestion.trim(), answer: currentAnswer.trim()}]);
@@ -56,13 +57,18 @@ export default function TestQuestions() {
             resetCursorToBeginning(inputElement);
 
             event.preventDefault(); // prevents the enter key from going to a new line by default
+            event.dispatchEvent(new Event('submit')); // ensures that the enter key's only action is submitting the text
 
+            console.log(newQA.length);
+            console.log(qaCount);
             if (newQA.length > 0) {
-                setSaveButton("saveSet w-[250px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light min-h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
+                setSaveButton("saveSet w-[250px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
+                console.log("yes");
             }
 
             if (newQA.length > 1) {
                 setSingleOrPlural("Test Questions");
+                console.log("noooo");
             }
         }
     };
@@ -78,7 +84,7 @@ export default function TestQuestions() {
 
                 <div className="Entries flex items-start justify-center w-[80%] mx-[auto] h-[auto]">
                     <textarea
-                        className="questionSide flex mx-[auto] focus:outline-none h-[120px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
+                        className="questionSide flex mx-[auto] focus:outline-none w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[25px] font-light overflow-hidden"
                         id="questionSide"
                         maxLength={650}
                         value={currentQuestion}
@@ -87,7 +93,7 @@ export default function TestQuestions() {
                     />
 
                     <textarea
-                        className="answerSide flex mx-[auto] questionSide focus:outline-none h-[120px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
+                        className="answerSide flex mx-[auto] questionSide focus:outline-none w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[25px] font-light overflow-hidden"
                         id="answerSide"
                         maxLength={650}
                         value={currentAnswer}
@@ -96,7 +102,7 @@ export default function TestQuestions() {
                     />
                 </div>
 
-                <div className="lists flex flex-wrap w-[80%] mx-[auto] h-[auto] mt-[60px]">
+                <div className="lists flex flex-wrap w-[80%] mx-[auto] h-[auto] mt-[60px] relative">
                     {questions.slice().reverse().map((question, index) => (
                         <div className="questionList w-[100%] flex flex-wrap items-start" key={index}>
                             <div className="w-[50%] mb-[50px]">
@@ -107,6 +113,7 @@ export default function TestQuestions() {
                             </div>
                         </div>
                     ))}
+                    <div className = "verticalLine"></div>
                 </div>
             </div>
 

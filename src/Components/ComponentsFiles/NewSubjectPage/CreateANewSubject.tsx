@@ -22,14 +22,15 @@ export default function CreateANewSubject() {
         setEnterTitle("enterButtonIcon cursor-auto");
         setSaveTitle(
             <h1
-                className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-light italic"
+                className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[20%] w-[64%] h-[35px] mb-[6px] text-center font-light italic"
                 onChange={handleTitleEntered}> {titleSave} </h1>);
     }
 
     const [saveTitle, setSaveTitle] = useState(
         <input
             type="text"
-            className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-extralight"
+            maxLength={45}
+            className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[20%] w-[64%] h-[35px] mb-[6px] text-center font-extralight"
             onChange={handleTitleEntered}/>);
 
     const addOrSave = () => {
@@ -41,7 +42,7 @@ export default function CreateANewSubject() {
             <h1 className="titlePrompt h-[50px] leading-[50px] mt-[3%] w-[60%] mx-[auto] text-center text-[180%] font-extralight">
                 Enter the title of your new subject below</h1>
 
-            <div className="createTitle w-[35%] h-[50px] mx-[auto] mt-[4%] flex text-[150%]">
+            <div className="createTitle w-[55%] h-[50px] mx-[auto] mt-[4%] flex text-[150%]">
                 {saveTitle}
 
                 <div className="enterButton w-[18%] ml-[6%] h-[50px]">

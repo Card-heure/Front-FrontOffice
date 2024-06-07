@@ -74,20 +74,22 @@ export default function TestQuestions() {
                 <h2 className="answerHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Answer</h2>
             </div>
 
-            <div className="entriesAndListsContainer w-[100%] h-[auto]">
+            <div className="entriesAndListsContainer">
 
-                <div className="Entries flex items-start justify-around w-[80%] mx-[auto] h-[auto]">
+                <div className="Entries flex items-start justify-center w-[80%] mx-[auto] h-[auto]">
                     <textarea
-                        className="questionSide focus:outline-none min-h-[140px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
+                        className="questionSide flex mx-[auto] focus:outline-none h-[120px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
                         id="questionSide"
+                        maxLength={650}
                         value={currentQuestion}
                         onChange={handleQuestionChange}
                         onKeyDown={handleSave}
                     />
 
                     <textarea
-                        className="answerSide questionSide focus:outline-none min-h-[140px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
+                        className="answerSide flex mx-[auto] questionSide focus:outline-none h-[120px] w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[45px] font-light overflow-hidden"
                         id="answerSide"
+                        maxLength={650}
                         value={currentAnswer}
                         onChange={handleAnswerChange}
                         onKeyDown={handleSave}
@@ -109,7 +111,7 @@ export default function TestQuestions() {
             </div>
 
             <div className="questionCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
-                <button
+            <button
                     className={saveButton}>
                     <a href="http://localhost:5173/home/newSubject/newflashcard/StudyFlashCardSet">
                         Save {qaCount} {singleOrPlural}

@@ -19,7 +19,8 @@ export default function CreateFlashcard() {
     const [flashSetTitle, setFlashSetTitle] = useState(
         <input
             type="text"
-            className="enterTitle w-[30%] items-baseline border-b-[1px] border-b-[solid] border-b-[black] font-extralight"
+            maxLength={45}
+            className="enterTitle flex w-[60%] max-w-[80%] border-b-[1px] border-b-[solid] border-b-[black] font-extralight"
             onChange={handleTitleEntered}/>);
 
     const create = () => {
@@ -43,21 +44,24 @@ export default function CreateFlashcard() {
     //
     return (
         <>
-            <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[100px] text-[160%] font-extralight text-left justify-center overflow-clip">
-                <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
-                <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
-                <h1 className="divider w-[2%] mx-[18px] text-center"> | </h1>
-                <h1 className="flashcardSet max-w-[20%] mr-[12px]"> Flashcard Set: </h1>
-                {flashSetTitle}
+            <div className="subjectTitle flex items-center w-[50%] mx-[auto] mt-[55px] text-[140%] font-extralight text-left justify-center overflow-clip">
+                <h1 className="subject flex w-[10%] mr-[20px]"> Subject:</h1>
+                <h1 className="subjectTitle flex max-w-[70%] font-semibold">{titleSave}</h1>
+            </div>
 
-                <div className="enterButton w-[5%] mx-[28px] pt-[8px]">
+                <div className = "setTitle flex items-center h-[35px] w-[50%] mx-[auto] mt-[25px] mb-[100px] text-[140%] font-extralight text-left justify-center">
+                    <h1 className="flashcardSet flex w-[22%]"> Flashcard Set: </h1>
+                    {flashSetTitle}
+
+                <div className="enterButton w-[5%] mx-[28px] pt-[5px]">
                     <button
                         className={titleEntered ? enterButton : "enterButtonIcon hidden"}
                         onClick={create}>
                         {addOrSave()}
                     </button>
                 </div>
-            </div>
+                </div>
+
 
             <div className={displayOptions ? "cardSection" : "cardSection hidden"}>
                 <CardDetails/>

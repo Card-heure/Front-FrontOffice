@@ -118,11 +118,10 @@ export default function TestQuestions() {
             </div>
 
             <div className="questionCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
-            <button
-                    className={saveButton}>
-                    <a href="http://localhost:5173/home/newSubject/newflashcard/StudyFlashCardSet">
-                        Save {qaCount} {singleOrPlural}
-                    </a>
+            <button className={saveButton}>
+                <a href="http://localhost:5173/home/takeatest">
+                    Save {qaCount} {singleOrPlural}
+                </a>
                 </button>
             </div>
         </>

@@ -54,7 +54,7 @@ export default function CardDetails() {
                 resetCursorToBeginning(inputElement);
 
                 event.preventDefault(); // prevents the enter key from going to a new line by default
-                event.dispatchEvent(new Event('submit')); // ensures that the enter key's only action is submitting the text
+                //event.dispatchEvent(new Event('submit')); // ensures that the enter key's only action is submitting the text
 
 
                 if (newTerms.length > 0) {

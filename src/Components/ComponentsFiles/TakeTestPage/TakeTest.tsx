@@ -9,7 +9,7 @@ export default function TakeTest() {
     //const [nCopy, setNCopy] = useState(n);
     const [c, setC] = useState(0);
     const [v, setV] = useState(1);
-    const [finalQuestion, setFinalQuestion] = useState("w-[60%] items-center mx-auto flex justify-between");
+    const [finalQuestion, setFinalQuestion] = useState("w-[80%] items-center mx-auto flex justify-between");
     const [resultCount, setResultCount] = useState("resultAndCount flex items-center justify-between h-[70px] w-[55%] mx-[auto] mt-[50px] mb-[50px]")
     const [currentQuestion, setCurrentQuestion] = useState(questions[n].question);
     const [currentAnswer, setCurrentAnswer] = useState(questions[n].answer);
@@ -21,6 +21,13 @@ export default function TakeTest() {
     const [correctQuestions, setCorrectQuestions] = useState([]);
     const [incorrectQuestions, setIncorrectQuestions] = useState([]);
     const [questionBox, setQuestionBox] = useState("currentQuestion w-[60%] items-center mx-auto flex justify-between");
+
+    const userAnswer= (
+        <input type = "text"
+               className = "userAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]"
+               maxLength = {450}
+        />
+    )
 
     // @ts-ignore
     const markCorrect = (event) => {
@@ -123,15 +130,16 @@ export default function TakeTest() {
 
 
             <div className ={questionBox}>
-                <h1 className = "questionHeaderAndText flex items-center w-[650px] border-[black] border-[1px] border-[solid] h-[auto] mb-[50px] ml-[6%] text-[140%] font-light">
+                <h1 className = "questionHeaderAndText flex items-center w-[650px] h-[auto] mb-[55px] ml-[6%] text-[140%] font-light">
                     <span className = "questionHeader font-semibold mr-[10px]"> Question: </span>
                     {currentQuestion}
                 </h1>
 
             </div>
             <div className={finalQuestion}>
+                {userAnswer}
                 <div
-                    className="currentAnswer flex text-center items-center w-[650px] h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]">
+                    className="correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]">
                     <p className="answerBox flex mx-[auto] px-[25px] font-light text-[140%]">
                         {currentAnswer}
                     </p>

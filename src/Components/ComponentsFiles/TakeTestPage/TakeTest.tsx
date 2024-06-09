@@ -9,7 +9,7 @@ export default function TakeTest() {
     //const [nCopy, setNCopy] = useState(n);
     const [c, setC] = useState(0);
     const [v, setV] = useState(1);
-    const [finalQuestion, setFinalQuestion] = useState("w-[80%] items-center mx-auto flex justify-between");
+    const [finalQuestion, setFinalQuestion] = useState("w-[80%] mx-[auto]");
     const [resultCount, setResultCount] = useState("resultAndCount flex items-center justify-between h-[70px] w-[55%] mx-[auto] mt-[50px] mb-[50px]")
     const [currentQuestion, setCurrentQuestion] = useState(questions[n].question);
     const [currentAnswer, setCurrentAnswer] = useState(questions[n].answer);
@@ -21,18 +21,19 @@ export default function TakeTest() {
     const [correctQuestions, setCorrectQuestions] = useState([]);
     const [incorrectQuestions, setIncorrectQuestions] = useState([]);
     const [questionBox, setQuestionBox] = useState("currentQuestion w-[60%] items-center mx-auto flex justify-between");
-    const [showEntryButton, setShowEntryButton] = useState(false);
+    const [showEnterButton, setShowEnterButton] = useState(false);
     const [enterOrNext, setEnterOrNext] = useState("Enter");
     const [showAnswer, setShowAnswer] = useState(false);
+    const [correctIncorrect, setCorrectIncorrect] = useState("");
 
     const showEntry = () => {
         // @ts-ignore
         const entryLength = document.getElementById('userAnswer').value;
         if (entryLength.length > 0) {
-            setShowEntryButton(true);
+            setShowEnterButton(true);
         }
         else {
-            setShowEntryButton(false);
+            setShowEnterButton(false);
         }
     }
 
@@ -46,21 +47,28 @@ export default function TakeTest() {
             console.log(currentAnswer);
 
             if (userEntry == currentAnswer) {
-                console.log("success!")
+                console.log("success!");
+                setCorrectIncorrect("correct");
             }
             if (userEntry != currentAnswer) {
                 console.log("next time!");
+                setCorrectIncorrect("incorrect");
             }
         }
         if (enterOrNext == "Next Question") {
             setEnterOrNext("Enter");
             setShowAnswer(false);
+            if (correctIncorrect == "correct") {
+                markCorrect();
+            }
+            if (correctIncorrect == "incorrect") {}
+            markIncorrect();
         }
     };
 
     const userAnswer= (
         <input type = "text"
-               className = "userAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]"
+               className = "userAnswer flex text-center items-center w-[650px] mx-[auto] min-h-[300px] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]"
                id = "userAnswer"
                maxLength = {450}
                onChange = {showEntry}
@@ -158,8 +166,7 @@ export default function TakeTest() {
 
     return (
         <>
-            <div
-                className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
+            <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
                 <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
                 <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
                 <h1 className="divider w-[2%] mx-[18px] text-center"> | </h1>
@@ -169,44 +176,30 @@ export default function TakeTest() {
 
 
             <div className ={questionBox}>
-                <h1 className = "questionHeaderAndText flex items-center w-[650px] h-[auto] mb-[55px] ml-[6%] text-[140%] font-light">
+                <h1 className = "questionHeaderAndText flex items-center w-[650px] h-[auto] mb-[55px] mx-[auto] text-[140%] font-light">
                     <span className = "questionHeader font-semibold mr-[10px]"> Question: </span>
                     {currentQuestion}
                 </h1>
 
             </div>
-            <div className={finalQuestion}>
+            <div className = {finalQuestion}>
+            <div className = "w-[100%] items-center mx-auto flex justify-between">
                 {userAnswer}
-                <div className = {showAnswer ? "correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]" : "correctAnswer hidden"} >
+                <div className={showAnswer ? "correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]" : "correctAnswer hidden"}>
                     <p className="answerBox flex mx-[auto] px-[25px] font-light text-[140%]">
                         {currentAnswer}
                     </p>
                 </div>
             </div>
-
-            <button className = {showEntryButton ? "entryButton w-[auto] px-[55px] mx-[auto] mt-[50px] flex justify-center border-[1px] border-[solid] border-[black] rounded-[18px] text-[120%] py-[12px] font-light  bg-[black] text-[white]" : "entryButton hidden"}
-            onClick = {checkAnswer}>
-                <h1> {enterOrNext} </h1>
-            </button>
+                <div className = "w-[80%]">
+                <button className={showEnterButton ? "entryButton w-[auto] px-[55px] mx-[auto] mt-[50px] flex justify-center border-[1px] border-[solid] border-[black] rounded-[18px] text-[120%] py-[12px] font-light  bg-[black] text-[white]" : "entryButton invisible"}
+                    onClick={checkAnswer}>
+                    <h1> {enterOrNext} </h1>
+                </button>
+                </div>
+            </div>
 
             <div className={resultCount}>
-                <div className="result w-[22%] justify-center flex">
-                    <div className="correct flex w-[50%] justify-center">
-                        <button
-                            className="correctCircle flex justify-center items-center text-[150%] w-[45px] h-[45px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(197,_255,_203,_.65)]"
-                            onClick={markCorrect}>
-                            &#x2713;
-                        </button>
-                    </div>
-                    <div className="incorrect flex w-[50%] justify-center">
-                        <button
-                            className="incorrectCircle flex justify-center items-center text-[150%] font-bold w-[45px] h-[45px] rounded-[50%] border-[1px] border-[black] border-[solid] bg-[rgba(255,_106,_106,_.65)]"
-                            onClick={markIncorrect}>
-                            &#10005;
-                        </button>
-                    </div>
-                </div>
-
                 <div className="count flex w-[20%] font-light text-[120%] mr-[8%]">
                     <p>Question {v} / {questions.length}</p>
                 </div>
@@ -218,7 +211,7 @@ export default function TakeTest() {
                 </div>
                 <div className="resultStats flex w-[100%] text-[120%] font-light">
                     <div className={correctViewedStats}>
-                        <h2> {c} / {v} viewed Questions correct (<span className="bold">{score}%</span>)</h2>
+                        <h2> {c} / {v} viewed questions correct (<span className="bold">{score}%</span>)</h2>
                     </div>
                     <div className={correctTotalStats}>
                         <h2> {c} / {questions.length} total questions correct (<span

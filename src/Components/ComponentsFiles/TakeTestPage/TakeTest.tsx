@@ -21,16 +21,55 @@ export default function TakeTest() {
     const [correctQuestions, setCorrectQuestions] = useState([]);
     const [incorrectQuestions, setIncorrectQuestions] = useState([]);
     const [questionBox, setQuestionBox] = useState("currentQuestion w-[60%] items-center mx-auto flex justify-between");
+    const [showEntryButton, setShowEntryButton] = useState(false);
+    const [enterOrNext, setEnterOrNext] = useState("Enter");
+    const [showAnswer, setShowAnswer] = useState(false);
+
+    const showEntry = () => {
+        // @ts-ignore
+        const entryLength = document.getElementById('userAnswer').value;
+        if (entryLength.length > 0) {
+            setShowEntryButton(true);
+        }
+        else {
+            setShowEntryButton(false);
+        }
+    }
+
+    const checkAnswer = () => {
+        if (enterOrNext == "Enter") {
+            setEnterOrNext("Next Question")
+            setShowAnswer(true);
+            // @ts-ignore
+            const userEntry= document.getElementById('userAnswer').value;
+            console.log(userEntry);
+            console.log(currentAnswer);
+
+            if (userEntry == currentAnswer) {
+                console.log("success!")
+            }
+            if (userEntry != currentAnswer) {
+                console.log("next time!");
+            }
+        }
+        if (enterOrNext == "Next Question") {
+            setEnterOrNext("Enter");
+            setShowAnswer(false);
+        }
+    };
 
     const userAnswer= (
         <input type = "text"
                className = "userAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]"
+               id = "userAnswer"
                maxLength = {450}
+               onChange = {showEntry}
         />
     )
 
+
     // @ts-ignore
-    const markCorrect = (event) => {
+    const markCorrect = () => {
         if ((n < questions.length - 1) && !endReview) { // -2 because originally it's -1 (index 0), but n is always an extra 1 behind
             const newIndex = n + 1;
             setN(newIndex);
@@ -76,7 +115,7 @@ export default function TakeTest() {
     };
 
     // @ts-ignore
-    const markIncorrect = (event) => {
+    const markIncorrect = () => {
         if ((n < questions.length - 1) && !endReview) { // -2 because originally it's -1 (index 0), but n is always an extra 1 behind
             const newIndex = n + 1;
             setN(newIndex);
@@ -138,13 +177,17 @@ export default function TakeTest() {
             </div>
             <div className={finalQuestion}>
                 {userAnswer}
-                <div
-                    className="correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]">
+                <div className = {showAnswer ? "correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]" : "correctAnswer hidden"} >
                     <p className="answerBox flex mx-[auto] px-[25px] font-light text-[140%]">
                         {currentAnswer}
                     </p>
                 </div>
             </div>
+
+            <button className = {showEntryButton ? "entryButton w-[auto] px-[55px] mx-[auto] mt-[50px] flex justify-center border-[1px] border-[solid] border-[black] rounded-[18px] text-[120%] py-[12px] font-light  bg-[black] text-[white]" : "entryButton hidden"}
+            onClick = {checkAnswer}>
+                <h1> {enterOrNext} </h1>
+            </button>
 
             <div className={resultCount}>
                 <div className="result w-[22%] justify-center flex">

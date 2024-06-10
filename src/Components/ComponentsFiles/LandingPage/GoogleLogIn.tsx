@@ -1,4 +1,7 @@
+import {useNavigate} from "react-router-dom";
+
 export default function GoogleLogIn() {
+  const navigate = useNavigate();
     return (
         <div className = "googleBox w-[75%] h-[200px] mt-[100px] mb-[100px] mx-[auto] justify-center items-center flex" id = "logIn">
             <button className = "gsi-material-button">
@@ -6,8 +9,7 @@ export default function GoogleLogIn() {
                 <div className = "gsi-material-button-content-wrapper">
                     <div className = "gsi-material-button-icon">
                         <svg version = "1.1" xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 48 48"
-                             xmlns:xlink = "http://www.w3.org/1999/xlink"
-                            className = "display: block;">
+                             className = "display: block;">
                             <path fill = "#EA4335"
                                   d = "M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
                             <path fill = "#4285F4"
@@ -19,7 +21,7 @@ export default function GoogleLogIn() {
                             <path fill = "none" d = "M0 0h48v48H0z"></path>
                         </svg>
                     </div>
-                    <span className = "gsi-material-button-contents">Continue with Google</span>
+                    <button className = "gsi-material-button-contents" onClick={()=>{navigate("/login")}}>(TODO) Login</button>
                 </div>
             </button>
         </div>

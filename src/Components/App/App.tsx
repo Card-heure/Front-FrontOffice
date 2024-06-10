@@ -7,6 +7,8 @@ import NewSubject from "#Components/Main/NewSubject.tsx";
 import NewFlashcard from "#Components/Main/NewFlashcard.tsx";
 import StudyFlashcardSet from "#Components/Main/StudyFlashcardSet.tsx";
 import SubjectView from "#Components/Main/SubjectView.tsx";
+import NewTest from "#Components/Main/NewTest.tsx";
+import TakeATest from "#Components/Main/TakeATest.tsx";
 import {isAuthenticated} from "../../Utils/utils.ts";
 import Login from "#Components/Login/Login.tsx";
 
@@ -38,46 +40,62 @@ export default function App() {
           </Suspense>
         }
       />
-      <Route
-        path={"/Home"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <Home/>
-          </Suspense>
-        }
-      />
-      <Route
-        path={"/Home/NewSubject"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <NewSubject/>
-          </Suspense>
-        }
-      />
-      <Route
-        path={"/Home/NewSubject/NewFlashCard"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <NewFlashcard/>
-          </Suspense>
-        }
-      />
-      <Route
-        path={"/Home/NewSubject/NewFlashCard/StudyFlashCardSet"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <StudyFlashcardSet/>
-          </Suspense>
-        }
-      />
-      <Route
-        path={"/Home/SubjectView"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <SubjectView/>
-          </Suspense>
-        }
-      />
+     <Route
+            path={"/Home"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <Home/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/NewSubject"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <NewSubject/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/NewSubject/NewFlashCard"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <NewFlashcard/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/NewSubject/NewFlashCard/StudyFlashCardSet"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <StudyFlashcardSet/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/NewSubject/NewTest"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <NewTest/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/SubjectView"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <SubjectView/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/TakeATest"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <TakeATest/>
+                </Suspense>
+            }
+        />
     </Routes>
   )
 }

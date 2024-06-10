@@ -30,14 +30,15 @@ export default function CreateANewSubject() {
             });
         setSaveTitle(
             <h1
-                className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-light italic"
+                className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[20%] w-[64%] h-[35px] mb-[6px] text-center font-light italic"
                 onChange={handleTitleEntered}> {titleSave} </h1>);
     }
 
     const [saveTitle, setSaveTitle] = useState(
         <input
             type="text"
-            className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[12%] w-[64%] h-[35px] mb-[6px] text-center font-extralight"
+            maxLength={45}
+            className="enterTitle flex border-b-[1px] border-b-[solid] border-b-[black] justify-center ml-[20%] w-[64%] h-[35px] mb-[6px] text-center font-extralight"
             onChange={handleTitleEntered}/>);
 
     const addOrSave = () => {
@@ -49,7 +50,7 @@ export default function CreateANewSubject() {
             <h1 className="titlePrompt h-[50px] leading-[50px] mt-[3%] w-[60%] mx-[auto] text-center text-[180%] font-extralight">
                 Enter the title of your new subject below</h1>
 
-            <div className="createTitle w-[35%] h-[50px] mx-[auto] mt-[4%] flex text-[150%]">
+            <div className="createTitle w-[55%] h-[50px] mx-[auto] mt-[4%] flex text-[150%]">
                 {saveTitle}
 
                 <div className="enterButton w-[18%] ml-[6%] h-[50px]">
@@ -65,11 +66,13 @@ export default function CreateANewSubject() {
                 <h1 className="getStarted h-[50px] leading-[50px] text-center text-[160%] font-light">Get started by
                     adding content</h1>
                 <div
-                    className="createtOptions mt-[80px] mb-[70px] mx-[auto] w-[100%] justify-between flex">
+                    className="createOptions mt-[80px] mb-[70px] mx-[auto] w-[100%] justify-between flex">
                     <a href='http://localhost:5173/home/newSubject/newflashcard'>
                         <button className="createContent flashcard">Create a Flashcard Set</button>
                     </a>
-                    <button className="createContent test">Create a Test</button>
+                    <a href="http://localhost:5173/home/newSubject/newtest">
+                        <button className="createContent test">Create a Test</button>
+                    </a>
                     <button className="createContent mindmap">Create a Mind Map</button>
                 </div>
             </div>

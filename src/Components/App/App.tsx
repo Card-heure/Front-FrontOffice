@@ -9,10 +9,20 @@ import StudyFlashcardSet from "#Components/Main/StudyFlashcardSet.tsx";
 import SubjectView from "#Components/Main/SubjectView.tsx";
 import NewTest from "#Components/Main/NewTest.tsx";
 import TakeATest from "#Components/Main/TakeATest.tsx";
+import Login from "#Components/Login/Login.tsx";
+import Profile from "#Components/Main/Profile.tsx";
 
 export default function App() {
   return (
     <Routes>
+      <Route
+        path={"/login"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <Login/>
+          </Suspense>
+        }
+      />
       <Route
         path={"/"}
         element={
@@ -70,10 +80,18 @@ export default function App() {
             }
         />
         <Route
-            path={"/Home/TakeATest"}
+            path={"/Home/SubjectView/TakeATest"}
             element={
                 <Suspense fallback={<Loading/>}>
                     <TakeATest/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/Home/Profile"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <Profile/>
                 </Suspense>
             }
         />

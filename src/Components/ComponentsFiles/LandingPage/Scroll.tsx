@@ -1,38 +1,51 @@
 export default function Scroll() {
 
+    window.addEventListener("scroll", function () {
+        let scroll_y = this.scrollY;
+        console.log(scroll_y);
+        if (scroll_y <= 325) {
+            // @ts-ignore
+            document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
+            // @ts-ignore
+            document.getElementById("aboutCircle").className = "scrollCircle about w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
+            // @ts-ignore
+            document.getElementById("loginCircle").className = "scrollCircle login w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
+        }
+
+        if (scroll_y > 325 && scroll_y <= 750) {
+            // @ts-ignore
+            document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
+            // @ts-ignore
+            document.getElementById("aboutCircle").className = "scrollCircle about w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
+            // @ts-ignore
+            document.getElementById("loginCircle").className = "scrollCircle login w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
+        }
+
+        if (scroll_y > 750) {
+            // @ts-ignore
+            document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
+            // @ts-ignore
+            document.getElementById("aboutCircle").className = "scrollCircle about w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
+            // @ts-ignore
+            document.getElementById("loginCircle").className = "scrollCircle login w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
+        }
+
+    });
+
     const toHome = () => {
         // @ts-ignore
         document.getElementById("landingHeader").scrollIntoView({behavior: "smooth"});
-        // @ts-ignore
-        document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
-        // @ts-ignore
-        document.getElementById("aboutCircle").className = "scrollCircle about w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
-        // @ts-ignore
-        document.getElementById("loginCircle").className = "scrollCircle login w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
-            };
+};
 
     const toAbout = () => {
         // @ts-ignore
         document.getElementById("about").scrollIntoView({behavior: "smooth"});
-        // @ts-ignore
-        document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
-        // @ts-ignore
-        document.getElementById("aboutCircle").className = "scrollCircle about w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
-        // @ts-ignore
-        document.getElementById("loginCircle").className = "scrollCircle login w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
     };
 
     const toLogin = () => {
         // @ts-ignore
         document.getElementById("logIn").scrollIntoView({behavior: "smooth"});
-        // @ts-ignore
-        document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
-        // @ts-ignore
-        document.getElementById("aboutCircle").className = "scrollCircle about w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(255,_255,_255)]";
-        // @ts-ignore
-        document.getElementById("loginCircle").className = "scrollCircle login w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
     };
-
 
     return (
         <>

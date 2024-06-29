@@ -39,9 +39,9 @@ export default function Header() {
                 </div>
 
                 <div className = "headerSect flex justify-center profile w-[15%]">
-                    <div className = "profileBox rounded-[12px] p-[1px]">
+                    <button className = "profileBox rounded-[12px] p-[1px]">
                         <img src = "src/assets/profileIcon.png" className = "w-[50px] h-[auto]"/>
-                    </div>
+                    </button>
                 </div>
             </div>
         </>

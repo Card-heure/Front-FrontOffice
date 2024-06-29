@@ -70,7 +70,7 @@ export default function App() {
             }
         />
         <Route
-            path={"/Home/TakeATest"}
+            path={"/Home/SubjectView/TakeATest"}
             element={
                 <Suspense fallback={<Loading/>}>
                     <TakeATest/>

@@ -25,8 +25,12 @@ export default function TakeTest() {
     const [enterOrNext, setEnterOrNext] = useState("Enter");
     const [showAnswer, setShowAnswer] = useState(false);
     const [correctIncorrect, setCorrectIncorrect] = useState("");
+    const [userText, setUserText] = useState("")
 
-    const showEntry = () => {
+    // @ts-ignore
+    const showEntry = (event) => {
+        // @ts-ignore
+        setUserText(event.target.value)
         // @ts-ignore
         const entryLength = document.getElementById('userAnswer').value;
         if (entryLength.length > 0) {
@@ -42,9 +46,14 @@ export default function TakeTest() {
                className = "userAnswer flex-wrap text-wrap flex text-center font-light text-[140%] items-center w-[650px] mx-[auto] min-h-[300px] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]"
                id = "userAnswer"
                maxLength = {450}
+               value = {userText}
                onChange = {showEntry}
         />
     )
+
+    const resetCursorToBeginning = (input: HTMLInputElement | HTMLTextAreaElement): void => {
+        input.focus();
+    };
 
     const checkAnswer = () => {
         const answerBackground = document.getElementById('userAnswer');
@@ -57,13 +66,11 @@ export default function TakeTest() {
             console.log(currentAnswer);
 
             if (userEntry.toLowerCase().trim() == currentAnswer.toLowerCase().trim()) {
-                console.log("success!");
                 setCorrectIncorrect("correct");
                 //@ts-ignore
                 answerBackground.style.backgroundColor ="rgba(168, 242, 175, .4)";
             }
             if (userEntry.toLowerCase().trim() != currentAnswer.toLowerCase().trim()) {
-                console.log("next time!");
                 setCorrectIncorrect("incorrect");
                 //@ts-ignore
                 answerBackground.style.backgroundColor ="rgba(255, 106, 106, .6)";
@@ -73,6 +80,11 @@ export default function TakeTest() {
         if (enterOrNext == "Next Question") {
             setEnterOrNext("Enter");
             setShowAnswer(false);
+            setUserText("");
+
+            const inputElement = document.getElementById('userAnswer') as HTMLInputElement;
+            resetCursorToBeginning(inputElement);
+
             //@ts-ignore
             answerBackground.style.backgroundColor ="rgb(255, 255, 255)";
             if (correctIncorrect == "correct") {

@@ -37,44 +37,52 @@ export default function TakeTest() {
         }
     }
 
-    const checkAnswer = () => {
-        if (enterOrNext == "Enter") {
-            setEnterOrNext("Next Question")
-            setShowAnswer(true);
-            // @ts-ignore
-            const userEntry= document.getElementById('userAnswer').value;
-            console.log(userEntry);
-            console.log(currentAnswer);
-
-            if (userEntry == currentAnswer) {
-                console.log("success!");
-                setCorrectIncorrect("correct");
-            }
-            if (userEntry != currentAnswer) {
-                console.log("next time!");
-                setCorrectIncorrect("incorrect");
-            }
-        }
-        if (enterOrNext == "Next Question") {
-            setEnterOrNext("Enter");
-            setShowAnswer(false);
-            if (correctIncorrect == "correct") {
-                markCorrect();
-            }
-            if (correctIncorrect == "incorrect") {}
-            markIncorrect();
-        }
-    };
-
-    const userAnswer= (
+    const userAnswer = (
         <input type = "text"
-               className = "userAnswer flex text-center items-center w-[650px] mx-[auto] min-h-[300px] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]"
+               className = "userAnswer flex-wrap text-wrap flex text-center font-light text-[140%] items-center w-[650px] mx-[auto] min-h-[300px] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]"
                id = "userAnswer"
                maxLength = {450}
                onChange = {showEntry}
         />
     )
 
+    const checkAnswer = () => {
+        const answerBackground = document.getElementById('userAnswer');
+        if (enterOrNext == "Enter") {
+            setEnterOrNext("Next Question")
+            setShowAnswer(true);
+            // @ts-ignore
+            const userEntry = document.getElementById('userAnswer').value;
+            console.log(userEntry);
+            console.log(currentAnswer);
+
+            if (userEntry.toLowerCase().trim() == currentAnswer.toLowerCase().trim()) {
+                console.log("success!");
+                setCorrectIncorrect("correct");
+                //@ts-ignore
+                answerBackground.style.backgroundColor ="rgba(168, 242, 175, .4)";
+            }
+            if (userEntry.toLowerCase().trim() != currentAnswer.toLowerCase().trim()) {
+                console.log("next time!");
+                setCorrectIncorrect("incorrect");
+                //@ts-ignore
+                answerBackground.style.backgroundColor ="rgba(255, 106, 106, .6)";
+
+            }
+        }
+        if (enterOrNext == "Next Question") {
+            setEnterOrNext("Enter");
+            setShowAnswer(false);
+            //@ts-ignore
+            answerBackground.style.backgroundColor ="rgb(255, 255, 255)";
+            if (correctIncorrect == "correct") {
+                markCorrect();
+            }
+            if (correctIncorrect == "incorrect") {
+                markIncorrect();
+            }
+        }
+    };
 
     // @ts-ignore
     const markCorrect = () => {
@@ -166,7 +174,8 @@ export default function TakeTest() {
 
     return (
         <>
-            <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
+            <div
+                className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
                 <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
                 <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
                 <h1 className="divider w-[2%] mx-[18px] text-center"> | </h1>
@@ -174,28 +183,27 @@ export default function TakeTest() {
                 <h1 className="flashSetTitle font-semibold max-w-[30%]">{testTitle}</h1>
             </div>
 
-
-            <div className ={questionBox}>
-                <h1 className = "questionHeaderAndText flex items-center w-[650px] h-[auto] mb-[55px] mx-[auto] text-[140%] font-light">
-                    <span className = "questionHeader font-semibold mr-[10px]"> Question: </span>
-                    {currentQuestion}
-                </h1>
-
-            </div>
-            <div className = {finalQuestion}>
-            <div className = "w-[100%] items-center mx-auto flex justify-between">
-                {userAnswer}
-                <div className={showAnswer ? "correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]" : "correctAnswer hidden"}>
-                    <p className="answerBox flex mx-[auto] px-[25px] font-light text-[140%]">
-                        {currentAnswer}
-                    </p>
+            <div className={finalQuestion}>
+                <div className={questionBox}>
+                    <h1 className="questionHeaderAndText flex items-center w-[625px] h-[auto] mb-[55px] mx-[auto] text-[140%] font-light">
+                        <span className="questionHeader font-semibold mr-[10px]"> Question: </span>
+                        {currentQuestion}
+                    </h1>
                 </div>
-            </div>
-                <div className = "w-[80%]">
-                <button className={showEnterButton ? "entryButton w-[auto] px-[55px] mx-[auto] mt-[50px] flex justify-center border-[1px] border-[solid] border-[black] rounded-[18px] text-[120%] py-[12px] font-light  bg-[black] text-[white]" : "entryButton invisible"}
-                    onClick={checkAnswer}>
-                    <h1> {enterOrNext} </h1>
-                </button>
+                <div className="w-[100%] mx-auto flex justify-between items-start">
+                    {userAnswer}
+                    <div className={showAnswer ? "correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]" : "correctAnswer hidden"}>
+                        <p className="answerBox flex mx-[auto] px-[25px] font-light text-[140%]">
+                            <span className="font-semibold mr-[10px] ">Correct Answer:</span>{currentAnswer}
+                        </p>
+                    </div>
+                </div>
+                <div className="w-[80%]">
+                    <button
+                        className={showEnterButton ? "entryButton w-[auto] px-[55px] mx-[auto] mt-[50px] flex justify-center border-[1px] border-[solid] border-[black] rounded-[18px] text-[120%] py-[12px] font-light  bg-[black] text-[white]" : "entryButton invisible"}
+                        onClick={checkAnswer}>
+                        <h1> {enterOrNext} </h1>
+                    </button>
                 </div>
             </div>
 

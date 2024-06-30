@@ -51,7 +51,6 @@ export default function UserProfile() {
 
         }
     };
-
     const modifyFirstName = () => {
         const mod = document.getElementById("firstNameField") as HTMLInputElement;
         // @ts-ignore
@@ -190,7 +189,9 @@ export default function UserProfile() {
         console.log(emailAddress);
         console.log(birthday);
         console.log(gender);
-
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('expire');
+        window.location.reload();
     };
 
     const deleteAccount = () => {

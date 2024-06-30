@@ -15,16 +15,135 @@ export default function UserProfile() {
     const [updatedEmailAddress, setUpdatedEmailAddress] = useState(emailAddress);
     const [updatedBirthday, setUpdatedBirthday] = useState(birthday);
     const [updatedGender, setUpdatedGender] = useState(gender);
+    const [underlineUserName, setUnderlineUserName] = useState("changeUsername overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]");
+    const [underlineFirstName, setUnderlineFirstName] = useState("changeFirstName overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]");
+    const [underlineLastName, setUnderlineLastName] = useState("changeLastName overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none");
+    const [underlineEmailAddress, setUnderlineEmailAddress] = useState("changeEmailAddress overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[312px]");
+    const [underlineBirthday, setUnderlineBirthday] = useState("changeBirthday text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[300px]");
+    const modifyIcon = "/src/assets/pencilIcon.png";
+    const saveCheckIcon = "/src/assets/saveCheckIcon.png";
+    const [userNameIcon, setUserNameIcon] = useState(false);
+    const [firstNameIcon, setFirstNameIcon] = useState(false);
+    const [lastNameIcon, setLastNameIcon] = useState(false);
+    const [emailIcon, setEmailIcon] = useState(false);
+    const [birthdayIcon, setBirthdayIcon] = useState(false);
+    const [genderIcon, setGenderIcon] = useState(false);
 
+    const modifyUsername = () => {
+        const mod = document.getElementById("usernameField") as HTMLInputElement;
+        // @ts-ignore
+        if (mod.hasAttribute('readonly')) {
+            // @ts-ignore
+            mod.removeAttribute('readonly')
+            setUnderlineUserName("changeUsername overflow-y-hidden text-[110%] font-extralight mr-[18px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+            // @ts-ignore
+            mod.focus();
+
+            const length = mod.value.length;
+            mod.setSelectionRange(length, length);
+            setUserNameIcon(true);
+        }
+        else {
+            mod.setAttribute('readonly', "true");
+            setUserNameIcon(false);
+            setUserName(updatedUserName);
+            setUnderlineUserName("changeUsername overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]");
+
+        }
+    };
+
+    const modifyFirstName = () => {
+        const mod = document.getElementById("firstNameField") as HTMLInputElement;
+        // @ts-ignore
+        if (mod.hasAttribute('readonly')) {
+            // @ts-ignore
+            mod.removeAttribute('readonly')
+            setUnderlineFirstName("changeFirstName overflow-y-hidden text-[110%] font-extralight mr-[18px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+            // @ts-ignore
+            mod.focus();
+
+            const length = mod.value.length;
+            mod.setSelectionRange(length, length);
+            setFirstNameIcon(true);
+        }
+        else {
+            mod.setAttribute('readonly', "true");
+            setFirstNameIcon(false);
+            setFirstName(updatedFirstName);
+            setUnderlineFirstName("changeFirstName overflow-y-hidden text-[110%] font-extralight mr-[18px] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+        }
+    };
+
+    const modifyLastName = () => {
+        const mod = document.getElementById("lastNameField") as HTMLInputElement;
+        // @ts-ignore
+        if (mod.hasAttribute('readonly')) {
+            // @ts-ignore
+            mod.removeAttribute('readonly')
+            setUnderlineLastName("changeLastName overflow-y-hidden text-[110%] font-extralight mr-[18px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+            // @ts-ignore
+            mod.focus();
+
+            const length = mod.value.length;
+            mod.setSelectionRange(length, length);
+            setLastNameIcon(true);
+        }
+        else {
+            mod.setAttribute('readonly', "true");
+            setLastNameIcon(false);
+            setLastName(updatedLastName);
+            setUnderlineLastName("changeLastName overflow-y-hidden text-[110%] font-extralight mr-[18px] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+        }
+    };
+
+    const modifyEmailAddress = () => {
+        const mod = document.getElementById("emailAddressField") as HTMLInputElement;
+        // @ts-ignore
+        if (mod.hasAttribute('readonly')) {
+            // @ts-ignore
+            mod.removeAttribute('readonly')
+            setUnderlineEmailAddress("changeEmailAddress overflow-y-hidden text-[110%] font-extralight mr-[55px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[312px]")
+            // @ts-ignore
+            mod.focus();
+
+            const length = mod.value.length;
+            mod.setSelectionRange(length, length);
+            setEmailIcon(true);
+        }
+        else {
+            mod.setAttribute('readonly', "true");
+            setEmailIcon(false);
+            setEmailAddress(updatedEmailAddress);
+            setUnderlineEmailAddress("changeEmailAddress overflow-y-hidden text-[110%] font-extralight mr-[55px] h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[312px]")
+        }
+    };
+
+    const modifyBirthday = () => {
+        const mod = document.getElementById("birthdayField") as HTMLInputElement;
+        // @ts-ignore
+        if (!birthdayIcon) {
+            setUnderlineBirthday("changeBirthday text-[110%] font-extralight mr-[175px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+            // @ts-ignore
+            mod.focus();
+            setBirthdayIcon(true);
+        }
+        else {
+            setBirthdayIcon(false);
+            setBirthday(updatedBirthday);
+            setUnderlineBirthday("changeBirthday text-[110%] font-extralight mr-[175px] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+        }
+    };
 
     const genderMenu = () => {
         if (genderHidden) {
             setShowGender("genderSelectionMenu w-[250px] rounded-[10px] p-[25px] border-[1px] border-[solid] border-[black] text-[115%] font-light leading-[40px]");
             setGenderHidden(false);
+            setGenderIcon(true);
         }
         if (!genderHidden) {
             setShowGender("genderSelectionMenu hidden w-[250px] rounded-[10px] p-[25px] border-[1px] border-[solid] border-[black] text-[115%] font-light leading-[40px]");
             setGenderHidden(true);
+            setGenderIcon(false);
         }
     };
 
@@ -53,34 +172,25 @@ export default function UserProfile() {
         setUpdatedBirthday(event.target.value);
     };
 
+
     // @ts-ignore
     const selectGender = (event) => {
-        setUpdatedGender(event.target.value);
-        setGenderHidden(true);
-        setShowGender("genderSelectionMenu hidden w-[250px] rounded-[10px] p-[25px] border-[1px] border-[solid] border-[black] text-[115%] font-light leading-[40px]");
-    };
-
-    const saveChanges = () => {
-        console.log("save changes")
-
-        setUserName(updatedUserName);
-        setFirstName(updatedFirstName);
-        setLastName(updatedLastName);
-        setEmailAddress(updatedEmailAddress);
-        setBirthday(updatedBirthday);
-        setGender(updatedGender);
-
-        console.log(updatedUserName);
-        console.log(updatedFirstName);
-        console.log(updatedLastName);
-        console.log(updatedEmailAddress);
-        console.log(updatedBirthday);
-        console.log(updatedGender);
-
+            setUpdatedGender(event.target.value);
+            setGenderHidden(true);
+            setShowGender("genderSelectionMenu hidden w-[250px] rounded-[10px] p-[25px] border-[1px] border-[solid] border-[black] text-[115%] font-light leading-[40px]");
+            setGender(updatedGender)
+            setGenderIcon(false);
     };
 
     const logOut = () => {
         console.log("log out")
+        console.log(userName);
+        console.log(firstName);
+        console.log(lastName);
+        console.log(emailAddress);
+        console.log(birthday);
+        console.log(gender);
+
     };
 
     const deleteAccount = () => {
@@ -91,89 +201,105 @@ export default function UserProfile() {
         <>
             <div className = "greeting w-[75%] mx-[auto] flex mt-[85px] mb-[60px]">
                 <h1 className = "text-[300%] mr-[30px]"> &#128075;</h1>
-                <h1 className = "text-[200%] font-light"> Hello, {firstName} !</h1>
+                <h1 className = "text-[200%] font-light pt-[12px]"> Hello, {firstName} !</h1>
             </div>
             <div className="sections w-[83%] mx-[auto] flex justify-between mb-[250px] pl-[3%]">
 
-                <div className="sectionOne w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]">
+                <div className="sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]">
 
                     <h1 className="text-[120%] mb-[5px]"> Username </h1>
                     <div className="editUsername flex items-start w-[68%]">
-                    <textarea
-                        className="changeUsername text-black text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]"
-                        onChange = {changeUserName}
-                        placeholder={userName}>
+                    <textarea readOnly = {true}
+                        className= {underlineUserName}
+                              id = "usernameField"
+                              onChange = {changeUserName}>
+                        {userName}
                     </textarea>
-                        <img src="/src/assets/pencilIcon.png"
-                             className="w-[20px] h-[auto] pt-[11px]"
+                        <img src={userNameIcon ? saveCheckIcon : modifyIcon}
+                             className="editPencil w-[20px] h-[auto] pt-[11px]"
+                             id = "usernameButton"
+                             onClick = {modifyUsername}
                         />
                     </div>
 
                     <h1 className="text-[120%] mb-[5px]"> First Name </h1>
                     <div className="editFirstName flex items-start w-[68%]">
-                    <textarea
-                        className="changeFirstName text-black text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]"
-                        onChange = {changeFirstName}
-                        placeholder={firstName}>
+                    <textarea readOnly = {true}
+                        className={underlineFirstName}
+                        id = "firstNameField"
+                        onChange = {changeFirstName}>
+                        {firstName}
                     </textarea>
-                        <img src="/src/assets/pencilIcon.png"
-                             className="w-[20px] h-[auto] pt-[11px]"
+                        <img src={firstNameIcon ? saveCheckIcon : modifyIcon}
+                             className="editPencil w-[20px] h-[auto] pt-[11px]"
+                             id = "firstNameButton"
+                             onClick = {modifyFirstName}
                         />
                     </div>
 
                     <h1 className="text-[120%] mb-[5px]"> Last Name </h1>
                     <div className="editLastName flex items-start w-[68%]">
-                    <textarea
-                        className="changeLastName text-black text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none"
-                        onChange = {changeLastName}
-                        placeholder={lastName}>
+                    <textarea readOnly = {true}
+                        className={underlineLastName}
+                        id = "lastNameField"
+                        onChange = {changeLastName}>
+                        {lastName}
                     </textarea>
-                        <img src="/src/assets/pencilIcon.png"
-                             className="w-[20px] h-[auto] pt-[11px]"
+                        <img src={lastNameIcon ? saveCheckIcon : modifyIcon}
+                             className="editPencil w-[20px] h-[auto] pt-[11px]"
+                             id = "lastNameButton"
+                             onClick = {modifyLastName}
                         />
                     </div>
                 </div>
 
-                <div className="sectionTwo w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]">
+                <div className="sectionTwo text-[black] w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]">
                     <h1 className="text-[120%] mb-[5px]"> Email </h1>
                     <div className="editEmailAddress flex items-start w-[75%]">
-                    <textarea
-                        className="changeEmailAddress text-black text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[300px]"
-                        onChange = {changeEmailAddress}
-                        placeholder={emailAddress}>
+                    <textarea readOnly = {true}
+                        className={underlineEmailAddress}
+                              id = "emailAddressField"
+                        onChange = {changeEmailAddress}>
+                        {emailAddress}
                     </textarea>
-                        <img src="/src/assets/pencilIcon.png"
-                             className="w-[20px] h-[auto] pt-[11px]"
+                        <img src={emailIcon ? saveCheckIcon : modifyIcon}
+                             className="editPencil w-[20px] h-[auto] pt-[11px]"
+                             id = "emailAddressButton"
+                             onClick = {modifyEmailAddress}
                         />
                     </div>
 
                     <h1 className="text-[120%] mb-[5px]"> Birthday </h1>
                     <div className="editBirthday flex items-start w-[75%]">
                         <input type="date"
-                               className="changeBirthday text-[110%] text-gray-400 font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[300px]"
+                               className={underlineBirthday}
+                               id = "birthdayField"
                                onChange={changeBirthday}
                                value={updatedBirthday}
                         />
-                        <img src="/src/assets/pencilIcon.png"
-                             className="w-[20px] h-[auto] pt-[11px]"
+                        <img src={birthdayIcon ? saveCheckIcon : modifyIcon}
+                             className="editPencil w-[20px] h-[auto] pt-[11px]"
+                             id = "birthdayButton"
+                             onClick = {modifyBirthday}
                         />
                     </div>
 
                     <h1 className="text-[120%] mb-[5px]"> Gender </h1>
                     <div className="editGender flex items-start w-[75%]">
-                        <button
-                            className="changeBirthday text-start text-gray-400 text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[300px]"
-                            onClick = {genderMenu}
-                        >
+                        <h3
+                            className="changeGender text-start text-[110%] mr-[4px] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[300px]"
+                                id = "genderField">
                             {updatedGender}
-                        </button>
-                        <img src="/src/assets/pencilIcon.png"
-                             className="w-[20px] h-[auto] pt-[11px]"
+                        </h3>
+                        <img src={genderIcon ? saveCheckIcon : modifyIcon}
+                             className="editPencil w-[20px] h-[auto] pt-[11px]"
+                             id = "genderButton"
+                             onClick = {genderMenu}
                         />
                     </div>
                     <form className ={showGender}>
                     <input type="radio" id="femaleButton" value="Female" name="genderSelectionMenu" onClick={selectGender}/>
-                        <label htmlFor="femaleButton" className = "ml-[15px]"> Female </label>
+                        <label htmlFor="femaleButton" className = "ml-[15px] text-[black]"> {gender} </label>
                     <br/>
                     <input type="radio" id="maleButton" value="Male" name="genderSelectionMenu" onClick={selectGender} />
                         <label htmlFor="maleButton" className = "ml-[15px]"> Male </label>
@@ -196,10 +322,6 @@ export default function UserProfile() {
                             <a href = "mailto:madison.owens32@gmail.com?subject=Card'heure Client Contact"> contact us</a>
                         </span> :)
                     </h3>
-
-                    <button className="saveChanges font-medium text-[106%] w-[90%] mb-[25px]" onClick = {saveChanges}>
-                        Save Changes
-                    </button>
 
                     <button className="logOut font-medium text-[106%] w-[90%] mb-[25px]" onClick = {logOut}>
                         Log Out

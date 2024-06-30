@@ -4,12 +4,12 @@ export default function LogInSignUp() {
   const navigate = useNavigate();
     return (
         <>
-            <div className = "w-[235px] mx-[auto] mt-[200px] items-center flex justify-between">
+            <div className = "w-[215px] mx-[auto] mt-[200px] items-center flex justify-between">
                 <img src="/src/assets/clickIcon.png" className="w-[40px] h-[auto]"/>
-                <h2 className="text-[180%] text-center"> Click below to</h2>
+                <h2 className="text-[165%] text-center font-light"> Click below to</h2>
             </div>
             <div
-                className="connectBox w-[500px] h-[200px] mb-[100px] mx-[auto] justify-between items-center flex text-[160%] font-light">
+                className="connectBox w-[500px] h-[150px] mb-[100px] mx-[auto] justify-between items-center flex text-[130%] font-light">
                 <button
                     className="logInButton border-[1px] border-[solid] border-[black] px-[50px] py-[5px] rounded-[15px]"
                     id="logIn"

@@ -13,89 +13,89 @@ import {isAuthenticated} from "../../Utils/utils.ts";
 import Login from "#Components/Login/Login.tsx";
 
 export default function App() {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isAuthenticated() && window.location.pathname !== "/login" && window.location.pathname !== "/") {
-      navigate("/")
-    }else if(isAuthenticated() && window.location.pathname === "/login"){
-      navigate("/home")
-    } 
-  }, [navigate]);
-  return (
-    <Routes>
-      <Route
-        path={"/login"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <Login/>
-          </Suspense>
-        }
-      />
-      <Route
-        path={"/"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <Main/>
-          </Suspense>
-        }
-      />
-     <Route
-            path={"/Home"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <Home/>
-                </Suspense>
-            }
-        />
-        <Route
-            path={"/Home/NewSubject"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <NewSubject/>
-                </Suspense>
-            }
-        />
-        <Route
-            path={"/Home/NewSubject/NewFlashCard"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <NewFlashcard/>
-                </Suspense>
-            }
-        />
-        <Route
-            path={"/Home/NewSubject/NewFlashCard/StudyFlashCardSet"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <StudyFlashcardSet/>
-                </Suspense>
-            }
-        />
-        <Route
-            path={"/Home/NewSubject/NewTest"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <NewTest/>
-                </Suspense>
-            }
-        />
-        <Route
-            path={"/Home/SubjectView"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <SubjectView/>
-                </Suspense>
-            }
-        />
-        <Route
-            path={"/Home/TakeATest"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <TakeATest/>
-                </Suspense>
-            }
-        />
-    </Routes>
-  )
+	useEffect(() => {
+		if (!isAuthenticated() && window.location.pathname !== "/login" && window.location.pathname !== "/") {
+			navigate("/")
+		} else if (isAuthenticated() && window.location.pathname === "/login") {
+			navigate("/home")
+		}
+	}, [navigate]);
+	return (
+		<Routes>
+			<Route
+				path={"/login"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<Login/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<Main/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/Home"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<Home/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/Home/NewSubject"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<NewSubject/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/Home/NewSubject/NewFlashCard"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<NewFlashcard/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/Home/NewSubject/NewFlashCard/StudyFlashCardSet"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<StudyFlashcardSet/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/Home/NewSubject/NewTest"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<NewTest/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/Home/SubjectView/:subjectId"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<SubjectView/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/Home/TakeATest"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<TakeATest/>
+					</Suspense>
+				}
+			/>
+		</Routes>
+	)
 }

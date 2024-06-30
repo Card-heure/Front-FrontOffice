@@ -12,7 +12,7 @@ export default function HomePage() {
             setFilteredSubjects(response.response)
         })
     }, [])
-    
+
 
 
     const [searchInput, setSearchInput] = useState("");
@@ -26,11 +26,11 @@ export default function HomePage() {
     const [sortOptionsHidden, setSortOptionsHidden] = useState(true);
     // 1st constant = what will be updated, 2nd is what will update it, useState = initial value before update
     const [sortType, setSortType] = useState("Newest Subjects First");
-  
+
     const toggleSortOptions = () => {
         setSortOptionsHidden(!sortOptionsHidden); // the "!" means that it will set the boolean value to the opposite of whatever it currently is
     };
-  
+
     const sortSubjects = (type : string) => {
         const sortedSubjects: TSubject[] = [...subjects!]; // the ellipses mean that "subjects" is an array (creating a new constant -sortedSubjects-
         // which copies the subjects array
@@ -61,7 +61,7 @@ export default function HomePage() {
             <a href='http://localhost:5173/home/newSubject'>
                 <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
                     <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
-                        <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]"/>
+                        <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]" alt="Add"/>
                     </div>
                     <h1 className="createText ml-[20px] text-[110%]"> Create a new subject to begin adding
                         material </h1>
@@ -76,7 +76,7 @@ export default function HomePage() {
                 <button
                     className="studyAdd flex items-center justify-center w-[30%] h-[45px] overflow-hidden ml-[16%] mr-[4%]">
                     <div className="studyAddButton min-h-[35px] min-w-[35px] flex content-center items-center">
-                        <img src="/src/assets/DownArrow.png" className="studyAddIcon w-[35px] h-[auto]"/>
+                        <img src="/src/assets/DownArrow.png" className="studyAddIcon w-[35px] h-[auto]" alt={"Down"}/>
                     </div>
                     <h1 className="createText ml-[6%] text-[110%]"> Study or add material to an existing subject </h1>
                 </button>
@@ -91,7 +91,7 @@ export default function HomePage() {
                     />
                     <button
                         className="subjectSearchButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[7%] mr-[11%]">
-                        <img src="/src/assets/searchIcon.png" className="searchIcon w-[44px] h-[auto]"/>
+                        <img src="/src/assets/searchIcon.png" className="searchIcon w-[44px] h-[auto]" alt={"Search"}/>
                     </button>
                 </div>
             </div>
@@ -144,7 +144,9 @@ export default function HomePage() {
                 <ul className="subject flex mx-[auto] w-[80%] flex-wrap pl-[3%] mt-[65px]">
                     {filteredSubjects?.map((subject, index) => (
                         <li key={index}>
-                            <button>{subject.name}</button>
+                            <a href={`/Home/SubjectView/${subject.id}`}>
+                                <button>{subject.name}</button>
+                            </a>
                         </li>
                     ))}
                 </ul>

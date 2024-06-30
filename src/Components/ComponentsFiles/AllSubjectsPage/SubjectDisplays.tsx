@@ -1,7 +1,9 @@
 import {useState} from "react";
+import {TSubject} from "../../../Types/TSubject.ts";
 
-export default function SubjectDisplays () {
-    const titleSave = localStorage.getItem('titleSave');
+export default function SubjectDisplays (props: {subject?: TSubject}) {
+		console.log('props:', props.subject?.name)
+
     const flashcardSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
     const testSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
     const mindmapSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
@@ -223,7 +225,7 @@ export default function SubjectDisplays () {
             <div
                 className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[50px] text-[160%] font-extralight text-left justify-center overflow-clip">
                 <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
-                <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
+                <h1 className="subjectTitle max-w-[30%] font-semibold">{props.subject?.name}</h1>
             </div>
 
             <div className={textColorFlashcard} onClick={displayDetailsFlashcard}>

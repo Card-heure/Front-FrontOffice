@@ -1,24 +1,26 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {TSubject} from "../../../Types/TSubject.ts";
+import {apiRequest} from "../../../Utils/ApiRequest.ts";
 
 export default function HomePage() {
 
-    const originalSubjects = [
-        "Economics",
-        "Algebra",
-        "English",
-        "Statistics",
-        "AP Government",
-    ];
+    const [subjects, setSubjects] = useState<TSubject[] | null>(null)
+    const [filteredSubjects, setFilteredSubjects] = useState<TSubject[] | null>(null)
+    useEffect(() => {
+        apiRequest<null, TSubject[]>('api/subjects', 'GET').then((response) => {
+            setSubjects(response.response)
+            setFilteredSubjects(response.response)
+        })
+    }, [])
 
-    const [subjects, setSubjects] = useState(originalSubjects);
+
 
     const [searchInput, setSearchInput] = useState("");
-    // @ts-ignore
-    const handleSearchInput = (event) => {
+    const handleSearchInput = (event: { target: { value: any; }; }) => {
         const inputValue = event.target.value;
         setSearchInput(inputValue);
-        const filteredSubjects = originalSubjects.filter((subject) => subject.toLowerCase().includes(inputValue.toLowerCase()));
-        setSubjects(filteredSubjects);
+        const filteredSubjects = subjects!.filter((subject) => subject.name.toLowerCase().includes(inputValue.toLowerCase()));
+        setFilteredSubjects(filteredSubjects);
     };
 
     const [sortOptionsHidden, setSortOptionsHidden] = useState(true);
@@ -29,25 +31,24 @@ export default function HomePage() {
         setSortOptionsHidden(!sortOptionsHidden); // the "!" means that it will set the boolean value to the opposite of whatever it currently is
     };
 
-    // @ts-ignore
-    const sortSubjects = (type) => {
-        let sortedSubjects = [...subjects]; // the ellipses mean that "subjects" is an array (creating a new constant -sortedSubjects-
+    const sortSubjects = (type : string) => {
+        const sortedSubjects: TSubject[] = [...subjects!]; // the ellipses mean that "subjects" is an array (creating a new constant -sortedSubjects-
         // which copies the subjects array
         switch (type) {
             case "Newest Subjects First":
-                sortedSubjects.sort((a, b) => b.localeCompare(a));
+                sortedSubjects.sort((a, b) => b.createdAt > a.createdAt ? 1 : -1);
                 break;
             case "Oldest Subjects First":
-                sortedSubjects.sort((a, b) => a.localeCompare(b));
+                sortedSubjects.sort((a, b) => a.createdAt > b.createdAt ? -1 : 1);
                 break;
             case "A - Z":
-                sortedSubjects.sort((a, b) => a.localeCompare(b));
+                sortedSubjects.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
                 break;
             case "Z - A":
-                sortedSubjects.sort((a, b) => b.localeCompare(a));
+                sortedSubjects.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
                 break;
         }
-        setSubjects(sortedSubjects);
+        setFilteredSubjects(sortedSubjects);
         setSortType(type);
         setSortOptionsHidden(true);
     };
@@ -57,13 +58,14 @@ export default function HomePage() {
     // sortOptions is being used in the CSS file
     return (
         <>
-            <a href = 'http://localhost:5173/home/newSubject'>
-            <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
-                <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
-                    <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]"/>
-                </div>
-                <h1 className="createText ml-[20px] text-[110%]"> Create a new subject to begin adding material </h1>
-            </button>
+            <a href='http://localhost:5173/home/newSubject'>
+                <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
+                    <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
+                        <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]" alt="Add"/>
+                    </div>
+                    <h1 className="createText ml-[20px] text-[110%]"> Create a new subject to begin adding
+                        material </h1>
+                </button>
             </a>
 
             <div className="orDivider w-[100px] mx-[auto] mt-[35px] text-center">
@@ -74,7 +76,7 @@ export default function HomePage() {
                 <button
                     className="studyAdd flex items-center justify-center w-[30%] h-[45px] overflow-hidden ml-[16%] mr-[4%]">
                     <div className="studyAddButton min-h-[35px] min-w-[35px] flex content-center items-center">
-                        <img src="/src/assets/DownArrow.png" className="studyAddIcon w-[35px] h-[auto]"/>
+                        <img src="/src/assets/DownArrow.png" className="studyAddIcon w-[35px] h-[auto]" alt={"Down"}/>
                     </div>
                     <h1 className="createText ml-[6%] text-[110%]"> Study or add material to an existing subject </h1>
                 </button>
@@ -83,13 +85,13 @@ export default function HomePage() {
                     <input type="text"
                            placeholder="Search All Subjects..."
                            className={"subjectSearchBar w-[100%] h-[45px] bg-[rgb(18,_18,_18)] rounded-[16px] p-[22px] ml-[4%]"}
-                           value = {searchInput}
-                           onChange = {handleSearchInput}
-                           id = "searchBar"
+                           value={searchInput}
+                           onChange={handleSearchInput}
+                           id="searchBar"
                     />
                     <button
                         className="subjectSearchButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[7%] mr-[11%]">
-                        <img src="/src/assets/searchIcon.png" className="searchIcon w-[44px] h-[auto]"/>
+                        <img src="/src/assets/searchIcon.png" className="searchIcon w-[44px] h-[auto]" alt={"Search"}/>
                     </button>
                 </div>
             </div>
@@ -139,10 +141,12 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                <ul className = "subject flex mx-[auto] w-[80%] flex-wrap pl-[3%] mt-[65px]">
-                    {subjects.map((subject, index) => (
+                <ul className="subject flex mx-[auto] w-[80%] flex-wrap pl-[3%] mt-[65px]">
+                    {filteredSubjects?.map((subject, index) => (
                         <li key={index}>
-                            <button>{subject}</button>
+                            <a href={`/Home/SubjectView/${subject.id}`}>
+                                <button>{subject.name}</button>
+                            </a>
                         </li>
                     ))}
                 </ul>

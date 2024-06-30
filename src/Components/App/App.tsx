@@ -10,6 +10,7 @@ import SubjectView from "#Components/Main/SubjectView.tsx";
 import NewTest from "#Components/Main/NewTest.tsx";
 import TakeATest from "#Components/Main/TakeATest.tsx";
 import Login from "#Components/Login/Login.tsx";
+import SignUp from "#Components/SignUp/SignUp.tsx";
 import Profile from "#Components/Main/Profile.tsx";
 import {isAuthenticated} from "../../Utils/utils.ts";
 
@@ -17,19 +18,27 @@ export default function App() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!isAuthenticated() && window.location.pathname !== "/login" && window.location.pathname !== "/") {
+		if (!isAuthenticated() && window.location.pathname !== "/LogIn" && window.location.pathname !== "/SignUp") {
 			navigate("/")
-		} else if (isAuthenticated() && window.location.pathname === "/login") {
+		} else if (isAuthenticated() && window.location.pathname === "/LogIn") {
 			navigate("/home")
 		}
 	}, [navigate]);
 	return (
 		<Routes>
 			<Route
-				path={"/login"}
+				path={"/LogIn"}
 				element={
 					<Suspense fallback={<Loading/>}>
 						<Login/>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={"/SignUp"}
+				element={
+					<Suspense fallback={<Loading/>}>
+						<SignUp/>
 					</Suspense>
 				}
 			/>

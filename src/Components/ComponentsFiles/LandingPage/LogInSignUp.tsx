@@ -14,7 +14,7 @@ export default function LogInSignUp() {
                     className="logInButton border-[1px] border-[solid] border-[black] px-[50px] py-[5px] rounded-[15px]"
                     id="logIn"
                     onClick={() => {
-                        navigate("/login")
+                        navigate("/LogIn")
                     }}
                 >
                     Log In
@@ -24,6 +24,9 @@ export default function LogInSignUp() {
                 <button
                     className="signUpButton border-[1px] border-[solid] border-[black] px-[50px] py-[5px] rounded-[15px]"
                     id="signUp"
+                    onClick={() => {
+                        navigate("/SignUp")
+                    }}
                 >
                     Sign Up
                 </button>

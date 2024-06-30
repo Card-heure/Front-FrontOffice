@@ -24,7 +24,7 @@ export default function Login() {
 
   return (
     <>
-      <h1 className = "text-[200%] font-light w-[300px] mx-[auto] my-[75px]">Log In to Card'heure</h1>
+      <h1 className = "text-[200%] text-center font-light w-[300px] mx-[auto] my-[75px]">Log In to Card'heure</h1>
       <div className = "loginBox w-[700px] mx-[auto] p-[50px] border-[1px] border-[solid] border-[black] rounded-[40px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
         <form action="#">
           <input {...register("email")} placeholder={'Email'} className={'text-[90%] text-center border-black border-[1px] rounded-[10px] w-[400px] py-[15px] mx-[auto] my-[50px] justify-center flex'} type={'email'}/>

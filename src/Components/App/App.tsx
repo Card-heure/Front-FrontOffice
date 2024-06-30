@@ -9,8 +9,9 @@ import StudyFlashcardSet from "#Components/Main/StudyFlashcardSet.tsx";
 import SubjectView from "#Components/Main/SubjectView.tsx";
 import NewTest from "#Components/Main/NewTest.tsx";
 import TakeATest from "#Components/Main/TakeATest.tsx";
-import {isAuthenticated} from "../../Utils/utils.ts";
 import Login from "#Components/Login/Login.tsx";
+import Profile from "#Components/Main/Profile.tsx";
+import {isAuthenticated} from "../../Utils/utils.ts";
 
 export default function App() {
 	const navigate = useNavigate();
@@ -96,6 +97,14 @@ export default function App() {
 					</Suspense>
 				}
 			/>
+      <Route
+            path={"/Home/Profile"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <Profile/>
+                </Suspense>
+            }
+        />
 		</Routes>
 	)
 }

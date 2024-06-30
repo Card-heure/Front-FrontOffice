@@ -61,10 +61,8 @@ export default function TestQuestions() {
             //event.dispatchEvent(new Event('submit')); // ensures that the enter key's only action is submitting the text
 
             console.log(newQA.length);
-            console.log(qaCount);
             if (newQA.length > 0) {
                 setSaveButton("saveSet w-[250px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
-                console.log("yes");
             }
 
             if (newQA.length > 1) {
@@ -119,7 +117,7 @@ export default function TestQuestions() {
 
             <div className="questionCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
             <button className={saveButton}>
-                <a href="http://localhost:5173/home/takeatest">
+                <a href="http://localhost:5173/home/subjectview/takeatest">
                     Save {qaCount} {singleOrPlural}
                 </a>
                 </button>

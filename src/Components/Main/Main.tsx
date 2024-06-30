@@ -2,7 +2,7 @@ import LandingHeader from "#ComponentsFiles/LandingPage/LandingHeader.tsx";
 import TitleCard from "#ComponentsFiles/LandingPage/TitleCard.tsx";
 import AboutSection from "#ComponentsFiles/LandingPage/AboutSection.tsx";
 import Scroll from "#ComponentsFiles/LandingPage/Scroll.tsx";
-import GoogleLogIn from "#ComponentsFiles/LandingPage/GoogleLogIn.tsx";
+import LogInSignUp from "#ComponentsFiles/LandingPage/LogInSignUp.tsx";
 export default function Main() {
   return (
     <>
@@ -10,7 +10,7 @@ export default function Main() {
       <Scroll/>
       <TitleCard/>
       <AboutSection/>
-      <GoogleLogIn/>
+      <LogInSignUp/>
     </>
   )
 }

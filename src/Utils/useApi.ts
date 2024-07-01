@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import config from "./variable.ts";
 import axios from "axios";
 
@@ -18,14 +18,14 @@ type ApiResponse<T> = {
 
 export const useApi = <T>(
   url: string,
-  { queryParams, body, disable, deps = [] }: RequestOptions
+  {queryParams, body, disable, deps = []}: RequestOptions
 ): ApiResponse<T> => {
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState<any | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [key, setKey] = useState<number>(0)
   const jwt = localStorage.getItem("jwt") ?? "";
-  
+
 
   const doRequest = useCallback(async () => {
     if (disable) {
@@ -34,15 +34,15 @@ export const useApi = <T>(
 
     const queryString = queryParams
       ? '?' +
-        Object.keys(queryParams)
-          .reduce((acc: string[], key) => {
-            const value = queryParams[key]
-            if (value !== undefined && value !== null) {
-              acc.push(`${key}=${value}`)
-            }
-            return acc
-          }, [])
-          .join('&')
+      Object.keys(queryParams)
+        .reduce((acc: string[], key) => {
+          const value = queryParams[key]
+          if (value !== undefined && value !== null) {
+            acc.push(`${key}=${value}`)
+          }
+          return acc
+        }, [])
+        .join('&')
       : ''
 
     const callUrl = `${config.api}/${url}${queryString}`
@@ -69,6 +69,9 @@ export const useApi = <T>(
       const result = response.data
       setData(result)
     } catch (error) {
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("expire");
+      window.location.href = '/login'
       setError(error)
     } finally {
       setIsLoading(false)
@@ -86,5 +89,5 @@ export const useApi = <T>(
     setKey((prevKey) => prevKey + 1)
   }
 
-  return { data, error, isLoading, reload }
+  return {data, error, isLoading, reload}
 }

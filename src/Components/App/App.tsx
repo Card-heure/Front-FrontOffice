@@ -50,7 +50,7 @@ export default function App() {
 				}
 			/>
 			<Route
-				path={"/Home/NewSubject"}
+				path={"/NewSubject"}
 				element={
 					<Suspense fallback={<Loading/>}>
 						<NewSubject/>
@@ -58,7 +58,7 @@ export default function App() {
 				}
 			/>
 			<Route
-				path={"/Home/NewSubject/NewFlashCard"}
+				path={"/NewFlashCard"}
 				element={
 					<Suspense fallback={<Loading/>}>
 						<NewFlashcard/>
@@ -74,7 +74,7 @@ export default function App() {
 				}
 			/>
 			<Route
-				path={"/Home/NewSubject/NewTest"}
+				path={"/Home/NewTest"}
 				element={
 					<Suspense fallback={<Loading/>}>
 						<NewTest/>
@@ -82,7 +82,7 @@ export default function App() {
 				}
 			/>
 			<Route
-				path={"/Home/SubjectView/:subjectId"}
+				path={"/SubjectView/:subjectId"}
 				element={
 					<Suspense fallback={<Loading/>}>
 						<SubjectView/>

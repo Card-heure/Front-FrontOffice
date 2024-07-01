@@ -5,14 +5,12 @@ import {TSubject} from "../../../Types/TSubject.ts";
 export default function CreateANewSubject() {
 
     const [titleEntered, setTitleEntered] = useState(false);
-    const [newSubject, setNewSubject] = useState<TSubject|null>(null);
     const [titleSave, setTitleSave] = useState("");
     const [displayOptions, setDisplayOptions] = useState(false);
     const [enterTitle, setEnterTitle] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] mt-[8px] leading-[30px] rounded-[50%] bg-[black] text-[white] text-center");
     const handleTitleEntered = (event) => {
         const inputValue = event.target.value;
         setTitleSave(inputValue);
-        localStorage.setItem('titleSave', inputValue);
         if (inputValue.trim().length > 2) {
             setTitleEntered(true);
         } else {
@@ -25,7 +23,8 @@ export default function CreateANewSubject() {
         apiRequest('api/subject', 'POST', {name: titleSave})
             .then(r => {
                 if (r.status === 200) {
-                    setNewSubject(r.response[0] as TSubject);
+					const response = r.response[0] as TSubject;
+					localStorage.setItem('subjectId', response.id.toString());
                 }
             });
         setSaveTitle(
@@ -67,10 +66,10 @@ export default function CreateANewSubject() {
                     adding content</h1>
                 <div
                     className="createOptions mt-[80px] mb-[70px] mx-[auto] w-[100%] justify-between flex">
-                    <a href='http://localhost:5173/home/newSubject/newflashcard'>
+                    <a href='http://localhost:5173/home/newflashcard'>
                         <button className="createContent flashcard">Create a Flashcard Set</button>
                     </a>
-                    <a href="http://localhost:5173/home/newSubject/newtest">
+                    <a href="http://localhost:5173/home/newtest">
                         <button className="createContent test">Create a Test</button>
                     </a>
                     <button className="createContent mindmap">Create a Mind Map</button>

@@ -58,7 +58,7 @@ export default function HomePage() {
     // sortOptions is being used in the CSS file
     return (
         <>
-            <a href='http://localhost:5173/home/newSubject'>
+            <a href='/newSubject'>
                 <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
                     <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
                         <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]" alt="Add"/>

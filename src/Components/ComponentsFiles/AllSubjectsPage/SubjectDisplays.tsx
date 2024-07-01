@@ -2,7 +2,6 @@ import {useState} from "react";
 import {TSubject} from "../../../Types/TSubject.ts";
 
 export default function SubjectDisplays (props: {subject?: TSubject}) {
-		console.log('props:', props.subject?.name)
 
     const flashcardSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
     const testSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
@@ -238,7 +237,7 @@ export default function SubjectDisplays (props: {subject?: TSubject}) {
                     <div className="createFlashcardCircle items-center">
                         {enterIconFlashcard}
                     </div>
-                    <h2 className="createFlashcardText ml-[15px]">Create a new Flashcard Set </h2>
+                    <a className="createFlashcardText ml-[15px]" href={"/newFlashCard"} onClick={()=>localStorage.setItem('subjectId', props.subject?.id.toString()??'')}>Create a new Flashcard Set </a>
                 </button>
             </div>
             <div className={displayFlashcards}>

@@ -12,3 +12,10 @@ export type TCard = {
   created_at: Date
   updated_at: Date
 }
+
+export type TCreateCard = {
+  title: string
+  content: string
+  content_type: number
+  subject_id: number
+}

@@ -1,14 +1,30 @@
 import {useState} from 'react';
+import {TCard, TCreateCard} from "../../../Types/TCard.ts";
+import {ECardType} from "../../../Types/enum/ECardType.ts";
+import {apiRequest} from "../../../Utils/ApiRequest.ts";
+import {TTest} from "../../../Types/TTest.ts";
+import {useNavigate} from "react-router-dom";
 
-export default function TestQuestions() {
+export default function TestQuestions(props: {cardTitle: string, subjectId: number }) {
+  const navigate = useNavigate();
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<TTest[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentAnswer, setCurrentAnswer] = useState('');
   const [qaCount, setQACount] = useState(0);
   const [saveButton, setSaveButton] = useState("hidden");
   const [singleOrPlural, setSingleOrPlural] = useState("Test Question");
 
+  function saveCard() {
+    const createCard:TCreateCard = {} as TCreateCard;
+    createCard.title = props.cardTitle;
+    createCard.content = JSON.stringify(questions);
+    createCard.content_type = ECardType.Test;
+    createCard.subject_id = props.subjectId;
+    apiRequest<TCreateCard, TCard>(`api/card`, 'POST', createCard).then(() => {
+      navigate(`/SubjectView/${props.subjectId}`);
+    })
+  }
   const autoResize = ({textarea}: { textarea: any }) => {
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
@@ -117,9 +133,9 @@ export default function TestQuestions() {
 
       <div className="questionCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
         <button className={saveButton}>
-          <a href="http://localhost:5173/home/subjectview/takeatest">
+          <button onClick={saveCard}>
             Save {qaCount} {singleOrPlural}
-          </a>
+          </button>
         </button>
       </div>
     </>

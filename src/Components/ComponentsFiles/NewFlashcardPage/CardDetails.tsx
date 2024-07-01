@@ -1,13 +1,30 @@
 import {useState} from 'react';
+import {apiRequest} from "../../../Utils/ApiRequest.ts";
+import {TCard, TCreateCard} from "../../../Types/TCard.ts";
+import {ECardType} from "../../../Types/enum/ECardType.ts";
+import {TFlashCard} from "../../../Types/TFlashCard.ts";
+import {useNavigate} from "react-router-dom";
 
-export default function CardDetails() {
+export default function CardDetails(props: {cardTitle: string, subjectId: number }) {
+  const navigate = useNavigate();
 
-  const [terms, setTerms] = useState([]);
+  const [terms, setTerms] = useState<TFlashCard[]>([]);
   const [currentTerm, setCurrentTerm] = useState('');
   const [currentDefinition, setCurrentDefinition] = useState('');
   const [cardCount, setCardCount] = useState(0);
   const [saveButton, setSaveButton] = useState("hidden");
   const [cardOrCards, setCardOrCards] = useState("Card");
+
+  function saveCard() {
+    const createCard:TCreateCard = {} as TCreateCard;
+    createCard.title = props.cardTitle;
+    createCard.content = JSON.stringify(terms);
+    createCard.content_type = ECardType.FlashCard;
+    createCard.subject_id = props.subjectId;
+    apiRequest<TCreateCard, TCard>(`api/card`, 'POST', createCard).then(() => {
+      navigate(`/SubjectView/${props.subjectId}`);
+    })
+  }
 
   const autoResize = ({textarea}: { textarea: any }) => {
     textarea.style.height = 'auto';
@@ -66,7 +83,6 @@ export default function CardDetails() {
       }
     }
   }
-
   return (
     <>
       <div className="headers flex w-[80%] mx-[auto]">
@@ -114,9 +130,9 @@ export default function CardDetails() {
       <div className="cardCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
         <button
           className={saveButton}>
-          <a href="http://localhost:5173/home/newSubject/newflashcard/StudyFlashCardSet">
+          <button onClick={saveCard}>
             Save {cardCount} {cardOrCards}
-          </a>
+          </button>
         </button>
       </div>
     </>

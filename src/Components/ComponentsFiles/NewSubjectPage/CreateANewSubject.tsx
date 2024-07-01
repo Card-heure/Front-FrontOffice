@@ -66,13 +66,12 @@ export default function CreateANewSubject() {
           adding content</h1>
         <div
           className="createOptions mt-[80px] mb-[70px] mx-[auto] w-[100%] justify-between flex">
-          <a href='http://localhost:5173/home/newflashcard'>
+          <a href='/newflashcard'>
             <button className="createContent flashcard">Create a Flashcard Set</button>
           </a>
-          <a href="http://localhost:5173/home/newtest">
+          <a href="/newtest">
             <button className="createContent test">Create a Test</button>
           </a>
-          <button className="createContent mindmap">Create a Mind Map</button>
         </div>
       </div>
     </>

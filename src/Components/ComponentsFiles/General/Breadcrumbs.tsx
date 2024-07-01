@@ -22,7 +22,7 @@ export default function Breadcrumbs() {
       // @ts-ignore
       crumb = "New Flash Card";
     }
-    if (crumb == "StudyFlashCardSet") {
+    if (crumb == "StudyFlashCard") {
       // @ts-ignore
       crumb = "Study Flashcard Set";
     }

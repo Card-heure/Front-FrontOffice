@@ -10,7 +10,7 @@ import config from "./variable.ts";
 export async function apiRequest<TC, TR>(
   url: string,
   method?: 'GET' | 'DELETE' | 'PUT' | 'POST',
-  body?: TC | unknown,
+  body?: TC,
   queryParams?: Record<string, unknown>
 ): Promise<{ response: TR; status: number }> {
   const queryString = queryParams

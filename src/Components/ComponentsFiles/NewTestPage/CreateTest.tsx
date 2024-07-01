@@ -1,13 +1,20 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import TestQuestions from "#ComponentsFiles/NewTestPage/TestQuestions.tsx";
+import {TSubject} from "../../../Types/TSubject.ts";
+import {apiRequest} from "../../../Utils/ApiRequest.ts";
 
 export default function CreateTest() {
-  const titleSave = localStorage.getItem('titleSave');
+  const subjectId = localStorage.getItem('subjectId');
+  const [subject, setSubject] = useState<TSubject | undefined>(undefined)
+  useEffect(() => {
+    apiRequest<null, TSubject>(`api/subject/${subjectId}`, 'GET').then((response) => {
+      setSubject(response.response)
+    })
+  }, [subjectId])
   // @ts-ignore
   const handleTitleEntered = (event) => {
     const inputValue = event.target.value;
     setTestTitleSave(inputValue);
-    localStorage.setItem('testTitle', inputValue);
     if (inputValue.trim().length > 2) {
       setTitleEntered(true);
     } else {
@@ -43,7 +50,7 @@ export default function CreateTest() {
     <>
       <div className="subjectTitle flex items-center w-[80%] mx-[auto] justify-center mt-[55px] text-[140%] font-extralight text-left overflow-clip mb-[100px]">
         <h1 className="subject mr-[20px]"> Subject:</h1>
-        <h1 className="subjectTitle flex font-semibold">{titleSave}</h1>
+        <h1 className="subjectTitle flex font-semibold">{subject?.name}</h1>
         <h1 className="divider mx-[30px]">|</h1>
         <h1 className="testSet flex mr-[20px]"> Test: </h1>
         {testTitle}
@@ -57,7 +64,7 @@ export default function CreateTest() {
       </div>
 
       <div className={displayOptions ? "cardSection" : "cardSection hidden"}>
-        <TestQuestions/>
+        {testTitleSave && subject && <TestQuestions cardTitle={testTitleSave} subjectId={subject.id}/>}
       </div>
 
     </>

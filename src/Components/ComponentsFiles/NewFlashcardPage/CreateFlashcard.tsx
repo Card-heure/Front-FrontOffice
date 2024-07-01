@@ -4,25 +4,21 @@ import {TSubject} from "../../../Types/TSubject.ts";
 import {apiRequest} from "../../../Utils/ApiRequest.ts";
 
 export default function CreateFlashcard() {
-  const subjectId = localStorage.getItem('subjectId');
+  const [enterButton, setEnterButton] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] mb-[12px] rounded-[50%] bg-[black] text-[white] font-normal text-center");
+  const [titleEntered, setTitleEntered] = useState(false);
+  const [cardTitleSave, setCardTitleSave] = useState("");
+  const [displayOptions, setDisplayOptions] = useState(false);
   const [subject, setSubject] = useState<TSubject | undefined>(undefined)
+
+  const subjectId = localStorage.getItem('subjectId');
   useEffect(() => {
     apiRequest<null, TSubject>(`api/subject/${subjectId}`, 'GET').then((response) => {
       setSubject(response.response)
     })
   }, [subjectId])
-  console.log(subject);
   const handleTitleEntered = (event) => {
     const inputValue = event.target.value;
     setCardTitleSave(inputValue);
-    localStorage.setItem('flashSetTitle', inputValue);
-    /*apiRequest('api/subject', 'POST', {name: titleSave})
-      .then(r => {
-        if (r.status === 200) {
-          const response = r.response[0] as TSubject;
-          localStorage.setItem('subject', response.id.toString());
-        }
-      });*/
     if (inputValue.trim().length > 2) {
       setTitleEntered(true);
     } else {
@@ -48,11 +44,6 @@ export default function CreateFlashcard() {
     return displayOptions ? <p className="checkmark"></p> : '+';
   };
 
-  const [enterButton, setEnterButton] = useState("enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] mb-[12px] rounded-[50%] bg-[black] text-[white] font-normal text-center");
-  const [titleEntered, setTitleEntered] = useState(false);
-  const [cardTitleSave, setCardTitleSave] = useState("");
-  const [displayOptions, setDisplayOptions] = useState(false);
-
 
   return (
     <>
@@ -75,7 +66,7 @@ export default function CreateFlashcard() {
 
 
       <div className={displayOptions ? "cardSection" : "cardSection hidden"}>
-        <CardDetails/>
+        {cardTitleSave && subject && <CardDetails cardTitle={cardTitleSave} subjectId={subject.id}/>}
       </div>
 
     </>

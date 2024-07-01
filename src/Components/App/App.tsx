@@ -27,7 +27,7 @@ export default function App() {
   return (
     <Routes>
       <Route
-        path={"/LogIn"}
+        path={"/login"}
         element={
           <Suspense fallback={<Loading/>}>
             <Login/>
@@ -35,7 +35,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/SignUp"}
+        path={"/signup"}
         element={
           <Suspense fallback={<Loading/>}>
             <SignUp/>

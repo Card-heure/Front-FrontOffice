@@ -75,7 +75,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/Home/NewSubject/NewFlashCard/StudyFlashCardSet"}
+        path={"/StudyFlashCardSet/:cardSetId"}
         element={
           <Suspense fallback={<Loading/>}>
             <StudyFlashcardSet/>
@@ -83,7 +83,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/Home/NewTest"}
+        path={"/NewTest"}
         element={
           <Suspense fallback={<Loading/>}>
             <NewTest/>

@@ -1,11 +1,23 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {TSubject} from "../../../Types/TSubject.ts";
+import {TCard} from "../../../Types/TCard.ts";
+import {ECardType} from "../../../Types/enum/ECardType.ts";
 
-export default function SubjectDisplays(props: { subject?: TSubject }) {
-
-  const flashcardSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
-  const testSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
-  const mindmapSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
+export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCard[] }) {
+  const [flashcardSet, setFlashcardSet] = useState<TCard[]>([]);
+  const [testSet, setTestSet] = useState<TCard[]>([]);
+  useEffect(() => {
+    props.cards?.map((card) => {
+      if (card.content_type === ECardType.FlashCard) {
+        setFlashcardSet(flashcardSet => [...flashcardSet, card])
+      } else if (card.content_type === ECardType.Test) {
+        setTestSet(testSet => [...testSet, card])
+      }
+    })
+  }, [props.cards]);
+  console.log(flashcardSet);
+  console.log(testSet);
+  //const mindmapSet = ['First Set', 'Second Set', 'Third Set', 'Fourth Set', 'Fifth Set', 'Sixth Set'];
 
   const [circlesFlashcard, setCirclesFlashcard] = useState(
     <div className="displayCircles w-[25px] h-[34px] justify-center">
@@ -21,12 +33,12 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
       <div className="circles m-auto w-[6px] h-[6px] my-[4px] rounded-[50%] border-[1px] border-[black] border-[solid]"></div>
     </div>);
 
-  const [circlesMindmap, setCirclesMindmap] = useState(
+  /*const [circlesMindmap, setCirclesMindmap] = useState(
     <div className="displayCircles w-[25px] h-[34px] justify-center">
       <div className="circles m-auto w-[6px] h-[6px] mt-[4px] rounded-[50%] border-[1px] border-[black] border-[solid]"></div>
       <div className="circles m-auto w-[6px] h-[6px] mt-[4px] rounded-[50%] border-[1px] border-[black] border-[solid]"></div>
       <div className="circles m-auto w-[6px] h-[6px] my-[4px] rounded-[50%] border-[1px] border-[black] border-[solid]"></div>
-    </div>);
+    </div>);*/
 
   const [enterIconFlashcard, setEnterIconFlashcard] = useState(
     <h2 className="enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] rounded-[50%] bg-[black] text-[white] font-normal text-[140%] text-center">
@@ -40,11 +52,11 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
     </h2>
   );
 
-  const [enterIconMindmap, setEnterIconMindmap] = useState(
+  /*const [enterIconMindmap, setEnterIconMindmap] = useState(
     <h2 className="enterButtonIcon w-[30px] mx-[auto] h-[30px] leading-[30px] rounded-[50%] bg-[black] text-[white] font-normal text-[140%] text-center">
       +
     </h2>
-  );
+  );*/
 
   const [textColorFlashcard, setTextColorFlashcard] = useState(
     "mindmapDisplay border-y-[1px] border-y-[black] border-y-[solid] flex items-center px-[20px] justify-between"
@@ -54,9 +66,9 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
     "mindmapDisplay flex items-center px-[20px] justify-between"
   );
 
-  const [textColorMindmap, setTextColorMindmap] = useState(
+  /*const [textColorMindmap, setTextColorMindmap] = useState(
     "mindmapDisplay border-y-[1px] border-y-[black] border-y-[solid] flex items-center px-[20px] justify-between"
-  );
+  );*/
 
   const [displayFlashcards, setDisplayFlashcards] = useState(
     "displayFlashcards hidden"
@@ -64,13 +76,13 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
   const [displayTests, setDisplayTests] = useState(
     "displayTests hidden"
   );
-  const [displayMindmaps, setDisplayMindmaps] = useState(
+  /*const [displayMindmaps, setDisplayMindmaps] = useState(
     "displayMindmaps hidden"
-  );
+  );*/
 
   const [showHideFlashcard, setSHFlashcard] = useState(true);
   const [showHideTest, setSHTest] = useState(true);
-  const [showHideMindmap, setSHMindmap] = useState(true);
+  /*const [showHideMindmap, setSHMindmap] = useState(true);*/
 
   const displayDetailsFlashcard = () => {
     showHideFlashcard ? setSHFlashcard(false) : setSHFlashcard(true)
@@ -168,7 +180,7 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
     }
   };
 
-  const displayDetailsMindmap = () => {
+  /*const displayDetailsMindmap = () => {
     showHideMindmap ? setSHMindmap(false) : setSHMindmap(true)
     if (showHideMindmap) {
       setCirclesMindmap(
@@ -214,7 +226,7 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
         "displayMindmaps hidden"
       );
     }
-  };
+  };*/
 
   return (
     <>
@@ -234,14 +246,14 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
           <div className="createFlashcardCircle items-center">
             {enterIconFlashcard}
           </div>
-          <a className="createFlashcardText ml-[15px]" href={"/newFlashCard"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Create a new Flashcard Set </a>
+          <a className="createFlashcardText ml-[15px z-20" href={"/newFlashCard"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Create a new Flashcard Set </a>
         </button>
       </div>
       <div className={displayFlashcards}>
-        <div className="flashcardListContainer mx-[auto] justify-center flex flex-wrap text-[130%]">
-          {flashcardSet.slice().map((flashcardSet, index) => (
-            <div className="mindmapList w-[50%] mx-[1%] flex justify-center mb-[30px] items-center"
-                 key={index}>
+        <div>
+          {flashcardSet.map((card, index) => (
+            <div className="mindmapList w-full mx-[1%] flex justify-center mb-[30px] items-center"
+                 key={card.id}>
               <h2 className="indexNumber w-[8%] flex justify-center">
                 <div
                   className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
@@ -249,12 +261,15 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
                 </div>
               </h2>
               <h1 className="setTitle w-[75%] pl-[75px]">
-                <button
-                  className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
-                  {flashcardSet}
-                </button>
+                <a href={"/studyFlashCardSet/" + card.id}>
+                  <button
+                    className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
+                    {card.title}
+                  </button>
+                </a>
               </h1>
             </div>
+
           ))}
         </div>
       </div>
@@ -269,32 +284,34 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
           <div className="createTestCircle items-center">
             {enterIconTest}
           </div>
-          <h2 className="createTestText ml-[15px]">Create a new Test </h2>
+          <a className="createFlashcardText ml-[15px z-20" href={"/newTest"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Create a new Test </a>
+
         </button>
       </div>
       <div className={displayTests}>
-        <div className="flashcardListContainer mx-[auto] justify-center flex flex-wrap text-[130%]">
-          {testSet.slice().map((testSet, index) => (
-            <div className="mindmapList w-[50%] mx-[1%] flex justify-center mb-[30px] items-center"
-                 key={index}>
+        <div>
+          {testSet.map((card) => (
+            <div className="mindmapList w-full mx-[1%] flex justify-center mb-[30px] items-center"
+                 key={card.id}>
               <h2 className="indexNumber w-[8%] flex justify-center">
                 <div
                   className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
-                  {index + 1}
+                  {card.id}
                 </div>
               </h2>
               <h1 className="setTitle w-[75%] pl-[75px]">
                 <button
                   className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
-                  {testSet}
+                  {card.title}
                 </button>
               </h1>
             </div>
+
           ))}
         </div>
       </div>
 
-      <div className={textColorMindmap} onClick={displayDetailsMindmap}>
+      {/*<div className={textColorMindmap} onClick={displayDetailsMindmap}>
         <button className="mindmapDisplayButton w-[60%] flex items-center">
           {circlesMindmap}
           <h2 className="displayMindmapText ml-[10px] pt-[25px] pb-[25px]"> Display all Mind Maps </h2>
@@ -327,7 +344,7 @@ export default function SubjectDisplays(props: { subject?: TSubject }) {
             </div>
           ))}
         </div>
-      </div>
+      </div>*/}
     </>
   )
 }

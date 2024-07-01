@@ -1,11 +1,9 @@
 import {useState} from "react";
+import {TCard} from "../../../Types/TCard.ts";
+import {TSubject} from "../../../Types/TSubject.ts";
 
-export default function StudyFlashSet() {
-  const titleSave = localStorage.getItem('titleSave');
-  const flashSetTitle = localStorage.getItem('flashSetTitle');
-  const flashcardString = localStorage.getItem('newFlashSet');
-  // @ts-ignore
-  const flashcards = JSON.parse(flashcardString); // this is necessary to get the dictionary (object) as an array rather than a string
+export default function StudyFlashSet(props: {card: TCard, subject: TSubject[]}) {
+  const flashcards = props.card.content;
   const [n, setN] = useState(0);
   const [nCopy, setNCopy] = useState(n);
   const [c, setC] = useState(0);
@@ -23,7 +21,6 @@ export default function StudyFlashSet() {
   const [correctCards, setCorrectCards] = useState([]);
   const [incorrectCards, setIncorrectCards] = useState([]);
 
-  // @ts-ignore
   const flipCard = (event) => {
     if (cardText == flashcards[n].term) {
       setCardText(flashcards[nCopy].definition);
@@ -37,7 +34,6 @@ export default function StudyFlashSet() {
     }
   };
 
-  // @ts-ignore
   const markCorrect = (event) => {
     if ((n < flashcards.length - 1) && !endReview) { // -2 because originally it's -1 (index 0), but n is always an extra 1 behind
       const newIndex = n + 1;
@@ -79,13 +75,10 @@ export default function StudyFlashSet() {
     setArrowDirection(resetArrow);
     const resetArrowText = ('Flip to Definition');
     setFlipTo(resetArrowText);
-    // @ts-ignore
     const newCorrectCards = ([...correctCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
-    // @ts-ignore
     setCorrectCards(newCorrectCards);
   };
 
-  // @ts-ignore
   const markIncorrect = (event) => {
     if ((n < flashcards.length - 1) && !endReview) { // -2 because originally it's -1 (index 0), but n is always an extra 1 behind
       const newIndex = n + 1;
@@ -123,9 +116,7 @@ export default function StudyFlashSet() {
     setArrowDirection(resetArrow);
     const resetArrowText = ('Flip to Definition');
     setFlipTo(resetArrowText);
-    // @ts-ignore
     const newIncorrectCards = ([...incorrectCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
-    // @ts-ignore
     setIncorrectCards(newIncorrectCards);
     console.log(incorrectCards);
   };
@@ -134,10 +125,10 @@ export default function StudyFlashSet() {
     <>
       <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
         <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
-        <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
+        <h1 className="subjectTitle max-w-[30%] font-semibold">{props.subject?.name}</h1>
         <h1 className="divider w-[2%] mx-[18px] text-center"> | </h1>
         <h1 className="flashcardSet max-w-[20%] mr-[12px]"> Flashcard Set: </h1>
-        <h1 className="flashSetTitle font-semibold max-w-[30%]">{flashSetTitle}</h1>
+        <h1 className="flashSetTitle font-semibold max-w-[30%]">{props.card?.title}</h1>
       </div>
 
       <div className={cardFlipEnd}>

@@ -143,7 +143,7 @@ export default function HomePage() {
         <ul className="subject flex mx-[auto] w-[80%] flex-wrap pl-[3%] mt-[65px]">
           {filteredSubjects?.map((subject, index) => (
             <li key={index}>
-              <a href={`/Home/SubjectView/${subject.id}`}>
+              <a href={`/SubjectView/${subject.id}`}>
                 <button>{subject.name}</button>
               </a>
             </li>

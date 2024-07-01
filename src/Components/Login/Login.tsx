@@ -22,8 +22,8 @@ export default function Login() {
     }
   }
 
-  const toLogIn = () => {
-    navigate("/SignUp")
+  const toSignup = () => {
+    navigate("/signup")
   }
 
   return (
@@ -44,7 +44,7 @@ export default function Login() {
             Log In
           </button>
           <button className="w-[350px] text-center mx-[auto] justify-center flex font-light italic text-[85%] tracking-[.3px]"
-                  onClick={toLogIn}>
+                  onClick={toSignup}>
             Are you a new user? Click <span className="font-medium"> &#160;here&#160; </span> to create an account
           </button>
         </form>

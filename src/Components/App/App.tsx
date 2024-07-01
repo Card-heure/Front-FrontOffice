@@ -16,9 +16,9 @@ import {isAuthenticated} from "../../Utils/utils.ts";
 
 export default function App() {
   const navigate = useNavigate();
-
+  const notRedirect = ["/login", "/signup", "/"];
   useEffect(() => {
-    if (!isAuthenticated() && window.location.pathname !== "/LogIn" && window.location.pathname !== "/SignUp") {
+    if (!isAuthenticated() && window.location.pathname in notRedirect) {
       navigate("/")
     } else if (isAuthenticated() && window.location.pathname === "/LogIn") {
       navigate("/home")
@@ -26,6 +26,14 @@ export default function App() {
   }, [navigate]);
   return (
     <Routes>
+      <Route
+        path={"/"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <Main/>
+          </Suspense>
+        }
+      />
       <Route
         path={"/login"}
         element={
@@ -39,14 +47,6 @@ export default function App() {
         element={
           <Suspense fallback={<Loading/>}>
             <SignUp/>
-          </Suspense>
-        }
-      />
-      <Route
-        path={"/"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <Main/>
           </Suspense>
         }
       />

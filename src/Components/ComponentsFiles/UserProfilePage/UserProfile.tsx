@@ -1,6 +1,17 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import clsx from "clsx";
+import {TUser} from "../../../Types/TUser.ts";
+import {apiRequest} from "../../../Utils/ApiRequest.ts";
+import {useApi} from "../../../Utils/useApi.ts";
 
 export default function UserProfile() {
+  const [me, setMe] = useState<TUser | null>(null)
+  const {data: rawLink} = useApi<TUser>('me', {})
+  useEffect(() => {
+    if (rawLink) {
+      setMe(rawLink)
+    }
+  }, [rawLink])
   const [userName, setUserName] = useState("JeanDupoint");
   const [firstName, setFirstName] = useState("Jean");
   const [lastName, setLastName] = useState("Dupoint");
@@ -28,6 +39,7 @@ export default function UserProfile() {
   const [emailIcon, setEmailIcon] = useState(false);
   const [birthdayIcon, setBirthdayIcon] = useState(false);
   const [genderIcon, setGenderIcon] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   const modifyUsername = () => {
     const mod = document.getElementById("usernameField") as HTMLInputElement;
@@ -191,17 +203,26 @@ export default function UserProfile() {
 
   const deleteAccount = () => {
     console.log("delete account")
+    apiRequest<null, null>('deleteAccount', 'DELETE').then(() => {
+      localStorage.removeItem('jwt');
+      localStorage.removeItem('expire');
+      window.location.reload();
+    })
   };
 
   return (
     <>
+      <div>
+        <label htmlFor={"profilePage"}>Show Profile Page</label>
+        <input type={"checkbox"} id={"profilePage"} onClick={(e)=>setShowProfile(!showProfile)}/>
+      </div>
       <div className="greeting w-[75%] mx-[auto] flex mt-[85px] mb-[60px]">
         <h1 className="text-[300%] mr-[30px]"> &#128075;</h1>
-        <h1 className="text-[200%] font-light pt-[12px]"> Hello, {firstName} !</h1>
+        <h1 className="text-[200%] font-light pt-[12px]"> Hello, {me?.fullName} !</h1>
       </div>
       <div className="sections w-[83%] mx-[auto] flex justify-between mb-[250px] pl-[3%]">
 
-        <div className="sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]">
+        <div className={clsx("sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]",!showProfile&&"hidden")}>
 
           <h1 className="text-[120%] mb-[5px]"> Username </h1>
           <div className="editUsername flex items-start w-[68%]">
@@ -249,7 +270,7 @@ export default function UserProfile() {
           </div>
         </div>
 
-        <div className="sectionTwo text-[black] w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]">
+        <div className={clsx("sectionTwo text-[black] w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]",!showProfile&&"hidden")}>
           <h1 className="text-[120%] mb-[5px]"> Email </h1>
           <div className="editEmailAddress flex items-start w-[75%]">
                     <textarea readOnly={true}
@@ -308,7 +329,7 @@ export default function UserProfile() {
           </form>
         </div>
 
-        <div className="sectionThree w-[34%] justify-center py-[50px] pl-[1%]">
+        <div className={clsx("sectionThree w-[34%] justify-center py-[50px] pl-[1%]",!showProfile&&"m-auto")}>
           <div className="flex w-[90%] justify-center">
             <img src="/src/assets/emailIcon.png"
                  className="w-[80px] h-[auto]"/>
@@ -322,10 +343,8 @@ export default function UserProfile() {
           <button className="logOut font-medium text-[106%] w-[90%] mb-[25px]" onClick={logOut}>
             Log Out
           </button>
+          {showProfile && <button className="deleteAccount font-medium text-[106%] text-red-600 w-[90%]" onClick={deleteAccount}>Delete Account</button>}
 
-          <button className="deleteAccount font-medium text-[106%] text-red-600 w-[90%]" onClick={deleteAccount}>
-            Delete Account
-          </button>
 
         </div>
       </div>

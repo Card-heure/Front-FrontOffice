@@ -59,6 +59,14 @@ export default function App() {
         }
       />
       <Route
+        path={"/Profile"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <Profile/>
+          </Suspense>
+        }
+      />
+      <Route
         path={"/NewSubject"}
         element={
           <Suspense fallback={<Loading/>}>
@@ -103,14 +111,6 @@ export default function App() {
         element={
           <Suspense fallback={<Loading/>}>
             <TakeATest/>
-          </Suspense>
-        }
-      />
-      <Route
-        path={"/Profile"}
-        element={
-          <Suspense fallback={<Loading/>}>
-            <Profile/>
           </Suspense>
         }
       />

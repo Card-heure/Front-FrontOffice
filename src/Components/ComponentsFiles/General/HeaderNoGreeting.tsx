@@ -4,7 +4,7 @@ export default function HeaderNoGreeting() {
       <div className="header h-[130px] flex items-center">
         <div className="headerSect logo text-center justify-center w-[15%]">
           <button>
-            <a href="http://localhost:5173/home">
+            <a href="/home">
               <h1 className="text-6xl font-bold">C'h</h1>
             </a>
           </button>

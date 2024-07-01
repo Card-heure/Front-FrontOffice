@@ -15,105 +15,105 @@ import Profile from "#Components/Main/Profile.tsx";
 import {isAuthenticated} from "../../Utils/utils.ts";
 
 export default function App() {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (!isAuthenticated() && window.location.pathname !== "/LogIn" && window.location.pathname !== "/SignUp") {
-			navigate("/")
-		} else if (isAuthenticated() && window.location.pathname === "/LogIn") {
-			navigate("/home")
-		}
-	}, [navigate]);
-	return (
-		<Routes>
-			<Route
-				path={"/LogIn"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<Login/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/SignUp"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<SignUp/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<Main/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/Home"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<Home/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/NewSubject"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<NewSubject/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/NewFlashCard"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<NewFlashcard/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/Home/NewSubject/NewFlashCard/StudyFlashCardSet"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<StudyFlashcardSet/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/Home/NewTest"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<NewTest/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/SubjectView/:subjectId"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<SubjectView/>
-					</Suspense>
-				}
-			/>
-			<Route
-				path={"/Home/TakeATest"}
-				element={
-					<Suspense fallback={<Loading/>}>
-						<TakeATest/>
-					</Suspense>
-				}
-			/>
+  useEffect(() => {
+    if (!isAuthenticated() && window.location.pathname !== "/LogIn" && window.location.pathname !== "/SignUp") {
+      navigate("/")
+    } else if (isAuthenticated() && window.location.pathname === "/LogIn") {
+      navigate("/home")
+    }
+  }, [navigate]);
+  return (
+    <Routes>
       <Route
-            path={"/Home/Profile"}
-            element={
-                <Suspense fallback={<Loading/>}>
-                    <Profile/>
-                </Suspense>
-            }
-        />
-		</Routes>
-	)
+        path={"/LogIn"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <Login/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/SignUp"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <SignUp/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <Main/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/Home"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <Home/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/NewSubject"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <NewSubject/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/NewFlashCard"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <NewFlashcard/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/Home/NewSubject/NewFlashCard/StudyFlashCardSet"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <StudyFlashcardSet/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/Home/NewTest"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <NewTest/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/SubjectView/:subjectId"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <SubjectView/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/Home/TakeATest"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <TakeATest/>
+          </Suspense>
+        }
+      />
+      <Route
+        path={"/Home/Profile"}
+        element={
+          <Suspense fallback={<Loading/>}>
+            <Profile/>
+          </Suspense>
+        }
+      />
+    </Routes>
+  )
 }

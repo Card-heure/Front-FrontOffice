@@ -76,7 +76,7 @@ export default function Scroll() {
                         id = "loginCircle">
                     </div>
                     <div className = "scrollText login w-[80px] mt-[20px]">
-                    <p>Log in</p>
+                    <p> Connection</p>
                     </div>
                 </button>
             </div>

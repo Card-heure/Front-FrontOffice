@@ -1,5 +1,4 @@
 import HeaderNoGreeting from "#ComponentsFiles/General/HeaderNoGreeting.tsx";
-import Breadcrumbs from "#ComponentsFiles/General/Breadcrumbs.tsx";
 import TakeTest from "#ComponentsFiles/TakeTestPage/TakeTest.tsx";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -28,7 +27,6 @@ export default function TakeATest() {
   return (
     <>
       <HeaderNoGreeting/>
-      <Breadcrumbs/>
       {card && subject && <TakeTest subject={subject} card={card}/>}
     </>
   );

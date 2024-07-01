@@ -1,5 +1,4 @@
 import HeaderNoGreeting from "#ComponentsFiles/General/HeaderNoGreeting.tsx";
-import Breadcrumbs from "#ComponentsFiles/General/Breadcrumbs.tsx";
 import SubjectDisplays from "#ComponentsFiles/AllSubjectsPage/SubjectDisplays.tsx";
 import {useEffect, useState} from "react";
 import {TSubject} from "../../Types/TSubject.ts";
@@ -22,7 +21,6 @@ export default function SubjectView() {
   return (
     <>
       <HeaderNoGreeting/>
-      <Breadcrumbs/>
       <SubjectDisplays subject={subject} cards={cards}/>
     </>
   )

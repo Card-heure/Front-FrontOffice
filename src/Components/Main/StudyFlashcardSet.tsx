@@ -1,5 +1,4 @@
 import HeaderNoGreeting from "#ComponentsFiles/General/HeaderNoGreeting.tsx";
-import Breadcrumbs from "#ComponentsFiles/General/Breadcrumbs.tsx";
 import StudyFlashSet from "#ComponentsFiles/StudyFlashcardPage/StudyFlashSet.tsx";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -28,7 +27,6 @@ export default function StudyFlashcardSet() {
   return (
     <>
       <HeaderNoGreeting/>
-      <Breadcrumbs/>
       {card && subject && <StudyFlashSet card={card} subject={subject}/>}
 
     </>

@@ -1,9 +1,10 @@
 import {useState} from "react";
 import {TCard} from "../../../Types/TCard.ts";
 import {TSubject} from "../../../Types/TSubject.ts";
+import {TFlashCard} from "../../../Types/TFlashCard.ts";
 
-export default function StudyFlashSet(props: {card: TCard, subject: TSubject[]}) {
-  const flashcards = props.card.content;
+export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
+  const flashcards = props.card.content as TFlashCard[];
   const [n, setN] = useState(0);
   const [nCopy, setNCopy] = useState(n);
   const [c, setC] = useState(0);

@@ -1,11 +1,12 @@
 import {useState} from "react";
+import {TCard} from "../../../Types/TCard.ts";
+import {TSubject} from "../../../Types/TSubject.ts";
+import {TTest} from "../../../Types/TTest.ts";
 
-export default function TakeTest() {
-  const titleSave = localStorage.getItem('titleSave');
-  const testTitle = localStorage.getItem('testTitle');
-  const testString = localStorage.getItem('newTest');
-  // @ts-ignore
-  const questions = JSON.parse(testString); // this is necessary to get the dictionary (object) as an array rather than a string
+export default function TakeTest( props:{card:TCard, subject:TSubject}) {
+  const titleSave = props.subject.name;
+  const testTitle = props.card.title;
+  const questions = props.card.content as TTest[]; // this is necessary to get the dictionary (object) as an array rather than a string
   const [n, setN] = useState(0);
   //const [nCopy, setNCopy] = useState(n);
   const [c, setC] = useState(0);

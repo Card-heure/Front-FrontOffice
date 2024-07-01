@@ -16,7 +16,7 @@ export default function HeaderNoGreeting() {
 
         <div className="headerSect flex justify-center profile w-[15%]">
           <button className="profileBox rounded-[12px] p-[1px]">
-            <a href="http://localhost:5173/home/profile">
+            <a href="/profile">
               <img src="/src/assets/profileIcon.png" className="w-[50px] h-[auto]"/>
             </a>
           </button>

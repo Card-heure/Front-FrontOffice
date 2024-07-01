@@ -8,6 +8,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
   const [testSet, setTestSet] = useState<TCard[]>([]);
   useEffect(() => {
     props.cards?.map((card) => {
+      console.log(card);
       if (card.content_type === ECardType.FlashCard) {
         setFlashcardSet(flashcardSet => [...flashcardSet, card])
       } else if (card.content_type === ECardType.Test) {
@@ -290,20 +291,22 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
       </div>
       <div className={displayTests}>
         <div>
-          {testSet.map((card) => (
+          {testSet.map((card, index) => (
             <div className="mindmapList w-full mx-[1%] flex justify-center mb-[30px] items-center"
                  key={card.id}>
               <h2 className="indexNumber w-[8%] flex justify-center">
                 <div
                   className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
-                  {card.id}
+                  {index + 1}
                 </div>
               </h2>
               <h1 className="setTitle w-[75%] pl-[75px]">
-                <button
-                  className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
-                  {card.title}
-                </button>
+                <a href={"/studyTest/" + card.id}>
+                  <button
+                    className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
+                    {card.title}
+                  </button>
+                </a>
               </h1>
             </div>
 

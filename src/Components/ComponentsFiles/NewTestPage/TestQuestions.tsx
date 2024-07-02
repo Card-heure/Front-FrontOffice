@@ -13,7 +13,7 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
   const [currentAnswer, setCurrentAnswer] = useState('');
   const [qaCount, setQACount] = useState(0);
   const [saveButton, setSaveButton] = useState("hidden");
-  const [singleOrPlural, setSingleOrPlural] = useState("Test Question");
+  const [singleOrPlural, setSingleOrPlural] = useState("Question");
 
   function saveCard() {
     const createCard:TCreateCard = {} as TCreateCard;
@@ -56,8 +56,6 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
 
   // @ts-ignore
   const handleSave = (event) => {
-    console.log(currentQuestion.trim());
-    console.log(currentAnswer.trim());
     if (currentQuestion.trim() !== '' && currentAnswer.trim() !== '' && event.key === 'Enter') {
       // @ts-ignore
       const newQA = ([...questions, {question: currentQuestion.trim(), answer: currentAnswer.trim()}]);
@@ -76,13 +74,12 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
       event.preventDefault(); // prevents the enter key from going to a new line by default
       //event.dispatchEvent(new Event('submit')); // ensures that the enter key's only action is submitting the text
 
-      console.log(newQA.length);
       if (newQA.length > 0) {
         setSaveButton("saveSet w-[250px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
       }
 
       if (newQA.length > 1) {
-        setSingleOrPlural("Test Questions");
+        setSingleOrPlural("Questions");
       }
     }
   };
@@ -91,7 +88,7 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
     <>
       <div className="headers flex w-[80%] mx-[auto]">
         <h2 className="questionHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Question</h2>
-        <h2 className="answerHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Answer</h2>
+        <h2 className="answerHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Réponse</h2>
       </div>
 
       <div className="entriesAndListsContainer">
@@ -134,7 +131,7 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
       <div className="questionCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
         <button className={saveButton}>
           <button onClick={saveCard}>
-            Save {qaCount} {singleOrPlural}
+            Sauvegarder {qaCount} {singleOrPlural}
           </button>
         </button>
       </div>

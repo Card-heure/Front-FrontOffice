@@ -13,7 +13,7 @@ export default function CardDetails(props: {cardTitle: string, subjectId: number
   const [currentDefinition, setCurrentDefinition] = useState('');
   const [cardCount, setCardCount] = useState(0);
   const [saveButton, setSaveButton] = useState("hidden");
-  const [cardOrCards, setCardOrCards] = useState("Card");
+  const [cardOrCards, setCardOrCards] = useState("Carte");
 
   function saveCard() {
     const createCard:TCreateCard = {} as TCreateCard;
@@ -79,15 +79,15 @@ export default function CardDetails(props: {cardTitle: string, subjectId: number
       }
 
       if (newTerms.length > 1) {
-        setCardOrCards("Cards");
+        setCardOrCards("Cartes");
       }
     }
   }
   return (
     <>
       <div className="headers flex w-[80%] mx-[auto]">
-        <h2 className="frontHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Front</h2>
-        <h2 className="backHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Back</h2>
+        <h2 className="frontHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Recto</h2>
+        <h2 className="backHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Verso</h2>
       </div>
 
       <div className="entriesAndListsContainer">
@@ -131,7 +131,7 @@ export default function CardDetails(props: {cardTitle: string, subjectId: number
         <button
           className={saveButton}>
           <button onClick={saveCard}>
-            Save {cardCount} {cardOrCards}
+            Sauvegarder {cardCount} {cardOrCards}
           </button>
         </button>
       </div>

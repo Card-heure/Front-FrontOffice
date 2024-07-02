@@ -49,10 +49,10 @@ export default function CreateFlashcard() {
     <>
       <div
         className="subjectTitle flex items-center w-[80%] mx-[auto] justify-center mt-[55px] text-[140%] font-extralight text-left overflow-clip mb-[100px]">
-        <h1 className="subject mr-[20px]"> Subject:</h1>
+        <h1 className="subject mr-[20px]"> Sujet :</h1>
         <h1 className="subjectTitle flex font-semibold">{subject?.name}</h1>
         <h1 className="divider mx-[30px]">|</h1>
-        <h1 className="flashcardSet flex mr-[20px]"> Flashcard Set: </h1>
+        <h1 className="flashcardSet flex mr-[20px]"> Titre du jeu de flashcards : </h1>
         {flashSetTitle}
 
         <div className="enterButton w-[5%] flex ml-[28px] pt-[5px]">

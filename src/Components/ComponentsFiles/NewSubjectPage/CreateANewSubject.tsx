@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {apiRequest} from "../../../Utils/ApiRequest.ts";
-import {TSubject} from "../../../Types/TSubject.ts";
+import {TCreateSubject, TSubject} from "../../../Types/TSubject.ts";
 
 export default function CreateANewSubject() {
 
@@ -20,7 +20,7 @@ export default function CreateANewSubject() {
   const initiateSubject = () => {
     setDisplayOptions(true);
     setEnterTitle("enterButtonIcon cursor-auto");
-    apiRequest('api/subject', 'POST', {name: titleSave})
+    apiRequest<TCreateSubject,TSubject[]>('api/subject', 'POST', {name: titleSave})
       .then(r => {
         if (r.status === 200) {
           const response = r.response[0] as TSubject;
@@ -47,7 +47,7 @@ export default function CreateANewSubject() {
   return (
     <>
       <h1 className="titlePrompt h-[50px] leading-[50px] mt-[3%] w-[60%] mx-[auto] text-center text-[180%] font-extralight">
-        Enter the title of your new subject below</h1>
+        Saisissez le titre de votre nouveau sujet ci-dessous</h1>
 
       <div className="createTitle w-[55%] h-[50px] mx-[auto] mt-[4%] flex text-[150%]">
         {saveTitle}
@@ -62,15 +62,14 @@ export default function CreateANewSubject() {
       </div>
 
       <div className={displayOptions ? "addContent mt-[8%] w-[70%] mx-[auto]" : "hidden"}>
-        <h1 className="getStarted h-[50px] leading-[50px] text-center text-[160%] font-light">Get started by
-          adding content</h1>
+        <h1 className="getStarted h-[50px] leading-[50px] text-center text-[160%] font-light">Commencez par ajouter du contenu</h1>
         <div
           className="createOptions mt-[80px] mb-[70px] mx-[auto] w-[100%] justify-between flex">
           <a href='/newflashcard'>
-            <button className="createContent flashcard">Create a Flashcard Set</button>
+            <button className="createContent flashcard">Créer un jeu de flashcards</button>
           </a>
           <a href="/newtest">
-            <button className="createContent test">Create a Test</button>
+            <button className="createContent test">Créer un test</button>
           </a>
         </div>
       </div>

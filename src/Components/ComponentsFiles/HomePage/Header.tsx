@@ -9,15 +9,15 @@ export default function Header(props: { username: string | undefined }) {
       const date = new Date();
       const hour = date.getHours();
       if (5 <= hour && hour < 12) {
-        setGreeting("Good Morning, ");
+        setGreeting("Bonjour, ");
         setGreetingIcon("src/assets/sun.png");
         setGreetingText("greetingText text-center ml-[10px]")
       } else if (12 <= hour && hour < 18) {
-        setGreeting("Good Afternoon, ");
+        setGreeting("Bonjour, ");
         setGreetingIcon("src/assets/sunset.png");
         setGreetingText("greetingText text-center ml-[20px]")
       } else {
-        setGreeting("Good Evening, ");
+        setGreeting("Bonsoir, ");
         setGreetingIcon("src/assets/moon.png");
         setGreetingText("greetingText text-center ml-[10px]")
       }

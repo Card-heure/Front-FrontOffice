@@ -10,7 +10,7 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
   const [c, setC] = useState(0);
   const [v, setV] = useState(1);
   const [arrowDirection, setArrowDirection] = useState(<span>&#8594;</span>); // necessary for html symbol
-  const [flipTo, setFlipTo] = useState('Flip to Definition');
+  const [flipTo, setFlipTo] = useState('Voir la réponse');
   const [cardFlipEnd, setCardFlipEnd] = useState("cardAndFlip w-[60%] items-center mx-auto flex justify-between");
   const [resultCount, setResultCount] = useState("resultAndCount flex items-center justify-between h-[70px] w-[55%] mx-[auto] mt-[50px] mb-[50px]")
   const [cardText, setCardText] = useState(flashcards[n].term);
@@ -26,12 +26,12 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
     if (cardText == flashcards[n].term) {
       setCardText(flashcards[nCopy].definition);
       setArrowDirection(<span>&#8592;</span>);
-      setFlipTo('Flip to Term');
+      setFlipTo('Voir la question');
     }
     if (cardText == flashcards[n].definition) {
       setCardText(flashcards[n].term);
       setArrowDirection(<span>&#8594;</span>);
-      setFlipTo('Flip to Definition');
+      setFlipTo('Voir la réponse');
     }
   };
 
@@ -119,16 +119,15 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
     setFlipTo(resetArrowText);
     const newIncorrectCards = ([...incorrectCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
     setIncorrectCards(newIncorrectCards);
-    console.log(incorrectCards);
   };
 
   return (
     <>
-      <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
-        <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
+      <div className="subjectAndTitle flex h-[40px] items-center mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
+        <h1 className="subject max-w-[15%] mr-[12px]"> Sujet:</h1>
         <h1 className="subjectTitle max-w-[30%] font-semibold">{props.subject?.name}</h1>
         <h1 className="divider w-[2%] mx-[18px] text-center"> | </h1>
-        <h1 className="flashcardSet max-w-[20%] mr-[12px]"> Flashcard Set: </h1>
+        <h1 className="flashcardSet max-w-[20%] mr-[12px]"> Titre du jeu de flashcards: </h1>
         <h1 className="flashSetTitle font-semibold max-w-[30%]">{props.card?.title}</h1>
       </div>
 
@@ -162,26 +161,26 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
         </div>
 
         <div className="count flex w-[20%] font-light text-[120%] mr-[8%]">
-          <p>Card {v} / {flashcards.length}</p>
+          <p>Carte {v} / {flashcards.length}</p>
         </div>
       </div>
 
       <div className="resultsBar bg-[black] h-[150px] mb-[50px] text-white text-center">
         <div className="resultTitle justify-center text-[140%] pt-[30px] mb-[30px]">
-          <h2>Results</h2>
+          <h2>Résultats</h2>
         </div>
         <div className="resultStats flex w-[100%] text-[120%] font-light">
           <div className={correctViewedStats}>
-            <h2> {c} / {v} viewed cards correct (<span className="bold">{score}%</span>)</h2>
+            <h2> {c} / {v} cartes consultées correctes (<span className="bold">{score}%</span>)</h2>
           </div>
           <div className={correctTotalStats}>
-            <h2> {c} / {flashcards.length} total cards correct (<span className="bold">{overallScore}%</span>)</h2>
+            <h2> {c} / {flashcards.length} total de cartes correctes (<span className="bold">{overallScore}%</span>)</h2>
           </div>
         </div>
       </div>
 
       <div className="correctCards mb-[50px]">
-        <h1 className="correctHeader font-semibold text-center text-[150%] mb-[50px]">Correct</h1>
+        <h1 className="correctHeader font-semibold text-center text-[150%] mb-[50px]">Correcte</h1>
 
         <div className="correctCountTermDefinition flex flex-wrap justify-center w-[90%] mx-[auto] text-center">
 
@@ -211,7 +210,7 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
       </div>
 
       <div className="incorrectCards mb-[50px]">
-        <h1 className="incorrectHeader font-semibold text-center text-[150%] mb-[50px]">Incorrect</h1>
+        <h1 className="incorrectHeader font-semibold text-center text-[150%] mb-[50px]">Fausse</h1>
 
         <div className="incorrectCountTermDefinition flex flex-wrap justify-center w-[90%] mx-[auto] text-center">
 

@@ -26,10 +26,10 @@ export default function SignUp() {
 
   return (
     <>
-      <h1 className="text-[200%] text-center font-light w-[400px] mx-[auto] my-[75px]">Sign Up for Card'heure</h1>
+      <h1 className="text-[200%] text-center font-light w-[400px] mx-[auto] my-[75px]">S'inscrire sur Card'heure</h1>
       <div className="loginBox w-[700px] mx-[auto] p-[50px] border-[1px]  mb-[150px] border-[solid] border-[black] rounded-[40px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
         <form action="#">
-          <input placeholder={'Name'}
+          <input placeholder={'Nom complet'}
                  className={'text-[90%] text-center border-black border-[1px] rounded-[10px] w-[400px] py-[15px] mx-[auto] my-[50px] justify-center flex'}
                  type={'text'}
                  onChange={(e) => setName(e.target.value)}
@@ -39,7 +39,7 @@ export default function SignUp() {
                  type={'email'}
                  onChange={(e) => setEmail(e.target.value)}
           />
-          <input placeholder={'Password'}
+          <input placeholder={'Mot de passe'}
                  className={'text-[90%] text-center border-black border-[1px] py-[15px] w-[300px] rounded-[10px] mx-[auto] justify-center flex'}
                  type={'password'}
                  onChange={(e) => setPassword(e.target.value)}
@@ -49,11 +49,11 @@ export default function SignUp() {
             type="button"
             onClick={signUp}
           >
-            Sign Up
+            S'inscrire
           </button>
-          <button className="w-[300px] text-center mx-[auto] justify-center flex font-light italic text-[85%] tracking-[.3px]"
+          <button className="w-[300px] text-center mx-[auto] justify-center flex font-light italic text-[85%] tracking-[.3px] flex-wrap"
                   onClick={toLogin}>
-            Already have an account? Click <span className="font-medium"> &#160;here&#160; </span> to log in
+            Vous avez déjà un compte ? Cliquez <span className="font-medium"> &#160;ici&#160; </span> pour se connecter
           </button>
         </form>
       </div>

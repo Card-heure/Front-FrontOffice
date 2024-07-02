@@ -17,7 +17,7 @@ export default function UserProfile() {
   const [lastName, setLastName] = useState("Dupoint");
   const [emailAddress, setEmailAddress] = useState("jeandupoint@outlook.com");
   const [birthday, setBirthday] = useState("2001-12-19");
-  const [gender, setGender] = useState("Female");
+  const [gender, setGender] = useState("Femme");
   const [showGender, setShowGender] = useState("genderSelectionMenu hidden w-[250px] rounded-[10px] p-[25px] border-[1px] border-[solid] border-[black] text-[115%] font-light leading-[40px]")
   const [genderHidden, setGenderHidden] = useState(true);
   const [updatedUserName, setUpdatedUserName] = useState(userName);
@@ -213,18 +213,18 @@ export default function UserProfile() {
   return (
     <>
       <div>
-        <label htmlFor={"profilePage"}>Show Profile Page</label>
+        <label htmlFor={"profilePage"}>Voir la page de profil</label>
         <input type={"checkbox"} id={"profilePage"} onClick={(e)=>setShowProfile(!showProfile)}/>
       </div>
       <div className="greeting w-[75%] mx-[auto] flex mt-[85px] mb-[60px]">
         <h1 className="text-[300%] mr-[30px]"> &#128075;</h1>
-        <h1 className="text-[200%] font-light pt-[12px]"> Hello, {me?.fullName} !</h1>
+        <h1 className="text-[200%] font-light pt-[12px]"> Bonjour, {me?.fullName} !</h1>
       </div>
       <div className="sections w-[83%] mx-[auto] flex justify-between mb-[250px] pl-[3%]">
 
         <div className={clsx("sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]",!showProfile&&"hidden")}>
 
-          <h1 className="text-[120%] mb-[5px]"> Username </h1>
+          <h1 className="text-[120%] mb-[5px]"> Nom d'utilisateur </h1>
           <div className="editUsername flex items-start w-[68%]">
                     <textarea readOnly={true}
                               className={underlineUserName}
@@ -239,7 +239,7 @@ export default function UserProfile() {
             />
           </div>
 
-          <h1 className="text-[120%] mb-[5px]"> First Name </h1>
+          <h1 className="text-[120%] mb-[5px]"> Prénom </h1>
           <div className="editFirstName flex items-start w-[68%]">
                     <textarea readOnly={true}
                               className={underlineFirstName}
@@ -254,7 +254,7 @@ export default function UserProfile() {
             />
           </div>
 
-          <h1 className="text-[120%] mb-[5px]"> Last Name </h1>
+          <h1 className="text-[120%] mb-[5px]"> Nom </h1>
           <div className="editLastName flex items-start w-[68%]">
                     <textarea readOnly={true}
                               className={underlineLastName}
@@ -286,7 +286,7 @@ export default function UserProfile() {
             />
           </div>
 
-          <h1 className="text-[120%] mb-[5px]"> Birthday </h1>
+          <h1 className="text-[120%] mb-[5px]"> Date d'anniversaire </h1>
           <div className="editBirthday flex items-start w-[75%]">
             <input type="date"
                    className={underlineBirthday}
@@ -301,7 +301,7 @@ export default function UserProfile() {
             />
           </div>
 
-          <h1 className="text-[120%] mb-[5px]"> Gender </h1>
+          <h1 className="text-[120%] mb-[5px]"> Genre </h1>
           <div className="editGender flex items-start w-[75%]">
             <h3
               className="changeGender text-start text-[110%] mr-[4px] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[300px]"
@@ -319,13 +319,13 @@ export default function UserProfile() {
             <label htmlFor="femaleButton" className="ml-[15px] text-[black]"> {gender} </label>
             <br/>
             <input type="radio" id="maleButton" value="Male" name="genderSelectionMenu" onClick={selectGender}/>
-            <label htmlFor="maleButton" className="ml-[15px]"> Male </label>
+            <label htmlFor="maleButton" className="ml-[15px]"> Homme </label>
             <br/>
             <input type="radio" id="nonBinaryeButton" value="Non-Binary" name="genderSelectionMenu" onClick={selectGender}/>
-            <label htmlFor="nonBinaryButton" className="ml-[15px]"> Non-Binary </label>
+            <label htmlFor="nonBinaryButton" className="ml-[15px]"> Non-Binaire </label>
             <br/>
             <input type="radio" id="otherButton" value="Other" name="genderSelectionMenu" onClick={selectGender}/>
-            <label htmlFor="otherButton" className="ml-[15px]"> Other </label>
+            <label htmlFor="otherButton" className="ml-[15px]"> Autre </label>
           </form>
         </div>
 
@@ -334,16 +334,16 @@ export default function UserProfile() {
             <img src="/src/assets/emailIcon.png"
                  className="w-[80px] h-[auto]"/>
           </div>
-          <h3 className="text-[115%] w-[90%] text-center font-light leading-[50px] mb-[65px]"> Have a question, comment, or suggestion? Please feel free to
+          <h3 className="text-[115%] w-[90%] text-center font-light leading-[50px] mb-[65px]"> Vous avez une question, un commentaire ou une suggestion ? N'hésitez pas à
             <span className="font-medium">
-                            <a href="mailto:madison.owens32@gmail.com?subject=Card'heure Client Contact"> contact us</a>
+                            <a href="mailto:madison.owens32@gmail.com?subject=Card'heure Client Contact"> nous contacter</a>
                         </span> :)
           </h3>
 
           <button className="logOut font-medium text-[106%] w-[90%] mb-[25px]" onClick={logOut}>
-            Log Out
+            Se déconnecter
           </button>
-          {showProfile && <button className="deleteAccount font-medium text-[106%] text-red-600 w-[90%]" onClick={deleteAccount}>Delete Account</button>}
+          {showProfile && <button className="deleteAccount font-medium text-[106%] text-red-600 w-[90%]" onClick={deleteAccount}>Supprimer le compte</button>}
 
 
         </div>

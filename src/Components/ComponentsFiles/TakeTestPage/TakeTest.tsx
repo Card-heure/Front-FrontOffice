@@ -24,7 +24,7 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
   const [incorrectQuestions, setIncorrectQuestions] = useState([]);
   const [questionBox, setQuestionBox] = useState("currentQuestion w-[60%] items-center mx-auto flex justify-between");
   const [showEnterButton, setShowEnterButton] = useState(false);
-  const [enterOrNext, setEnterOrNext] = useState("Enter");
+  const [enterOrNext, setEnterOrNext] = useState("Entrer");
   const [showAnswer, setShowAnswer] = useState(false);
   const [correctIncorrect, setCorrectIncorrect] = useState("");
   const [userText, setUserText] = useState("")
@@ -58,13 +58,11 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
 
   const checkAnswer = () => {
     const answerBackground = document.getElementById('userAnswer');
-    if (enterOrNext == "Enter") {
-      setEnterOrNext("Next Question")
+    if (enterOrNext == "Entrer") {
+      setEnterOrNext("Question suivante")
       setShowAnswer(true);
       // @ts-ignore
       const userEntry = document.getElementById('userAnswer').value;
-      console.log(userEntry);
-      console.log(currentAnswer);
 
       if (userEntry.toLowerCase().trim() == currentAnswer.toLowerCase().trim()) {
         setCorrectIncorrect("correct");
@@ -78,8 +76,8 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
 
       }
     }
-    if (enterOrNext == "Next Question") {
-      setEnterOrNext("Enter");
+    if (enterOrNext == "Question suivante") {
+      setEnterOrNext("Entrer");
       setShowAnswer(false);
       setUserText("");
 
@@ -91,7 +89,7 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
       if (correctIncorrect == "correct") {
         markCorrect();
       }
-      if (correctIncorrect == "incorrect") {
+      if (correctIncorrect == "fausse") {
         markIncorrect();
       }
     }
@@ -182,17 +180,16 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
     const newIncorrectQuestions = ([...incorrectQuestions, {question: questions[n].question, answer: questions[n].answer}]);
     // @ts-ignore
     setIncorrectQuestions(newIncorrectQuestions);
-    console.log(incorrectQuestions);
   };
 
   return (
     <>
       <div
-        className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
-        <h1 className="subject max-w-[15%] mr-[12px]"> Subject:</h1>
+        className="subjectAndTitle flex h-[40px] items-center w-full mx-[auto] mt-[75px] mb-[70px] text-[160%] font-extralight text-left justify-center overflow-clip">
+        <h1 className="subject max-w-[15%] mr-[12px]"> Sujet:</h1>
         <h1 className="subjectTitle max-w-[30%] font-semibold">{titleSave}</h1>
         <h1 className="divider w-[2%] mx-[18px] text-center"> | </h1>
-        <h1 className="questionSet max-w-[20%] mr-[12px]"> Test: </h1>
+        <h1 className="questionSet max-w-[20%] mr-[12px]"> Nom du test: </h1>
         <h1 className="flashSetTitle font-semibold max-w-[30%]">{testTitle}</h1>
       </div>
 
@@ -207,11 +204,11 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
           {userAnswer}
           <div className={showAnswer ? "correctAnswer flex text-center items-center w-[650px] min-h-[300px] ml-[6%] border-[black] border-[1px] border-[solid] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)] rounded-[20px]" : "correctAnswer hidden"}>
             <p className="answerBox flex mx-[auto] px-[25px] font-light text-[140%]">
-              <span className="font-semibold mr-[10px] ">Correct Answer:</span>{currentAnswer}
+              <span className="font-semibold mr-[10px] ">Réponse correcte :</span>{currentAnswer}
             </p>
           </div>
         </div>
-        <div className="w-[80%]">
+        <div className="w-full">
           <button
             className={showEnterButton ? "entryButton w-[auto] px-[55px] mx-[auto] mt-[50px] flex justify-center border-[1px] border-[solid] border-[black] rounded-[18px] text-[120%] py-[12px] font-light  bg-[black] text-[white]" : "entryButton invisible"}
             onClick={checkAnswer}>
@@ -228,14 +225,14 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
 
       <div className="resultsBar bg-[black] h-[150px] mb-[50px] text-white text-center">
         <div className="resultTitle justify-center text-[140%] pt-[30px] mb-[30px]">
-          <h2>Results</h2>
+          <h2>Résultats</h2>
         </div>
         <div className="resultStats flex w-[100%] text-[120%] font-light">
           <div className={correctViewedStats}>
-            <h2> {c} / {v} viewed questions correct (<span className="bold">{score}%</span>)</h2>
+            <h2> {c} / {v} questions consultées correctes (<span className="bold">{score}%</span>)</h2>
           </div>
           <div className={correctTotalStats}>
-            <h2> {c} / {questions.length} total questions correct (<span
+            <h2> {c} / {questions.length} total des questions correctes (<span
               className="bold">{overallScore}%</span>)</h2>
           </div>
         </div>
@@ -273,7 +270,7 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
       </div>
 
       <div className="incorrectQuestions mb-[50px]">
-        <h1 className="incorrectHeader font-semibold text-center text-[150%] mb-[50px]">Incorrect</h1>
+        <h1 className="incorrectHeader font-semibold text-center text-[150%] mb-[50px]">Fausse</h1>
 
         <div
           className="incorrectCountquestionanswer flex flex-wrap justify-center w-[90%] mx-[auto] text-center">

@@ -18,7 +18,6 @@ export default function TakeATest() {
   }, [cardSetId]);
   useEffect(() => {
     if(card) {
-      console.log(card.subject_id)
       apiRequest<null, TSubject>(`api/subject/${card.subject_id}`, 'GET').then((response) => {
         setSubject(response.response as TSubject)
       })

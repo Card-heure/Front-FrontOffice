@@ -7,7 +7,7 @@ export default function AboutSection() {
     processText.className = "buttonText text-[68%] ml-[18px] w-[235px]";
     processCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
     circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto";
-    circleText.innerHTML = '<p> WHAT WAS THE INSPIRATION BEHIND CARD\'HEURE ? </p>';
+    circleText.innerHTML = '<p> QUELLE A ÉTÉ L\'INSPIRATION À L\'ORIGINE DE CARD\'HEURE ?  </p>';
     changeAbout.innerHTML = '<p> Card’heure a été conçu pour répondre à <span style = "font-weight: 400">un besoin en croissance constante des étudiants : ' +
       '                   La possibilité de créer et de partager du matériel d’étude sans être limité par un paywall.</span>' +
       '                   Il existe de nombreux sites Web et applications qui vous permettent de créer et de partager des documents d\'étude, mais ' +
@@ -26,14 +26,9 @@ export default function AboutSection() {
     processText.className = "buttonText text-[68%] ml-[18px] w-[235px]";
     processCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
     circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto";
-    circleText.innerHTML = '<p> WHO CREATED CARD’HEURE ?</p>';
-    changeAbout.innerHTML = '<p><span style = "font-weight: 400">Hugo Combe</span> is the backend developper... Lorem ipsum dolor sit ' +
-      '                   amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ' +
-      '                   ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</p>' +
-      '                   <br/> <br/>' +
-      '                   <p><span style = "font-weight: 400">Madison Owens</span> is the frontend developper... Lorem ipsum dolor sit lopper ' +
-      '                   consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ' +
-      '                   veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>';
+    circleText.innerHTML = '<p> QUI A CRÉÉ CARD\'HEURE ?</p>';
+    changeAbout.innerHTML = '<p><span style = "font-weight: 400">Hugo Combe</span> est le développeur du backend. Il conçoit et maintient la logique serveur, gère les bases de données et développe des APIs, assurant la performance, la sécurité et la scalabilité des applications web, tout en intégrant les besoins des utilisateurs et des développeurs frontend.</p><br/> <br/>' +
+      '<p><span style = "font-weight: 400">Madison Owens</span> est la développeuse du frontend. Elle crée l\'interface utilisateur des applications web, en utilisant HTML, CSS et JavaScript, assurant une expérience utilisateur fluide, interactive et responsive, tout en collaborant avec les designers et développeurs backend pour intégrer les fonctionnalités nécessaires.</p>';
   }
 
   const processClick = () => {
@@ -44,7 +39,7 @@ export default function AboutSection() {
     processText.className = "buttonText text-[80%] ml-[18px] w-[235px]";
     processCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";
     circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[140%] italic m-auto";
-    circleText.innerHTML = '<p> WHAT WAS THE DESIGN AND DEVELOPMENT PROCESS OF CARD’HEURE ?</p>';
+    circleText.innerHTML = '<p>QUEL A ÉTÉ LE PROCESSUS DE CONCEPTION ET DE DÉVELOPPEMENT DE CARD\'HEURE ?</p>';
     changeAbout.innerHTML = '<p>At vero eos et <span style = "font-weight: 400">accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium ' +
       '                   </span> voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non ' +
       '                   provident, similique sunt in culpa qui officia deserunt mollitia animi, <span style = "font-weight: 400">id est laborum et ' +
@@ -60,7 +55,7 @@ export default function AboutSection() {
 
         <div className="circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto"
              id="circleText">
-          <p> WHAT WAS THE INSPIRATION BEHIND CARD'HEURE ? </p>
+          <p>QUELLES SONT LES INSPIRATIONS DERRIÈRE CARD'HEURE ?</p>
         </div>
 
         <div className="verticalContainer w-[50px]">
@@ -85,21 +80,21 @@ export default function AboutSection() {
         <button className="button inspiration" onClick={inspirationClick}>
           <div className="buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]" id="inspirationCircle"></div>
           <div className="buttonText text-[80%] w-[200px] ml-[18px]" id="inspirationText">
-            <p> WHAT WAS THE INSPIRATION BEHIND CARD’HEURE ?</p>
+            <p>QUELLE A ÉTÉ L'INSPIRATION À L'ORIGINE DE CARD'HEURE ?</p>
           </div>
         </button>
 
         <button className="button created" onClick={createdClick}>
           <div className="buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]" id="createdCircle"></div>
           <div className="buttonText text-[68%] ml-[18px] w-[125px]" id="createdText">
-            <p> WHO CREATED CARD’HEURE ?</p>
+            <p>QUI A CRÉÉ CARD'HEURE ?</p>
           </div>
         </button>
 
         <button className="button process" onClick={processClick}>
           <div className="buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]" id="processCircle"></div>
           <div className="buttonText text-[68%] ml-[18px] w-[235px]" id="processText">
-            <p> WHAT WAS THE DESIGN AND DEVELOPMENT PROCESS OF CARD’HEURE ?</p>
+            <p>QUEL A ÉTÉ LE PROCESSUS DE CONCEPTION ET DE DÉVELOPPEMENT DE CARD'HEURE ?</p>
           </div>
         </button>
       </div>

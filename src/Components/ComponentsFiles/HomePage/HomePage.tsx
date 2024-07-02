@@ -24,7 +24,7 @@ export default function HomePage() {
 
   const [sortOptionsHidden, setSortOptionsHidden] = useState(true);
   // 1st constant = what will be updated, 2nd is what will update it, useState = initial value before update
-  const [sortType, setSortType] = useState("Newest Subjects First");
+  const [sortType, setSortType] = useState("Les sujets les plus récents d'abord");
 
   const toggleSortOptions = () => {
     setSortOptionsHidden(!sortOptionsHidden); // the "!" means that it will set the boolean value to the opposite of whatever it currently is
@@ -34,10 +34,10 @@ export default function HomePage() {
     const sortedSubjects: TSubject[] = [...subjects!]; // the ellipses mean that "subjects" is an array (creating a new constant -sortedSubjects-
     // which copies the subjects array
     switch (type) {
-      case "Newest Subjects First":
+      case "Les sujets les plus récents d'abord":
         sortedSubjects.sort((a, b) => b.createdAt > a.createdAt ? 1 : -1);
         break;
-      case "Oldest Subjects First":
+      case "Les sujets les plus anciens d'abord":
         sortedSubjects.sort((a, b) => a.createdAt > b.createdAt ? -1 : 1);
         break;
       case "A - Z":
@@ -62,13 +62,12 @@ export default function HomePage() {
           <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
             <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]" alt="Add"/>
           </div>
-          <h1 className="createText ml-[20px] text-[110%]"> Create a new subject to begin adding
-            material </h1>
+          <h1 className="createText ml-[20px] text-[110%]"> Créer un nouveau sujet pour commencer à ajouter des cartes</h1>
         </button>
       </a>
 
       <div className="orDivider w-[100px] mx-[auto] mt-[35px] text-center">
-        <p className="or italic text-[120%]"> Or </p>
+        <p className="or italic text-[120%]"> Ou </p>
       </div>
 
       <div className="studyAddSearch flex items-center justify-around w-[100%] h-[100px] mt-[25px]">
@@ -77,12 +76,12 @@ export default function HomePage() {
           <div className="studyAddButton min-h-[35px] min-w-[35px] flex content-center items-center">
             <img src="/src/assets/DownArrow.png" className="studyAddIcon w-[35px] h-[auto]" alt={"Down"}/>
           </div>
-          <h1 className="createText ml-[6%] text-[110%]"> Study or add material to an existing subject </h1>
+          <h1 className="createText ml-[6%] text-[110%]"> Étudier ou compléter un sujet existant </h1>
         </button>
 
         <div className="search flex items-center justify-center w-[30%] mr-[16%] ml-[4%]">
           <input type="text"
-                 placeholder="Search All Subjects..."
+                 placeholder="Rechercher tous les sujets..."
                  className={"subjectSearchBar w-[100%] h-[45px] bg-[rgb(18,_18,_18)] rounded-[16px] p-[22px] ml-[4%]"}
                  value={searchInput}
                  onChange={handleSearchInput}
@@ -99,7 +98,7 @@ export default function HomePage() {
         <div className="sort w-[30%] mx-[auto] mt-[30px] text-center flex text-[rgb(87,_88,_87)]">
           <div className="sortBy h-[30px] w-[14%] ml-[19%]">
             <p className="overflow-hidden h-[30px] leading-[30px]">
-              Sort By:
+              Trier par:
             </p>
           </div>
 
@@ -124,11 +123,11 @@ export default function HomePage() {
                   background: 'white',
                   padding: '2px 4px 16px'
                 }}>
-              <li onClick={() => sortSubjects("Newest Subjects First")}>
-                <button>Newest Subjects First</button>
+              <li onClick={() => sortSubjects("Les sujets les plus récents d'abord")}>
+                <button>Les sujets les plus récents d'abord</button>
               </li>
-              <li onClick={() => sortSubjects("Oldest Subjects First")}>
-                <button>Oldest Subjects First</button>
+              <li onClick={() => sortSubjects("Les sujets les plus anciens d'abord")}>
+                <button>Les sujets les plus anciens d'abord</button>
               </li>
               <li onClick={() => sortSubjects("A - Z")}>
                 <button>A - Z</button>

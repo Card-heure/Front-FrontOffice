@@ -2,7 +2,6 @@ export default function Scroll() {
 
   window.addEventListener("scroll", function () {
     const scroll_y = this.scrollY;
-    console.log(scroll_y);
     if (scroll_y <= 325) {
       // @ts-ignore
       document.getElementById("homeCircle").className = "scrollCircle home w-[20px] h-[20px] rounded-[50%] border-[1px] border-[solid] border-[black] m-auto bg-[rgb(0,_0,_0)]";
@@ -56,7 +55,7 @@ export default function Scroll() {
             id="homeCircle">
           </div>
           <div className="scrollText home w-[80px] mt-[20px]">
-            <p>Home</p>
+            <p>Accueil</p>
           </div>
         </button>
 
@@ -66,7 +65,7 @@ export default function Scroll() {
             id="aboutCircle">
           </div>
           <div className="scrollText about w-[80px] mt-[20px]">
-            <p>About</p>
+            <p>A propos</p>
           </div>
         </button>
 
@@ -76,7 +75,7 @@ export default function Scroll() {
             id="loginCircle">
           </div>
           <div className="scrollText login w-[80px] mt-[20px]">
-            <p> Connection</p>
+            <p> Connexion</p>
           </div>
         </button>
       </div>

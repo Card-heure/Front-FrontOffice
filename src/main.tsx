@@ -6,7 +6,6 @@ import Loading from "#Components/Loading/Loading.tsx";
 import App from "#Components/App/App.tsx";
 
 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

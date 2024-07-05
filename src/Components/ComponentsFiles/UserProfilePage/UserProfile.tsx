@@ -318,11 +318,11 @@ export default function UserProfile() {
         <div className={clsx("sectionThree w-[34%] justify-center py-[50px] pl-[1%]", !showProfile && "m-auto")}>
           <div className="flex w-[90%] justify-center">
             <img src="/src/assets/emailIcon.png"
-                 className="w-[80px] h-[auto]"
+                 className="w-[70px] h-[auto]"
                  alt={"Mail icon"}
             />
           </div>
-          <h3 className="text-[115%] w-[90%] text-center font-light leading-[50px] mb-[65px]"> Vous avez une question, un commentaire ou une suggestion ? N'hésitez pas à
+          <h3 className="w-[90%] text-center font-light leading-[50px] mb-[65px]"> Vous avez une question, un commentaire ou une suggestion ? N'hésitez pas à
             <span className="font-medium">
                             <a href="mailto:madison.owens32@gmail.com?subject=Card'heure Client Contact"> nous contacter</a>
                         </span> :)

@@ -128,7 +128,7 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
         </div>
       </div>
 
-      <div className="questionCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
+      <div className="questionCountAndSave flex mt-[75px] mb-[255px] w-[100%]">
         <button className={saveButton}>
           <button onClick={saveCard}>
             Sauvegarder {qaCount} {singleOrPlural}

@@ -12,7 +12,9 @@ import TakeATest from "#Components/Main/TakeATest.tsx";
 import Login from "#Components/Login/Login.tsx";
 import SignUp from "#Components/SignUp/SignUp.tsx";
 import Profile from "#Components/Main/Profile.tsx";
+import Error404 from "#ComponentsFiles/General/Error404.tsx";
 import {isAuthenticated} from "../../Utils/utils.ts";
+
 
 export default function App() {
   const navigate = useNavigate();
@@ -98,6 +100,14 @@ export default function App() {
           </Suspense>
         }
       />
+        <Route
+            path={"/404"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <Error404/>
+                </Suspense>
+            }
+        />
       <Route
         path={"/SubjectView/:subjectId"}
         element={

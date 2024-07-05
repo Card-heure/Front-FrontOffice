@@ -70,16 +70,16 @@ export default function HomePage() {
         <p className="or italic text-[120%]"> Ou </p>
       </div>
 
-      <div className="studyAddSearch flex items-center justify-around w-[100%] h-[100px] mt-[25px]">
-        <button
-          className="studyAdd flex items-center justify-center w-[30%] h-[45px] overflow-hidden ml-[16%] mr-[4%]">
+      <div className="studyAddSearch flex items-center mx-[auto] justify-around w-[90%] h-[100px] mt-[15px]">
+        <div
+          className="studyAdd flex items-center justify-center w-[30%] h-[45px] overflow-hidden ml-[16%] mr-[2%]">
           <div className="studyAddButton min-h-[35px] min-w-[35px] flex content-center items-center">
             <img src="/src/assets/DownArrow.png" className="studyAddIcon w-[35px] h-[auto]" alt={"Down"}/>
           </div>
           <h1 className="createText ml-[6%] text-[110%]"> Étudier ou compléter un sujet existant </h1>
-        </button>
+        </div>
 
-        <div className="search flex items-center justify-center w-[30%] mr-[16%] ml-[4%]">
+        <div className="search flex items-center justify-center w-[30%] mr-[16%] ml-[2%]">
           <input type="text"
                  placeholder="Rechercher tous les sujets..."
                  className={"subjectSearchBar w-[100%] h-[45px] bg-[rgb(18,_18,_18)] rounded-[16px] p-[22px] ml-[4%]"}

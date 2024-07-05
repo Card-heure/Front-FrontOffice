@@ -58,7 +58,7 @@ export default function HomePage() {
   return (
     <>
       <a href='/newSubject'>
-        <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
+        <button className="create flex items-center justify-center mt-[75px] w-[750px] h-[80px] mx-[auto]">
           <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
             <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]" alt="Add"/>
           </div>
@@ -94,18 +94,18 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="subjectSection border-t-[black] border-t-[1px] border-t-[solid] mt-[65px]">
+      <div className="subjectSection border-t-[black] border-t-[1px] border-t-[solid] mt-[65px] mb-[350px]">
         <div className="sort w-[30%] mx-[auto] mt-[30px] text-center flex text-[rgb(87,_88,_87)]">
-          <div className="sortBy h-[30px] w-[14%] ml-[19%]">
+          <div className="sortBy h-[30px] w-[25%] ml-[10%]">
             <p className="overflow-hidden h-[30px] leading-[30px]">
               Trier par:
             </p>
           </div>
 
-          <div className="sortMenu w-[48%] mr-[19%] relative bg-[rgb(255,_255,_255)]">
+          <div className="sortMenu w-[50%] relative bg-[rgb(255,_255,_255)]">
             <div className="menuSelected">
               <button
-                className="sortSelected overflow-hidden h-[30px] leading-[30px] text-[black]"
+                className="sortSelected flex h-[30px] leading-[30px] text-[black] pt-[1px] w-[300px]"
                 onClick={toggleSortOptions}
               >
                 {sortType}
@@ -117,7 +117,7 @@ export default function HomePage() {
                   position: 'absolute',
                   top: '100%',
                   left: 0,
-                  width: '100%',
+                  width: '300px',
                   border: '1px solid grey',
                   borderRadius: '12px',
                   background: 'white',

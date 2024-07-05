@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {TCard} from "../../Types/TCard.ts";
 import {TSubject} from "../../Types/TSubject.ts";
 import {apiRequest} from "../../Utils/ApiRequest.ts";
+import Footer from "#ComponentsFiles/General/Footer.tsx";
 
 export default function TakeATest() {
   const {cardSetId} = useParams();
@@ -27,6 +28,7 @@ export default function TakeATest() {
     <>
       <HeaderNoGreeting/>
       {card && subject && <TakeTest subject={subject} card={card}/>}
+      <Footer/>
     </>
   );
 }

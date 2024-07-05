@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {apiRequest} from "../../Utils/ApiRequest.ts";
 import {TCard} from "../../Types/TCard.ts";
 import {TSubject} from "../../Types/TSubject.ts";
+import Footer from "#ComponentsFiles/General/Footer.tsx";
 
 export default function StudyFlashcardSet() {
   const {cardSetId} = useParams();
@@ -27,7 +28,7 @@ export default function StudyFlashcardSet() {
     <>
       <HeaderNoGreeting/>
       {card && subject && <StudyFlashSet card={card} subject={subject}/>}
-
+      <Footer/>
     </>
   )
 }

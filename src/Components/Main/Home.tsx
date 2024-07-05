@@ -1,5 +1,6 @@
 import Header from "#ComponentsFiles/HomePage/Header.tsx";
 import HomePage from "#ComponentsFiles/HomePage/HomePage.tsx";
+import Footer from "#ComponentsFiles/General/Footer.tsx";
 import {useEffect, useState} from "react";
 import {TUser} from "../../Types/TUser.ts";
 import {useApi} from "../../Utils/useApi.ts";
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <Header username={user?.fullName}/>
       <HomePage/>
+      <Footer/>
     </>
   )
 }

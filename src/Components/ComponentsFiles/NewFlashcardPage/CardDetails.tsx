@@ -75,7 +75,7 @@ export default function CardDetails(props: {cardTitle: string, subjectId: number
 
 
       if (newTerms.length > 0) {
-        setSaveButton("saveSet w-[170px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light min-h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
+        setSaveButton("saveSet w-[auto] px-[25px] mx-[auto] border-[1px] border-[solid] border-[black] text-[115%] text-[white] font-light min-h-[55px] rounded-[20px] bg-[rgb(18,_18,_18)]")
       }
 
       if (newTerms.length > 1) {
@@ -127,9 +127,8 @@ export default function CardDetails(props: {cardTitle: string, subjectId: number
         </div>
       </div>
 
-      <div className="cardCountAndSave flex mt-[75px] mb-[75px] w-[100%]">
-        <button
-          className={saveButton}>
+      <div className="cardCountAndSave flex mt-[75px] mb-[250px] w-[100%]">
+        <button className={saveButton}>
           <button onClick={saveCard}>
             Sauvegarder {cardCount} {cardOrCards}
           </button>

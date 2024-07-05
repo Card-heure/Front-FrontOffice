@@ -4,9 +4,9 @@ export default function LogInSignUp() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="w-[215px] mx-[auto] mt-[200px] items-center flex justify-between">
-        <img src="/src/assets/clickIcon.png" className="w-[40px] h-[auto]"/>
-        <h2 className="text-[165%] text-center font-light">Cliquez ci-dessous pour</h2>
+      <div className="w-[400px] mx-[auto] mt-[200px] items-center flex justify-center">
+        <img src="/src/assets/clickIcon.png" className="w-[40px] h-[auto] mr-[6px]"/>
+        <h2 className="text-[155%] text-center font-light ml-[6px]">Cliquez ci-dessous pour</h2>
       </div>
       <div
         className="connectBox w-[500px] h-[150px] mb-[100px] mx-[auto] justify-between items-center flex text-[130%] font-light">

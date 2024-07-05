@@ -227,7 +227,7 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
           </div>
 
 
-          <div className="incorrectDefinitions flex-wrap w-[50%]">
+          <div className="incorrectDefinitions flex-wrap w-[50%] mb-[200px]">
             {incorrectCards.slice().map((incorrectCards, index) => (
               <div className="incorrectDefinitionList mx-[auto] pl-[12%] border-l-[black] border-l-[solid] border-l-[1px]"
                    key={index}>

@@ -65,7 +65,7 @@ export default function Scroll() {
             id="aboutCircle">
           </div>
           <div className="scrollText about w-[80px] mt-[20px]">
-            <p>A propos</p>
+            <p>À Propos</p>
           </div>
         </button>
 

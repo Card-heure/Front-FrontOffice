@@ -10,7 +10,7 @@ export default function AboutSection() {
   const inspirationClick = () => {
     inspirationText.className = "buttonText text-[80%] w-[200px] ml-[18px]";
     inspirationCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";
-    createdText.className = "buttonText text-[68%] ml-[18px] w-[125px]";
+    createdText.className = "buttonText text-[68%] ml-[18px] w-[150px]";
     createdCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
     processText.className = "buttonText text-[68%] ml-[18px] w-[235px]";
     processCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
@@ -29,11 +29,11 @@ export default function AboutSection() {
   const createdClick = () => {
     inspirationText.className = "buttonText text-[68%] ml-[18px] w-[200px]";
     inspirationCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
-    createdText.className = "buttonText text-[80%] w-[125px] ml-[18px]";
+    createdText.className = "buttonText text-[80%] w-[200px] ml-[18px]";
     createdCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";
-    processText.className = "buttonText text-[68%] ml-[18px] w-[235px]";
+    processText.className = "buttonText text-[68%] ml-[18px] w-[250px]";
     processCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
-    circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto";
+    circleText.className = "circle p-[50px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto";
     circleText.innerHTML = '<p> QUI A CRÉÉ CARD\'HEURE ?</p>';
     changeAbout.innerHTML = '<p><span style = "font-weight: 400">Hugo Combe</span> est le développeur du backend. Il conçoit et maintient la logique serveur, gère les bases de données et développe des APIs, assurant la performance, la sécurité et la scalabilité des applications web, tout en intégrant les besoins des utilisateurs et des développeurs frontend.</p><br/> <br/>' +
       '<p><span style = "font-weight: 400">Madison Owens</span> est la développeuse du frontend. Elle crée l\'interface utilisateur des applications web, en utilisant HTML, CSS et JavaScript, assurant une expérience utilisateur fluide, interactive et responsive, tout en collaborant avec les designers et développeurs backend pour intégrer les fonctionnalités nécessaires.</p>';
@@ -42,11 +42,11 @@ export default function AboutSection() {
   const processClick = () => {
     inspirationText.className = "buttonText text-[68%] ml-[18px] w-[200px]";
     inspirationCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
-    createdText.className = "buttonText text-[68%] ml-[18px] w-[125px]";
+    createdText.className = "buttonText text-[68%] ml-[18px] w-[150px]";
     createdCircle.className = "buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]";
     processText.className = "buttonText text-[80%] ml-[18px] w-[235px]";
     processCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";
-    circleText.className = "circle p-[40px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[140%] italic m-auto";
+    circleText.className = "circle p-[40px] pt-[55px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[140%] italic m-auto";
     circleText.innerHTML = '<p>QUEL A ÉTÉ LE PROCESSUS DE CONCEPTION ET DE DÉVELOPPEMENT DE CARD\'HEURE ?</p>';
     changeAbout.innerHTML = '<p>At vero eos et <span style = "font-weight: 400">accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium ' +
       '                   </span> voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non ' +
@@ -82,7 +82,6 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/*  button w-[350px] h-[80px] flex items-center*/}
       <div className="aboutButtons w-[950px] h-[80px] mx-auto mt-[50px] flex justify-around">
 
         <button className="button inspiration" onClick={inspirationClick}>
@@ -94,7 +93,7 @@ export default function AboutSection() {
 
         <button className="button created" onClick={createdClick}>
           <div className="buttonCircle w-[30px] h-[30px] rounded-[50%] bg-[rgb(117,147,120)]" id="createdCircle"></div>
-          <div className="buttonText text-[68%] ml-[18px] w-[125px]" id="createdText">
+          <div className="buttonText text-[68%] ml-[18px] w-[150px]" id="createdText">
             <p>QUI A CRÉÉ CARD'HEURE ?</p>
           </div>
         </button>

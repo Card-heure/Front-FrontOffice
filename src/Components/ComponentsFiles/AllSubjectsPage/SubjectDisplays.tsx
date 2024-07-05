@@ -171,25 +171,25 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
 
   return (
     <>
-      <div
-        className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[50px] text-[160%] font-extralight text-left justify-center overflow-clip">
+      <div className="subjectAndTitle flex h-[40px] items-center w-[55%] mx-[auto] mt-[75px] mb-[50px] text-[160%] font-extralight text-left justify-center overflow-clip">
         <h1 className="subject max-w-[15%] mr-[12px]"> Sujet :</h1>
         <h1 className="subjectTitle max-w-[30%] font-semibold">{props.subject?.name}</h1>
       </div>
 
       <div className={textColorFlashcard} onClick={displayDetailsFlashcard}>
-        <button className="flashcardDisplayButton w-[60%] flex items-center">
+        <button className="flashcardDisplayButton w-[45%] flex items-center">
           {circlesFlashcard}
-          <h2 className="displayFlashcardText ml-[10px] pt-[25px] pb-[25px]">Afficher tous les jeux de cartes Flashcard</h2>
+          <h2 className="displayFlashcardText ml-[10px] pt-[25px] pb-[25px]">Afficher tous les jeux de flashcards</h2>
         </button>
 
-        <button className="createFlashcardButton flex items-center w-[19%]">
-          <div className="createFlashcardCircle items-center">
+        <button className="createFlashcardButton flex justify-start items-center w-[25%]">
+          <div className="createFlashcardCircle items-center mr-[25px]">
             {enterIconFlashcard}
           </div>
-          <a className="createFlashcardText ml-[15px z-20" href={"/newFlashCard"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau jeu de flashcards </a>
+          <a className="createFlashcardText justify-start" href={"/newFlashCard"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau jeu de flashcards </a>
         </button>
       </div>
+
       <div className={displayFlashcards}>
         <div>
           {flashcardSet.map((card, index) => (
@@ -221,13 +221,13 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
           <h2 className="displayTestText ml-[10px] pt-[25px] pb-[25px]">Afficher tous les tests</h2>
         </button>
 
-        <button className="createTestButton flex items-center w-[19%]">
-          <div className="createTestCircle items-center">
+        <button className="createTestButton flex justify-start items-center w-[25%]">
+          <div className="createTestCircle items-center mr-[25px]">
             {enterIconTest}
           </div>
-          <a className="createFlashcardText ml-[15px z-20" href={"/newTest"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau test</a>
-
+          <a className="createTestText justify-start" href={"/newTest"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau test</a>
         </button>
+
       </div>
       <div className={displayTests}>
         <div>

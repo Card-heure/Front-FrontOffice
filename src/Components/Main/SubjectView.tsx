@@ -5,6 +5,7 @@ import {TSubject} from "../../Types/TSubject.ts";
 import {useParams} from "react-router-dom";
 import {apiRequest} from "../../Utils/ApiRequest.ts";
 import {TCard} from "../../Types/TCard.ts";
+import Footer from "#ComponentsFiles/General/Footer.tsx";
 
 export default function SubjectView() {
   const {subjectId} = useParams();
@@ -22,6 +23,7 @@ export default function SubjectView() {
     <>
       <HeaderNoGreeting/>
       <SubjectDisplays subject={subject} cards={cards}/>
+      <Footer/>
     </>
   )
 }

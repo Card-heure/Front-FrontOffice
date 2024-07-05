@@ -19,10 +19,10 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
   const [overallScore, setOverallScore] = useState(0);
   const [correctViewedStats, setCorrectViewedStats] = useState("correctViewed correctStats w-[50%]");
   const [correctTotalStats, setCorrectTotalStats] = useState("correctTotal w-[50%]");
-  const [correctCards, setCorrectCards] = useState([]);
-  const [incorrectCards, setIncorrectCards] = useState([]);
+  const [correctCards, setCorrectCards] = useState<TFlashCard[]>([]);
+  const [incorrectCards, setIncorrectCards] = useState<TFlashCard[]>([]);
 
-  const flipCard = (event) => {
+  const flipCard = () => {
     if (cardText == flashcards[n].term) {
       setCardText(flashcards[nCopy].definition);
       setArrowDirection(<span>&#8592;</span>);
@@ -35,7 +35,7 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
     }
   };
 
-  const markCorrect = (event) => {
+  const markCorrect = () => {
     if ((n < flashcards.length - 1) && !endReview) { // -2 because originally it's -1 (index 0), but n is always an extra 1 behind
       const newIndex = n + 1;
       setN(newIndex);
@@ -76,11 +76,11 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
     setArrowDirection(resetArrow);
     const resetArrowText = ('Flip to Definition');
     setFlipTo(resetArrowText);
-    const newCorrectCards = ([...correctCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
+    const newCorrectCards = ([...correctCards, {term: flashcards[n].term, definition: flashcards[n].definition}] as TFlashCard[]);
     setCorrectCards(newCorrectCards);
   };
 
-  const markIncorrect = (event) => {
+  const markIncorrect = () => {
     if ((n < flashcards.length - 1) && !endReview) { // -2 because originally it's -1 (index 0), but n is always an extra 1 behind
       const newIndex = n + 1;
       setN(newIndex);
@@ -117,7 +117,7 @@ export default function StudyFlashSet(props: {card: TCard, subject: TSubject}) {
     setArrowDirection(resetArrow);
     const resetArrowText = ('Flip to Definition');
     setFlipTo(resetArrowText);
-    const newIncorrectCards = ([...incorrectCards, {term: flashcards[n].term, definition: flashcards[n].definition}]);
+    const newIncorrectCards = ([...incorrectCards, {term: flashcards[n].term, definition: flashcards[n].definition}] as TFlashCard[]);
     setIncorrectCards(newIncorrectCards);
   };
 

@@ -43,12 +43,9 @@ export default function UserProfile() {
 
   const modifyUsername = () => {
     const mod = document.getElementById("usernameField") as HTMLInputElement;
-    // @ts-ignore
     if (mod.hasAttribute('readonly')) {
-      // @ts-ignore
       mod.removeAttribute('readonly')
       setUnderlineUserName("changeUsername overflow-y-hidden text-[110%] font-extralight mr-[18px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
-      // @ts-ignore
       mod.focus();
 
       const length = mod.value.length;
@@ -64,12 +61,9 @@ export default function UserProfile() {
   };
   const modifyFirstName = () => {
     const mod = document.getElementById("firstNameField") as HTMLInputElement;
-    // @ts-ignore
     if (mod.hasAttribute('readonly')) {
-      // @ts-ignore
       mod.removeAttribute('readonly')
       setUnderlineFirstName("changeFirstName overflow-y-hidden text-[110%] font-extralight mr-[18px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
-      // @ts-ignore
       mod.focus();
 
       const length = mod.value.length;
@@ -85,12 +79,9 @@ export default function UserProfile() {
 
   const modifyLastName = () => {
     const mod = document.getElementById("lastNameField") as HTMLInputElement;
-    // @ts-ignore
     if (mod.hasAttribute('readonly')) {
-      // @ts-ignore
       mod.removeAttribute('readonly')
       setUnderlineLastName("changeLastName overflow-y-hidden text-[110%] font-extralight mr-[18px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
-      // @ts-ignore
       mod.focus();
 
       const length = mod.value.length;
@@ -106,12 +97,9 @@ export default function UserProfile() {
 
   const modifyEmailAddress = () => {
     const mod = document.getElementById("emailAddressField") as HTMLInputElement;
-    // @ts-ignore
     if (mod.hasAttribute('readonly')) {
-      // @ts-ignore
       mod.removeAttribute('readonly')
       setUnderlineEmailAddress("changeEmailAddress overflow-y-hidden text-[110%] font-extralight mr-[55px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[312px]")
-      // @ts-ignore
       mod.focus();
 
       const length = mod.value.length;
@@ -127,10 +115,8 @@ export default function UserProfile() {
 
   const modifyBirthday = () => {
     const mod = document.getElementById("birthdayField") as HTMLInputElement;
-    // @ts-ignore
     if (!birthdayIcon) {
       setUnderlineBirthday("changeBirthday text-[110%] font-extralight mr-[175px] border-b-[1px] border-b-[solid] border-b-[black] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
-      // @ts-ignore
       mod.focus();
       setBirthdayIcon(true);
     } else {
@@ -153,33 +139,27 @@ export default function UserProfile() {
     }
   };
 
-  // @ts-ignore
   const changeUserName = (event) => {
     setUpdatedUserName(event.target.value);
   };
 
-  // @ts-ignore
   const changeFirstName = (event) => {
     setUpdatedFirstName(event.target.value);
   };
 
-  // @ts-ignore
   const changeLastName = (event) => {
     setUpdatedLastName(event.target.value);
   };
 
-  // @ts-ignore
   const changeEmailAddress = (event) => {
     setUpdatedEmailAddress(event.target.value);
   };
 
-  // @ts-ignore
   const changeBirthday = (event) => {
     setUpdatedBirthday(event.target.value);
   };
 
 
-  // @ts-ignore
   const selectGender = (event) => {
     setUpdatedGender(event.target.value);
     setGenderHidden(true);
@@ -214,7 +194,7 @@ export default function UserProfile() {
     <>
       <div>
         <label htmlFor={"profilePage"}>Voir la page de profil</label>
-        <input type={"checkbox"} id={"profilePage"} onClick={(e)=>setShowProfile(!showProfile)}/>
+        <input type={"checkbox"} id={"profilePage"} onClick={() => setShowProfile(!showProfile)}/>
       </div>
       <div className="greeting w-[75%] mx-[auto] flex mt-[85px] mb-[60px]">
         <h1 className="text-[300%] mr-[30px]"> &#128075;</h1>
@@ -222,7 +202,7 @@ export default function UserProfile() {
       </div>
       <div className="sections w-[83%] mx-[auto] flex justify-between mb-[250px] pl-[3%]">
 
-        <div className={clsx("sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]",!showProfile&&"hidden")}>
+        <div className={clsx("sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]", !showProfile && "hidden")}>
 
           <h1 className="text-[120%] mb-[5px]"> Nom d'utilisateur </h1>
           <div className="editUsername flex items-start w-[68%]">
@@ -236,6 +216,7 @@ export default function UserProfile() {
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="usernameButton"
                  onClick={modifyUsername}
+                 alt={"Modify/Save"}
             />
           </div>
 
@@ -251,6 +232,7 @@ export default function UserProfile() {
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="firstNameButton"
                  onClick={modifyFirstName}
+                 alt={"Modify/Save"}
             />
           </div>
 
@@ -266,11 +248,12 @@ export default function UserProfile() {
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="lastNameButton"
                  onClick={modifyLastName}
+                 alt={"Modify/Save"}
             />
           </div>
         </div>
 
-        <div className={clsx("sectionTwo text-[black] w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]",!showProfile&&"hidden")}>
+        <div className={clsx("sectionTwo text-[black] w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]", !showProfile && "hidden")}>
           <h1 className="text-[120%] mb-[5px]"> Email </h1>
           <div className="editEmailAddress flex items-start w-[75%]">
                     <textarea readOnly={true}
@@ -283,6 +266,7 @@ export default function UserProfile() {
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="emailAddressButton"
                  onClick={modifyEmailAddress}
+                 alt={"Modify/Save"}
             />
           </div>
 
@@ -298,6 +282,7 @@ export default function UserProfile() {
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="birthdayButton"
                  onClick={modifyBirthday}
+                 alt={"Modify/Save"}
             />
           </div>
 
@@ -312,6 +297,7 @@ export default function UserProfile() {
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="genderButton"
                  onClick={genderMenu}
+                 alt={"Modify/Save"}
             />
           </div>
           <form className={showGender}>
@@ -329,10 +315,12 @@ export default function UserProfile() {
           </form>
         </div>
 
-        <div className={clsx("sectionThree w-[34%] justify-center py-[50px] pl-[1%]",!showProfile&&"m-auto")}>
+        <div className={clsx("sectionThree w-[34%] justify-center py-[50px] pl-[1%]", !showProfile && "m-auto")}>
           <div className="flex w-[90%] justify-center">
             <img src="/src/assets/emailIcon.png"
-                 className="w-[80px] h-[auto]"/>
+                 className="w-[80px] h-[auto]"
+                 alt={"Mail icon"}
+            />
           </div>
           <h3 className="text-[115%] w-[90%] text-center font-light leading-[50px] mb-[65px]"> Vous avez une question, un commentaire ou une suggestion ? N'hésitez pas à
             <span className="font-medium">

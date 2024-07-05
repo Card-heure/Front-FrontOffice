@@ -1,4 +1,12 @@
 export default function AboutSection() {
+  const inspirationText = document.getElementById("inspirationText")!;
+  const inspirationCircle = document.getElementById("inspirationCircle")!;
+  const createdText = document.getElementById("createdText")!;
+  const createdCircle = document.getElementById("createdCircle")!;
+  const processText = document.getElementById("processText")!;
+  const processCircle = document.getElementById("processCircle")!;
+  const circleText = document.getElementById("circleText")!;
+  const changeAbout = document.getElementById("changeAbout")!;
   const inspirationClick = () => {
     inspirationText.className = "buttonText text-[80%] w-[200px] ml-[18px]";
     inspirationCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";

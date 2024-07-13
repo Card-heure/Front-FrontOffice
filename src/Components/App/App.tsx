@@ -13,6 +13,7 @@ import Login from "#Components/Login/Login.tsx";
 import SignUp from "#Components/SignUp/SignUp.tsx";
 import Profile from "#Components/Main/Profile.tsx";
 import Error404 from "#ComponentsFiles/General/Error404.tsx";
+import Error401 from "#ComponentsFiles/General/Error401.tsx";
 import {isAuthenticated} from "../../Utils/utils.ts";
 
 
@@ -105,6 +106,14 @@ export default function App() {
             element={
                 <Suspense fallback={<Loading/>}>
                     <Error404/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/401"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <Error401/>
                 </Suspense>
             }
         />

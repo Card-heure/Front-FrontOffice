@@ -237,3 +237,10 @@
 .editPencil:hover {
   cursor: pointer;
 }
+
+/* StudyFlash.tsx, TakeTest.tsx -------------------------------- */
+
+.endButton:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}

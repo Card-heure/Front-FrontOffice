@@ -36,7 +36,7 @@ export default function AboutSection() {
     circleText.className = "circle p-[50px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[160%] italic m-auto";
     circleText.innerHTML = '<p> QUI A CRÉÉ CARD\'HEURE ?</p>';
     changeAbout.innerHTML = '<p><span style = "font-weight: 400">Hugo Combe</span> est le développeur du backend. Il conçoit et maintient la logique serveur, gère les bases de données et développe des APIs, assurant la performance, la sécurité et la scalabilité des applications web, tout en intégrant les besoins des utilisateurs et des développeurs frontend.</p><br/> <br/>' +
-      '<p><span style = "font-weight: 400">Madison Owens</span> est la développeuse du frontend. Elle crée l\'interface utilisateur des applications web, en utilisant HTML, CSS et JavaScript, assurant une expérience utilisateur fluide, interactive et responsive, tout en collaborant avec les designers et développeurs backend pour intégrer les fonctionnalités nécessaires.</p>';
+      '<p><span style = "font-weight: 400">Madison Owens</span> est la développeuse front-end du site, qui a été créé en utilisant React, TypeScript, Tailwind CSS et HTML. Elle est originaire de Cleveland, OH, USA, et elle est passionnée par le design. Son espoir pour Card’heure est qu\'il devienne une ressource populaire et accessible pour les étudiants, afin qu\'ils puissent étudier plus efficacement avec moins de distractions.</p>';
   }
 
   const processClick = () => {

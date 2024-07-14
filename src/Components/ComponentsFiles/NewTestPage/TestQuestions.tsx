@@ -56,7 +56,7 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
 
   // @ts-ignore
   const handleSave = (event) => {
-    if (currentQuestion.trim() !== '' && currentAnswer.trim() !== '' && event.key === 'Enter') {
+    if (currentQuestion.trim() !== '' && currentAnswer.trim() !== '' && (event.key === 'Enter' || event.target.id == "clicker")) {
       // @ts-ignore
       const newQA = ([...questions, {question: currentQuestion.trim(), answer: currentAnswer.trim()}]);
       localStorage.setItem('newTest', JSON.stringify(newQA));
@@ -65,7 +65,6 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
       setCurrentQuestion('');
       setCurrentAnswer('');
       setQACount(newQA.length);
-
       resetSize();
 
       const inputElement = document.getElementById('questionSide') as HTMLInputElement;
@@ -85,56 +84,69 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
   };
 
   return (
-    <>
-      <div className="headers flex w-[80%] mx-[auto]">
-        <h2 className="questionHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Question</h2>
-        <h2 className="answerHeader flex justify-center text-center font-light italic text-[120%] w-[50%] h-[50px] mb-[20px]">Réponse</h2>
-      </div>
+      <>
+        <div className="headers flex w-[85%] mx-[auto]">
+          <h2 className="frontHeader flex justify-center text-center font-light italic text-[120%] w-[45%] h-[50px] mb-[20px] ml-[4%]">Question</h2>
+          <h2 className="backHeader flex justify-center text-center font-light italic text-[120%] w-[45%] h-[50px] mb-[20px] pl-[8%]">Réponse</h2>
+          <div className="w-[10%]"></div>
+        </div>
 
-      <div className="entriesAndListsContainer">
+        <div className="entriesAndListsContainer">
 
-        <div className="Entries flex items-start justify-center w-[80%] mx-[auto] h-[auto]">
+          <div className="entries flex justify-between flex-wrap w-[85%] ml-[12%] h-[auto] relative">
                     <textarea
-                      className="questionSide flex mx-[auto] focus:outline-none w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[25px] font-light overflow-hidden"
-                      id="questionSide"
-                      maxLength={650}
-                      value={currentQuestion}
-                      onChange={handleQuestionChange}
-                      onKeyDown={handleSave}
+                        className="questionSide flex focus:outline-none w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[25px] font-light overflow-hidden"
+                        id="questionSide"
+                        maxLength={650}
+                        value={currentQuestion}
+                        onChange={handleQuestionChange}
+                        onKeyDown={handleSave}
                     />
 
-          <textarea
-            className="answerSide flex mx-[auto] questionSide focus:outline-none w-[40%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[25px] font-light overflow-hidden"
-            id="answerSide"
-            maxLength={650}
-            value={currentAnswer}
-            onChange={handleAnswerChange}
-            onKeyDown={handleSave}
-          />
-        </div>
-
-        <div className="lists flex flex-wrap w-[80%] mx-[auto] h-[auto] mt-[60px] relative">
-          {questions.slice().reverse().map((question, index) => (
-            <div className="questionList w-[100%] flex flex-wrap items-start" key={index}>
-              <div className="w-[50%] mb-[50px]">
-                <h3 className="qaBox w-[80%] mx-[auto] justify-center"> {question["question"]} </h3>
-              </div>
-              <div className="flex w-[50%] mb-[50px]">
-                <h3 className="qaBox w-[80%] mx-[auto] justify-center">{question["answer"]}</h3>
-              </div>
+            <textarea
+                className="answerSide flex questionSide focus:outline-none ml-[4%] w-[36%] border-[1px] border-[solid] border-[black] rounded-[15px] p-[25px] font-light overflow-hidden"
+                id="answerSide"
+                maxLength={650}
+                value={currentAnswer}
+                onChange={handleAnswerChange}
+                onKeyDown={handleSave}
+            />
+            <div className="flex w-[8%] mr-[2%] mt-[15px]">
+              <button
+                  className="clicker text-[175%] w-[40px] h-[40px] rounded-[50%] border-[1px] border-[solid] border-[black] flex justify-center items-center"
+                  id="clicker"
+                  onClick={handleSave}>
+                +
+              </button>
             </div>
-          ))}
-          <div className="verticalLine"></div>
-        </div>
-      </div>
+          </div>
 
-      <div className="questionCountAndSave flex mt-[75px] mb-[255px] w-[100%]">
-        <button className={saveButton}>
-          <button onClick={saveCard}>
-            Sauvegarder {qaCount} {singleOrPlural}
+          <div className="lists flex flex-wrap w-[85%] mx-[auto] h-[auto] mt-[60px] relative">
+            {questions.slice().reverse().map((question, index) => (
+                <div className="questionList w-[100%] flex flex-wrap items-start" key={index}>
+                  <div className="w-[50%] mb-[50px]">
+                    <h3 className="qaBox w-[80%] mx-[auto] justify-center"> {question["question"]} </h3>
+                  </div>
+                  <div className="flex w-[45%] mb-[50px]">
+                    <h3 className="qaBox w-[80%] mx-[auto] justify-center">{question["answer"]}</h3>
+                  </div>
+                  <div className="verticalLine1"></div>
+                  <div className="flex w-[5%] mt-[15px]">
+                    <div
+                        className="w-[40px] h-[40px] rounded-[50%] bg-[black] flex text-[white] items-center justify-center"> {questions.length - index} </div>
+                  </div>
+                </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="questionCountAndSave flex mt-[50px] mb-[200px] w-[100%]">
+          <button className={saveButton}>
+            <button onClick={saveCard}>
+              Sauvegarder {qaCount} {singleOrPlural}
+            </button>
           </button>
-        </button>
-      </div>
-    </>
+        </div>
+      </>
   )
 }

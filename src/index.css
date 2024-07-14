@@ -225,12 +225,24 @@
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 45%;
+  width: 1px;
+  background-color: black;
+  transform: translateX(-50%);
+  margin-bottom: 50px;
+}
+
+.verticalLine1 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
   left: 50%;
   width: 1px;
   background-color: black;
   transform: translateX(-50%);
   margin-bottom: 50px;
 }
+
 
 /* UserProfile.tsx --------------------------------------------- */
 

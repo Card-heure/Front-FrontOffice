@@ -202,7 +202,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
                 </div>
               </h2>
               <h1 className="setTitle w-[75%] pl-[75px]">
-                <a href={"/studyFlashCard/" + card.id}>
+                <a href={"/study-flashCard/" + card.id}>
                   <button
                     className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
                     {card.title}
@@ -241,7 +241,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
                 </div>
               </h2>
               <h1 className="setTitle w-[75%] pl-[75px]">
-                <a href={"/studyTest/" + card.id}>
+                <a href={"/study-test/" + card.id}>
                   <button
                     className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
                     {card.title}

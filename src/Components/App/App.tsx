@@ -54,7 +54,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/Home"}
+        path={"/home"}
         element={
           <Suspense fallback={<Loading/>}>
             <Home/>
@@ -62,7 +62,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/Profile"}
+        path={"/profile"}
         element={
           <Suspense fallback={<Loading/>}>
             <Profile/>
@@ -70,7 +70,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/NewSubject"}
+        path={"/new-subject"}
         element={
           <Suspense fallback={<Loading/>}>
             <NewSubject/>
@@ -78,7 +78,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/NewFlashCard"}
+        path={"/new-flashCard"}
         element={
           <Suspense fallback={<Loading/>}>
             <NewFlashcard/>
@@ -86,7 +86,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/StudyFlashCard/:cardSetId"}
+        path={"/study-flashCard/:cardSetId"}
         element={
           <Suspense fallback={<Loading/>}>
             <StudyFlashcardSet/>
@@ -94,7 +94,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/NewTest"}
+        path={"/new-test"}
         element={
           <Suspense fallback={<Loading/>}>
             <NewTest/>
@@ -118,7 +118,7 @@ export default function App() {
             }
         />
       <Route
-        path={"/SubjectView/:subjectId"}
+        path={"/subject-view/:subjectId"}
         element={
           <Suspense fallback={<Loading/>}>
             <SubjectView/>
@@ -126,7 +126,7 @@ export default function App() {
         }
       />
       <Route
-        path={"/studyTest/:cardSetId"}
+        path={"/study-test/:cardSetId"}
         element={
           <Suspense fallback={<Loading/>}>
             <TakeATest/>

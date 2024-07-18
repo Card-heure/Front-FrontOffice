@@ -114,6 +114,14 @@ export default function App() {
           </Suspense>
         }
       />
+      <Route
+      path={"/mindmaptest"}
+      element={
+        <Suspense fallback={<Loading/>}>
+          {/*<MindMapTest />*/}
+        </Suspense>
+      }
+      />
     </Routes>
   )
 }

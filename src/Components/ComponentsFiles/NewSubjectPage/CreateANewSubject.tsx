@@ -78,10 +78,10 @@ export default function CreateANewSubject() {
         <div className={displayOptions ? "addContent mt-[8%] w-[70%] mx-[auto]" : "hidden"}>
           <h1 className="getStarted h-[50px] leading-[50px] text-center text-[160%] font-light">Commencez par ajouter du contenu</h1>
           <div className="createOptions mt-[80px] mb-[70px] mx-[auto] w-[100%] justify-between flex">
-            <a href='/newflashcard'>
+            <a href='/new-flashcard'>
               <button className="createContent flashcard">Créer un jeu de flashcards</button>
             </a>
-            <a href="/newtest">
+            <a href="/new-test">
               <button className="createContent test">Créer un test</button>
             </a>
           </div>

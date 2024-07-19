@@ -125,7 +125,7 @@
   font-size: 98%;
 }
 
-.subjectSearchBar:focus, .enterTitle:focus {
+.subjectSearchBar:focus, .enterTitle:focus, .subjectTitleEdit {
   outline: none;
 }
 

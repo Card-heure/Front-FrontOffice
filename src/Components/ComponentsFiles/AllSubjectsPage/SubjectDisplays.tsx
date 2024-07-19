@@ -3,9 +3,14 @@ import {TSubject} from "../../../Types/TSubject.ts";
 import {TCard} from "../../../Types/TCard.ts";
 import {ECardType} from "../../../Types/enum/ECardType.ts";
 
-export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCard[] }) {
+export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCard[] }) {
   const [flashcardSet, setFlashcardSet] = useState<TCard[]>([]);
   const [testSet, setTestSet] = useState<TCard[]>([]);
+  const [editTitle, setEditTitle] = useState(false);
+  const [title, setTitle] = useState(props.subject?.name);
+  const [edited, setEdited] = useState(false);
+  const [addSpace, setAddSpace ] = useState("subjectTitleEdit max-w-[30%] font-semibold");
+
   useEffect(() => {
     props.cards?.map((card) => {
       if (card.content_type === ECardType.FlashCard) {
@@ -56,11 +61,11 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
   );*/
 
   const [textColorFlashcard, setTextColorFlashcard] = useState(
-    "mindmapDisplay border-y-[1px] border-y-[black] border-y-[solid] flex items-center px-[20px] justify-between"
+    "flashcardDisplay border-y-[1px] border-y-[black] border-y-[solid] flex items-center px-[20px] justify-between"
   );
 
   const [textColorTest, setTextColorTest] = useState(
-    "mindmapDisplay flex items-center px-[20px] justify-between"
+    "testDisplay border-b-[1px] border-b-[black] border-b-[solid] flex items-center px-[20px] justify-between"
   );
 
   const [displayFlashcards, setDisplayFlashcards] = useState(
@@ -139,7 +144,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
       );
 
       setTextColorTest(
-        "testDisplay bg-[black] flex items-center px-[20px] justify-between text-[white]"
+        "testDisplay border-b-[1px] border-b-[black] border-b-[solid] bg-[black] flex items-center px-[20px] justify-between text-[white]"
       );
 
       setDisplayTests(
@@ -160,7 +165,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
       );
 
       setTextColorTest(
-        "testDisplay flex items-center px-[20px] justify-between"
+        "testDisplay border-b-[1px] border-b-[black] border-b-[solid] flex items-center px-[20px] justify-between"
       );
 
       setDisplayTests(
@@ -169,13 +174,47 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
     }
   };
 
+    const handleSaveTitle = () => {
+        setEditTitle(!editTitle)
+        if (editTitle) {
+            setAddSpace("subjectTitleEdit max-w-[30%] font-semibold")
+
+        }
+        if (!editTitle) {
+            setAddSpace("subjectTitleEdit font-light text-black border-b-[black] border-b-[solid] border-b-[1px]")
+        }
+        setEdited(true);
+    };
+
+    const deleteFlashcard =() => {
+
+    }
+    const deleteTest =() => {
+
+    }
+    const deleteSubject =() => {
+
+    }
+
+
   return (
     <>
       <div className="subjectAndTitle flex h-[40px] items-center w-[75%] mx-[auto] mt-[75px] mb-[50px] text-[160%] font-extralight text-left justify-center overflow-clip">
           <h1 className="subject max-w-[15%] mr-[12px]"> Sujet :</h1>
-          <h1 className="subjectTitle max-w-[30%] font-semibold">{props.subject?.name}</h1>
-          <button className = "editOutline w-[23px] h-[auto] ml-[25px]">
-              <img src = "/src/assets/whitePencilIcon.png"/>
+          {editTitle ? (
+              <input
+                  type="text"
+                  placeholder={props.subject?.name}
+                  maxLength={45}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className={addSpace}
+              />
+          ) : (
+              <h1 className={addSpace}>{edited ? title : props.subject?.name} </h1>
+          )}
+          <button className = "editOutline w-[23px] h-[auto] ml-[25px]"
+                  onClick={handleSaveTitle}>
+              <img src = {editTitle ? "/src/assets/saveCheckIcon.png" : "/src/assets/whitePencilIcon.png"}/>
           </button>
       </div>
 
@@ -216,7 +255,8 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
                       <button className="editOutline w-[25px] h-[auto] mr-[20px]">
                           <img src="/src/assets/whitePencilIcon.png"/>
                       </button>
-                      <button className="editOutline w-[19px] h-[auto] ml-[20px]">
+                      <button className="editOutline w-[19px] h-[auto] ml-[20px]"
+                      onClick = {deleteFlashcard}>
                           <img src="/src/assets/deleteIcon.png"/>
                       </button>
                   </div>
@@ -260,9 +300,12 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
                   </h1>
                   <div className="editDelete flex justify-between mx-[auto] items-center ml-[75px]">
                       <button className="editOutline w-[25px] h-[auto] mr-[20px]">
-                          <img src="/src/assets/whitePencilIcon.png"/>
+                          <a href = {"/edit-test/" + card.id}>
+                              <img src="/src/assets/whitePencilIcon.png"/>
+                          </a>
                       </button>
-                      <button className="editOutline w-[19px] h-[auto] ml-[20px]">
+                      <button className="editOutline w-[19px] h-[auto] ml-[20px]"
+                      onClick = {deleteTest}>
                           <img src="/src/assets/deleteIcon.png"/>
                       </button>
                   </div>
@@ -270,7 +313,8 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
           ))}
         </div>
       </div>
-            <button className="deleteSubject justify-center mx-[auto] mt-[100px] mb-[200px] flex items-center">
+            <button className="deleteSubject justify-center mx-[auto] mt-[100px] mb-[200px] flex items-center"
+            onClick = {deleteSubject}>
                 <img className = "deleteIcon w-[22px] h-[auto] mr-[15px]" src="/src/assets/deleteIcon.png"/>
                 <h2 className="deleteSubjectText text-[115%] font-light text-red-600 hover:font-normal flex"> Supprimer ce sujet </h2>
             </button>

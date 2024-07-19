@@ -12,9 +12,11 @@ import TakeATest from "#Components/Main/TakeATest.tsx";
 import Login from "#Components/Login/Login.tsx";
 import SignUp from "#Components/SignUp/SignUp.tsx";
 import Profile from "#Components/Main/Profile.tsx";
+import EditTest from "#Components/Main/EditTest.tsx";
 import Error404 from "#ComponentsFiles/General/Error404.tsx";
 import Error401 from "#ComponentsFiles/General/Error401.tsx";
 import {isAuthenticated} from "../../Utils/utils.ts";
+
 
 
 export default function App() {
@@ -125,6 +127,14 @@ export default function App() {
           </Suspense>
         }
       />
+        <Route
+            path={"/edit-test/:cardSetId"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <EditTest/>
+                </Suspense>
+            }
+        />
       <Route
         path={"/study-test/:cardSetId"}
         element={

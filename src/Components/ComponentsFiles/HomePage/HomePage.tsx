@@ -57,7 +57,7 @@ export default function HomePage() {
   // sortOptions is being used in the CSS file
   return (
     <>
-      <a href='/newSubject'>
+      <a href='/new-subject'>
         <button className="create flex items-center justify-center mt-[20px] w-[500px] h-[80px] mx-[auto]">
           <div className="createButton min-h-[35px] min-w-[35px] flex content-center items-center ml-[28px]">
             <img src="/src/assets/addIcon.png" className="addIcon w-[35px] h-[auto]" alt="Add"/>
@@ -142,7 +142,7 @@ export default function HomePage() {
         <ul className="subject flex mx-[auto] w-[80%] flex-wrap pl-[3%] mt-[65px]">
           {filteredSubjects?.map((subject, index) => (
             <li key={index}>
-              <a href={`/SubjectView/${subject.id}`}>
+              <a href={`/subject-view/${subject.id}`}>
                 <button>{subject.name}</button>
               </a>
             </li>

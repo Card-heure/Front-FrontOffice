@@ -19,3 +19,7 @@ export type TCreateCard = {
   content_type: number
   subject_id: number
 }
+export type TUpdateCard = {
+  title: string
+  content: string
+}

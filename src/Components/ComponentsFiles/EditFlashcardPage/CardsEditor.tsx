@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { TCard, TCreateCard } from "../../../Types/TCard.ts";
-import { ECardType } from "../../../Types/enum/ECardType.ts";
+import {TCard, TUpdateCard} from "../../../Types/TCard.ts";
 import { apiRequest } from "../../../Utils/ApiRequest.ts";
 import { useNavigate } from "react-router-dom";
 import { TSubject } from "../../../Types/TSubject.ts";
@@ -20,12 +19,11 @@ export default function CardsEditor(props: { card: TCard, subject: TSubject, car
     const iconRefs = useRef<(HTMLImageElement | null)[]>([]);
 
     function saveCard() {
-        const createCard: TCreateCard = {} as TCreateCard;
-        createCard.title = props.cardTitle;
-        createCard.content = JSON.stringify(terms);
-        createCard.content_type = ECardType.FlashCard;
-        createCard.subject_id = props.subjectId;
-        apiRequest<TCreateCard, TCard>(`api/card`, 'POST', createCard).then(() => {
+        const updateCard: TUpdateCard= {
+            title: props.cardTitle,
+            content: JSON.stringify(terms),
+        };
+        apiRequest<TUpdateCard, TCard>(`api/card/${props.card.id}`, 'PUT', updateCard).then(() => {
             navigate(`/subject-view/${props.subjectId}`);
         });
     }

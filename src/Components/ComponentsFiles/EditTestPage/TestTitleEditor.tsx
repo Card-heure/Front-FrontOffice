@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {TSubject} from "../../../Types/TSubject.ts";
 import {apiRequest} from "../../../Utils/ApiRequest.ts";
-import {TCard} from "../../../Types/TCard.ts";
+import {TCard, TUpdateCard} from "../../../Types/TCard.ts";
 
 export default function TestTitleEditor(props:{subject?: TSubject, card:TCard}) {
     const subjectId = localStorage.getItem('subjectId');
@@ -22,6 +22,13 @@ export default function TestTitleEditor(props:{subject?: TSubject, card:TCard}) 
         if (editTitle) {
             setAddSpace("subjectTitleEdit max-w-[30%] font-semibold")
 
+            const updatecard : TUpdateCard={
+                title: title,
+                content: JSON.stringify(props.card.content),
+            };
+            apiRequest<TUpdateCard, TCard>(`api/card/${props.card.id}`, 'PUT', updatecard).then(() => {
+                window.location.reload();
+            });
         }
         if (!editTitle) {
             setAddSpace("subjectTitleEdit font-light text-black border-b-[black] border-b-[solid] border-b-[1px]")
@@ -40,13 +47,13 @@ export default function TestTitleEditor(props:{subject?: TSubject, card:TCard}) 
                 {editTitle ? (
                     <input
                         type="text"
-                        placeholder={props.subject?.name}
+                        placeholder={props.card.title}
                         maxLength={45}
                         onChange={(e) => setTitle(e.target.value)}
                         className={addSpace}
                     />
                 ) : (
-                    <h1 className={addSpace}>{edited ? title : subject?.name} </h1>
+                    <h1 className={addSpace}>{edited ? title : props.card.title} </h1>
                 )}
                 <button className = "editOutline w-[23px] h-[auto] ml-[25px]"
                         onClick={handleSaveTitle}>

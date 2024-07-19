@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { TSubject } from "../../../Types/TSubject.ts";
+import {TSubject} from "../../../Types/TSubject.ts";
 import { apiRequest } from "../../../Utils/ApiRequest.ts";
-import { TCard } from "../../../Types/TCard.ts";
+import {TCard, TUpdateCard} from "../../../Types/TCard.ts";
 
 export default function FlashcardTitleEditor(props: { subject?: TSubject, card: TCard }) {
     const subjectId = localStorage.getItem('subjectId');
@@ -21,6 +21,13 @@ export default function FlashcardTitleEditor(props: { subject?: TSubject, card: 
         setEditTitle(!editTitle);
         if (editTitle) {
             setAddSpace("subjectTitleEdit max-w-[30%] font-semibold");
+            const updateCard: TUpdateCard= {
+                title: title,
+                content: JSON.stringify(props.card.content),
+            };
+            apiRequest<TUpdateCard, TCard>(`api/card/${props.card.id}`, 'PUT', updateCard).then(() => {
+                window.location.reload();
+            });
         } else {
             setAddSpace("subjectTitleEdit font-light text-black border-b-[black] border-b-[solid] border-b-[1px]");
         }

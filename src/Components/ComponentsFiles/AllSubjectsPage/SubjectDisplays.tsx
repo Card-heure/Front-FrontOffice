@@ -237,7 +237,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
           <div className="createFlashcardCircle items-center mr-[25px]">
             {enterIconFlashcard}
           </div>
-          <a className="createFlashcardText justify-start" href={"/newFlashCard"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau jeu de flashcards </a>
+          <a className="createFlashcardText justify-start" href={"/new-flashCard"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau jeu de flashcards </a>
         </button>
       </div>
 
@@ -287,7 +287,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
           <div className="createTestCircle items-center mr-[25px]">
             {enterIconTest}
           </div>
-          <a className="createTestText justify-start" href={"/newTest"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau test</a>
+          <a className="createTestText justify-start" href={"/new-test"} onClick={() => localStorage.setItem('subjectId', props.subject?.id.toString() ?? '')}>Créer un nouveau test</a>
         </button>
 
       </div>

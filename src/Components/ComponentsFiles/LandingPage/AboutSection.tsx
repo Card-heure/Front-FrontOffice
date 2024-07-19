@@ -48,14 +48,14 @@ export default function AboutSection() {
     processCircle.className = "buttonCircle w-[38px] h-[38px] rounded-[50%] bg-[rgb(35,66,18)]";
     circleText.className = "circle p-[40px] pt-[55px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[140%] italic m-auto";
     circleText.innerHTML = '<p>QUEL A ÉTÉ LE PROCESSUS DE CONCEPTION ET DE DÉVELOPPEMENT DE CARD\'HEURE ?</p>';
-    changeAbout.innerHTML = '<p>At vero eos et <span style = "font-weight: 400">accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium ' +
-      '                   </span> voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non ' +
-      '                   provident, similique sunt in culpa qui officia deserunt mollitia animi, <span style = "font-weight: 400">id est laborum et ' +
-      '                   dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</span> ' +
-      '                   <br/> <br/>' +
-      '                   Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere ' +
-      '                   <span style = "font-weight: 400">possimus, omnis voluptas assumenda est, omnis dolor repellendus.</span> Temporibus autem ' +
-      '                   quibusdam et aut officiis debitis aut </p>';
+    changeAbout.innerHTML = '' +
+        '<p><span style = "font-weight: 400">Card’heure a été conçu à l\'origine comme un projet universitaire de groupe.</span> Lorsque les deux développeurs ont commencé à développer l\'application, ils se sont rendu compte qu\'elle pourrait être utile aux apprenants du monde entier. ' +
+        'Conscients qu\'ils souhaitaient étendre le projet au-delà de son intention initiale, ils ont commencé à réfléchir à des fonctionnalités supplémentaires pouvant être intégrées à l\'application.</p><br>'
+        +
+        '<p><span style = "font-weight: 400">Card’heure n\'avait à l\'origine que 3 fonctionnalités : les tests, les cartes mentales et les flashcards. </span> Après avoir soumis leur projet universitaire, ils ont redessiné l\'application pour inclure ' +
+        'des questions à choix multiple, un traitement de texte, des notes, des contacts et collaborations utilisateurs, ainsi que l\'exportation de contenu.</p><br>'
+        +
+        '<p>Card’heure travaille actuellement à rendre l\'application <span style = "font-weight: 400">disponible en plusieurs langues différentes, afin d\'accroître l\'accessibilité pour les étudiants du monde entier.</span></p>';
   }
   return (
     <>

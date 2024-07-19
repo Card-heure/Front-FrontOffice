@@ -13,6 +13,7 @@ import Login from "#Components/Login/Login.tsx";
 import SignUp from "#Components/SignUp/SignUp.tsx";
 import Profile from "#Components/Main/Profile.tsx";
 import EditTest from "#Components/Main/EditTest.tsx";
+import EditFlashcard from "#Components/Main/EditFlashcard.tsx";
 import Error404 from "#ComponentsFiles/General/Error404.tsx";
 import Error401 from "#ComponentsFiles/General/Error401.tsx";
 import {isAuthenticated} from "../../Utils/utils.ts";
@@ -132,6 +133,14 @@ export default function App() {
             element={
                 <Suspense fallback={<Loading/>}>
                     <EditTest/>
+                </Suspense>
+            }
+        />
+        <Route
+            path={"/edit-flashcards/:cardSetId"}
+            element={
+                <Suspense fallback={<Loading/>}>
+                    <EditFlashcard/>
                 </Suspense>
             }
         />

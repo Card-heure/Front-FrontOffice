@@ -186,10 +186,10 @@ export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCar
         setEdited(true);
     };
 
-    const deleteFlashcard =() => {
+    const editItem =() => {
 
     }
-    const deleteTest =() => {
+    const deleteItem =() => {
 
     }
     const deleteSubject =() => {
@@ -252,11 +252,14 @@ export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCar
                       </a>
                   </h1>
                   <div className="editDelete flex justify-between mx-[auto] items-center ml-[75px]">
-                      <button className="editOutline w-[25px] h-[auto] mr-[20px]">
-                          <img src="/src/assets/whitePencilIcon.png"/>
+                      <button className="editOutline w-[25px] h-[auto] mr-[20px]"
+                              onClick = {editItem}>
+                          <a href={"/edit-test/" + card.id}>
+                              <img src="/src/assets/whitePencilIcon.png"/>
+                          </a>
                       </button>
                       <button className="editOutline w-[19px] h-[auto] ml-[20px]"
-                      onClick = {deleteFlashcard}>
+                              onClick={deleteItem}>
                           <img src="/src/assets/deleteIcon.png"/>
                       </button>
                   </div>
@@ -299,13 +302,14 @@ export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCar
                       </a>
                   </h1>
                   <div className="editDelete flex justify-between mx-[auto] items-center ml-[75px]">
-                      <button className="editOutline w-[25px] h-[auto] mr-[20px]">
+                      <button className="editOutline w-[25px] h-[auto] mr-[20px]"
+                              onClick = {editItem}>
                           <a href = {"/edit-test/" + card.id}>
                               <img src="/src/assets/whitePencilIcon.png"/>
                           </a>
                       </button>
                       <button className="editOutline w-[19px] h-[auto] ml-[20px]"
-                      onClick = {deleteTest}>
+                              onClick = {deleteItem}>
                           <img src="/src/assets/deleteIcon.png"/>
                       </button>
                   </div>

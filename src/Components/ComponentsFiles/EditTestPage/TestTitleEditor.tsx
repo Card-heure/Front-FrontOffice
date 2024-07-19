@@ -46,7 +46,7 @@ export default function TestTitleEditor(props:{subject?: TSubject, card:TCard}) 
                         className={addSpace}
                     />
                 ) : (
-                    <h1 className={addSpace}>{edited ? title : props.subject?.name} </h1>
+                    <h1 className={addSpace}>{edited ? title : subject?.name} </h1>
                 )}
                 <button className = "editOutline w-[23px] h-[auto] ml-[25px]"
                         onClick={handleSaveTitle}>

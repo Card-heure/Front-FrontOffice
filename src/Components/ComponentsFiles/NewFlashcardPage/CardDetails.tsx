@@ -22,7 +22,7 @@ export default function CardDetails(props: { cardTitle: string, subjectId: numbe
         createCard.content_type = ECardType.FlashCard;
         createCard.subject_id = props.subjectId;
         apiRequest<TCreateCard, TCard>(`api/card`, 'POST', createCard).then(() => {
-            navigate(`/SubjectView/${props.subjectId}`);
+            navigate(`/subject-view/${props.subjectId}`);
         })
     }
 

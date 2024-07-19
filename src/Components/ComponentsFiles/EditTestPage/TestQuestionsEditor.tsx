@@ -27,7 +27,7 @@ export default function TestQuestionsEditor(props: { card: TCard, subject: TSubj
         createCard.content_type = ECardType.Test;
         createCard.subject_id = props.subjectId;
         apiRequest<TCreateCard, TCard>(`api/card`, 'POST', createCard).then(() => {
-            navigate(`/SubjectView/${props.subjectId}`);
+            navigate(`/subject-view/${props.subjectId}`);
         });
     }
 

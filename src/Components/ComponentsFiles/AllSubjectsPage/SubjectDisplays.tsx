@@ -196,8 +196,10 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
   const editItem = () => {
 
   }
-  const deleteItem = () => {
-
+  function deleteItem(id: number) {
+    apiRequest<null, null>(`api/card/${id}`, 'DELETE', ).then(() => {
+      window.location.reload()
+    })
   }
   const deleteSubject = () => {
     apiRequest<null, null>(`api/subject/${props.subject?.id}`, 'DELETE', ).then(() => {
@@ -268,7 +270,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
                   </a>
                 </button>
                 <button className="editOutline w-[19px] h-[auto] ml-[20px]"
-                        onClick={deleteItem}>
+                        onClick={()=>deleteItem(card.id)}>
                   <img src="/src/assets/deleteIcon.png"/>
                 </button>
               </div>
@@ -318,7 +320,7 @@ export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCa
                   </a>
                 </button>
                 <button className="editOutline w-[19px] h-[auto] ml-[20px]"
-                        onClick={deleteItem}>
+                        onClick={()=>deleteItem(card.id)}>
                   <img src="/src/assets/deleteIcon.png"/>
                 </button>
               </div>

@@ -22,7 +22,7 @@ export default function TestQuestions(props: {cardTitle: string, subjectId: numb
     createCard.content_type = ECardType.Test;
     createCard.subject_id = props.subjectId;
     apiRequest<TCreateCard, TCard>(`api/card`, 'POST', createCard).then(() => {
-      navigate(`/SubjectView/${props.subjectId}`);
+      navigate(`/subject-view/${props.subjectId}`);
     })
   }
   const autoResize = ({textarea}: { textarea: any }) => {

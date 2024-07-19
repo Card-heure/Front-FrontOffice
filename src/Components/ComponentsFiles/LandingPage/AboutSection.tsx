@@ -49,8 +49,7 @@ export default function AboutSection() {
     circleText.className = "circle p-[40px] pt-[55px] border-[1px] border-[solid] border-[black] rounded-[50%] w-[380px] h-[380px] text-center items-center flex text-[140%] italic m-auto";
     circleText.innerHTML = '<p>QUEL A ÉTÉ LE PROCESSUS DE CONCEPTION ET DE DÉVELOPPEMENT DE CARD\'HEURE ?</p>';
     changeAbout.innerHTML = '' +
-        '<p><span style = "font-weight: 400">Card’heure a été conçu à l\'origine comme un projet universitaire de groupe.</span> Lorsque les deux développeurs ont commencé à développer l\'application, ils se sont rendu compte qu\'elle pourrait être utile aux apprenants du monde entier. ' +
-        'Conscients qu\'ils souhaitaient étendre le projet au-delà de son intention initiale, ils ont commencé à réfléchir à des fonctionnalités supplémentaires pouvant être intégrées à l\'application.</p><br>'
+        '<p><span style = "font-weight: 400">Card’heure a été conçu à l\'origine comme un projet universitaire de groupe.</span> Conscients qu\'ils souhaitaient étendre le projet au-delà de son intention initiale, ils ont commencé à réfléchir à des fonctionnalités supplémentaires pouvant être intégrées à l\'application.</p><br>'
         +
         '<p><span style = "font-weight: 400">Card’heure n\'avait à l\'origine que 3 fonctionnalités : les tests, les cartes mentales et les flashcards. </span> Après avoir soumis leur projet universitaire, ils ont redessiné l\'application pour inclure ' +
         'des questions à choix multiple, un traitement de texte, des notes, des contacts et collaborations utilisateurs, ainsi que l\'exportation de contenu.</p><br>'

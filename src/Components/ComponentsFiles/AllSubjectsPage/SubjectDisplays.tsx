@@ -1,16 +1,18 @@
 import {useEffect, useState} from "react";
-import {TSubject} from "../../../Types/TSubject.ts";
+import {TSubject, TUpdateSubject} from "../../../Types/TSubject.ts";
 import {TCard} from "../../../Types/TCard.ts";
 import {ECardType} from "../../../Types/enum/ECardType.ts";
+import {apiRequest} from "../../../Utils/ApiRequest.ts";
+import {useNavigate} from "react-router-dom";
 
-export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCard[] }) {
+export default function SubjectDisplays(props: { subject?: TSubject, cards?: TCard[] }) {
   const [flashcardSet, setFlashcardSet] = useState<TCard[]>([]);
   const [testSet, setTestSet] = useState<TCard[]>([]);
   const [editTitle, setEditTitle] = useState(false);
   const [title, setTitle] = useState(props.subject?.name);
   const [edited, setEdited] = useState(false);
-  const [addSpace, setAddSpace ] = useState("subjectTitleEdit max-w-[30%] font-semibold");
-
+  const [addSpace, setAddSpace] = useState("subjectTitleEdit max-w-[30%] font-semibold");
+  const navigation = useNavigate();
   useEffect(() => {
     props.cards?.map((card) => {
       if (card.content_type === ECardType.FlashCard) {
@@ -174,48 +176,55 @@ export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCar
     }
   };
 
-    const handleSaveTitle = () => {
-        setEditTitle(!editTitle)
-        if (editTitle) {
-            setAddSpace("subjectTitleEdit max-w-[30%] font-semibold")
-
-        }
-        if (!editTitle) {
-            setAddSpace("subjectTitleEdit font-light text-black border-b-[black] border-b-[solid] border-b-[1px]")
-        }
-        setEdited(true);
-    };
-
-    const editItem =() => {
-
+  const handleSaveTitle = () => {
+    setEditTitle(!editTitle)
+    if (editTitle) {
+      setAddSpace("subjectTitleEdit max-w-[30%] font-semibold")
     }
-    const deleteItem =() => {
-
+    if (!editTitle) {
+      setAddSpace("subjectTitleEdit font-light text-black border-b-[black] border-b-[solid] border-b-[1px]")
     }
-    const deleteSubject =() => {
-
+    setEdited(true);
+    const updateSubject : TUpdateSubject = {
+      name: title ?? ""
     }
+    apiRequest<TUpdateSubject, TSubject>(`api/subject/${props.subject?.id}`, 'PUT', updateSubject).then((response) => {
+      setTitle(response.response.name)
+    })
+  };
+
+  const editItem = () => {
+
+  }
+  const deleteItem = () => {
+
+  }
+  const deleteSubject = () => {
+    apiRequest<null, null>(`api/subject/${props.subject?.id}`, 'DELETE', ).then(() => {
+      navigation('/home')
+    })
+  }
 
 
   return (
     <>
       <div className="subjectAndTitle flex h-[40px] items-center w-[75%] mx-[auto] mt-[75px] mb-[50px] text-[160%] font-extralight text-left justify-center overflow-clip">
-          <h1 className="subject max-w-[15%] mr-[12px]"> Sujet :</h1>
-          {editTitle ? (
-              <input
-                  type="text"
-                  placeholder={props.subject?.name}
-                  maxLength={45}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className={addSpace}
-              />
-          ) : (
-              <h1 className={addSpace}>{edited ? title : props.subject?.name} </h1>
-          )}
-          <button className = "editOutline w-[23px] h-[auto] ml-[25px]"
-                  onClick={handleSaveTitle}>
-              <img src = {editTitle ? "/src/assets/saveCheckIcon.png" : "/src/assets/whitePencilIcon.png"}/>
-          </button>
+        <h1 className="subject max-w-[15%] mr-[12px]"> Sujet :</h1>
+        {editTitle ? (
+          <input
+            type="text"
+            placeholder={props.subject?.name}
+            maxLength={45}
+            onChange={(e) => setTitle(e.target.value)}
+            className={addSpace}
+          />
+        ) : (
+          <h1 className={addSpace}>{edited ? title : props.subject?.name} </h1>
+        )}
+        <button className="editOutline w-[23px] h-[auto] ml-[25px]"
+                onClick={handleSaveTitle}>
+          <img src={editTitle ? "/src/assets/saveCheckIcon.png" : "/src/assets/whitePencilIcon.png"}/>
+        </button>
       </div>
 
       <div className={textColorFlashcard} onClick={displayDetailsFlashcard}>
@@ -235,41 +244,41 @@ export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCar
       <div className={displayFlashcards}>
         <div>
           {flashcardSet.map((card, index) => (
-              <div className="mindmapList mx-[1%] flex justify-center mb-[30px] items-center"
-                   key={card.id}>
-                  <h2 className="indexNumber w-[8%] flex justify-center">
-                      <div
-                          className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
-                          {index + 1}
-                      </div>
-                  </h2>
-                  <h1 className="setTitle w-[75%] pl-[75px]">
-                      <a href={"/study-flashCard/" + card.id}>
-                          <button
-                              className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
-                              {card.title}
-                          </button>
-                      </a>
-                  </h1>
-                  <div className="editDelete flex justify-between mx-[auto] items-center ml-[75px]">
-                      <button className="editOutline w-[25px] h-[auto] mr-[20px]"
-                              onClick = {editItem}>
-                          <a href={"/edit-test/" + card.id}>
-                              <img src="/src/assets/whitePencilIcon.png"/>
-                          </a>
-                      </button>
-                      <button className="editOutline w-[19px] h-[auto] ml-[20px]"
-                              onClick={deleteItem}>
-                          <img src="/src/assets/deleteIcon.png"/>
-                      </button>
-                  </div>
+            <div className="mindmapList mx-[1%] flex justify-center mb-[30px] items-center"
+                 key={card.id}>
+              <h2 className="indexNumber w-[8%] flex justify-center">
+                <div
+                  className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
+                  {index + 1}
+                </div>
+              </h2>
+              <h1 className="setTitle w-[75%] pl-[75px]">
+                <a href={"/study-flashCard/" + card.id}>
+                  <button
+                    className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
+                    {card.title}
+                  </button>
+                </a>
+              </h1>
+              <div className="editDelete flex justify-between mx-[auto] items-center ml-[75px]">
+                <button className="editOutline w-[25px] h-[auto] mr-[20px]"
+                        onClick={editItem}>
+                  <a href={"/edit-test/" + card.id}>
+                    <img src="/src/assets/whitePencilIcon.png"/>
+                  </a>
+                </button>
+                <button className="editOutline w-[19px] h-[auto] ml-[20px]"
+                        onClick={deleteItem}>
+                  <img src="/src/assets/deleteIcon.png"/>
+                </button>
               </div>
+            </div>
           ))}
         </div>
       </div>
 
-        <div className={textColorTest} onClick={displayDetailsTest}>
-            <button className="testdDisplayButton w-[60%] flex items-center">
+      <div className={textColorTest} onClick={displayDetailsTest}>
+        <button className="testdDisplayButton w-[60%] flex items-center">
           {circlesTest}
           <h2 className="displayTestText ml-[10px] pt-[25px] pb-[25px]">Afficher tous les tests</h2>
         </button>
@@ -285,43 +294,43 @@ export default function SubjectDisplays(props: {subject?: TSubject, cards?: TCar
       <div className={displayTests}>
         <div>
           {testSet.map((card, index) => (
-              <div className="mindmapList w-full mx-[1%] flex justify-center mb-[30px] items-center"
-                   key={card.id}>
-                  <h2 className="indexNumber w-[8%] flex justify-center">
-                      <div
-                          className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
-                          {index + 1}
-                      </div>
-                  </h2>
-                  <h1 className="setTitle w-[75%] pl-[75px]">
-                      <a href={"/study-test/" + card.id}>
-                          <button
-                              className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
-                              {card.title}
-                          </button>
-                      </a>
-                  </h1>
-                  <div className="editDelete flex justify-between mx-[auto] items-center ml-[75px]">
-                      <button className="editOutline w-[25px] h-[auto] mr-[20px]"
-                              onClick = {editItem}>
-                          <a href = {"/edit-test/" + card.id}>
-                              <img src="/src/assets/whitePencilIcon.png"/>
-                          </a>
-                      </button>
-                      <button className="editOutline w-[19px] h-[auto] ml-[20px]"
-                              onClick = {deleteItem}>
-                          <img src="/src/assets/deleteIcon.png"/>
-                      </button>
-                  </div>
+            <div className="mindmapList w-full mx-[1%] flex justify-center mb-[30px] items-center"
+                 key={card.id}>
+              <h2 className="indexNumber w-[8%] flex justify-center">
+                <div
+                  className="indexCircle w-[55px] h-[55px] rounded-[50%] border-[black] border-[1px] border-[solid] text-[black] justify-center flex text-center items-center [box-shadow:-8px_6px_2px_rgb(199,_199,_201)]">
+                  {index + 1}
+                </div>
+              </h2>
+              <h1 className="setTitle w-[75%] pl-[75px]">
+                <a href={"/study-test/" + card.id}>
+                  <button
+                    className="titleButton border-[1px] border-[solid] border-[black] p-[15px] rounded-[15px] w-[600px] [box-shadow:-10px_11px_2px_rgb(199,_199,_201)]">
+                    {card.title}
+                  </button>
+                </a>
+              </h1>
+              <div className="editDelete flex justify-between mx-[auto] items-center ml-[75px]">
+                <button className="editOutline w-[25px] h-[auto] mr-[20px]"
+                        onClick={editItem}>
+                  <a href={"/edit-test/" + card.id}>
+                    <img src="/src/assets/whitePencilIcon.png"/>
+                  </a>
+                </button>
+                <button className="editOutline w-[19px] h-[auto] ml-[20px]"
+                        onClick={deleteItem}>
+                  <img src="/src/assets/deleteIcon.png"/>
+                </button>
               </div>
+            </div>
           ))}
         </div>
       </div>
-            <button className="deleteSubject justify-center mx-[auto] mt-[100px] mb-[200px] flex items-center"
-            onClick = {deleteSubject}>
-                <img className = "deleteIcon w-[22px] h-[auto] mr-[15px]" src="/src/assets/deleteIcon.png"/>
-                <h2 className="deleteSubjectText text-[115%] font-light text-red-600 hover:font-normal flex"> Supprimer ce sujet </h2>
-            </button>
+      <button className="deleteSubject justify-center mx-[auto] mt-[100px] mb-[200px] flex items-center"
+              onClick={deleteSubject}>
+        <img className="deleteIcon w-[22px] h-[auto] mr-[15px]" src="/src/assets/deleteIcon.png"/>
+        <h2 className="deleteSubjectText text-[115%] font-light text-red-600 hover:font-normal flex"> Supprimer ce sujet </h2>
+      </button>
     </>
   )
 }

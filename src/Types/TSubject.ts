@@ -8,3 +8,6 @@ export type TSubject = {
   createdAt: Date
   updatedAt: Date | null
 }
+export interface TUpdateSubject {
+  name: string
+}

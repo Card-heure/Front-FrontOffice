@@ -315,7 +315,7 @@ export default function TakeTest( props:{card:TCard, subject:TSubject}) {
             Retake the test
           </button>
 
-          <a href="/SubjectView/4">
+          <a href={`/subject-view/${props.subject.id}`}>
             <button
                 className="endButton border-[black] border-[solid] border-[1px] bg-[black] text-[white] text-[120%] h-[70px] w-[285px]  rounded-[20px] font-light">
               Return to the subject page

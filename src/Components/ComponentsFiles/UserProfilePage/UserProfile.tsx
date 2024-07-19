@@ -1,31 +1,34 @@
 import {useEffect, useState} from "react";
-import clsx from "clsx";
-import {TUser} from "../../../Types/TUser.ts";
+import {TUpdateUser, TUser} from "../../../Types/TUser.ts";
 import {apiRequest} from "../../../Utils/ApiRequest.ts";
-import {useApi} from "../../../Utils/useApi.ts";
+import {EGender} from "../../../Types/enum/EGender.ts";
+import {useNavigate} from "react-router-dom";
 
 export default function UserProfile() {
-  const [me, setMe] = useState<TUser | null>(null)
-  const {data: rawLink} = useApi<TUser>('me', {})
+  const navigator = useNavigate();
+  const [me, setMe] = useState<TUser | null>(null);
   useEffect(() => {
-    if (rawLink) {
-      setMe(rawLink)
+    if (me) {
+      setUpdatedUserName(me?.fullName);
+      setUpdatedFirstName(me?.firstName);
+      setUpdatedLastName(me?.lastName);
+      setUpdatedEmailAddress(me?.email);
+      setUpdatedBirthday(me?.birthDate?.toString());
+      setUpdatedGender(EGender[me?.gender ?? 0]);
+    }else {
+      apiRequest<null, TUser>(`me`, 'GET').then((response) => {
+        setMe(response.response)
+      })
     }
-  }, [rawLink])
-  const [userName, setUserName] = useState("JeanDupoint");
-  const [firstName, setFirstName] = useState("Jean");
-  const [lastName, setLastName] = useState("Dupoint");
-  const [emailAddress, setEmailAddress] = useState("jeandupoint@outlook.com");
-  const [birthday, setBirthday] = useState("2001-12-19");
-  const [gender, setGender] = useState("Femme");
+  }, [me]);
   const [showGender, setShowGender] = useState("genderSelectionMenu hidden w-[250px] rounded-[10px] p-[25px] border-[1px] border-[solid] border-[black] text-[115%] font-light leading-[40px]")
   const [genderHidden, setGenderHidden] = useState(true);
-  const [updatedUserName, setUpdatedUserName] = useState(userName);
-  const [updatedFirstName, setUpdatedFirstName] = useState(firstName);
-  const [updatedLastName, setUpdatedLastName] = useState(lastName);
-  const [updatedEmailAddress, setUpdatedEmailAddress] = useState(emailAddress);
-  const [updatedBirthday, setUpdatedBirthday] = useState(birthday);
-  const [updatedGender, setUpdatedGender] = useState(gender);
+  const [updatedUserName, setUpdatedUserName] = useState(me?.firstName);
+  const [updatedFirstName, setUpdatedFirstName] = useState(me?.firstName);
+  const [updatedLastName, setUpdatedLastName] = useState(me?.lastName);
+  const [updatedEmailAddress, setUpdatedEmailAddress] = useState(me?.email);
+  const [updatedBirthday, setUpdatedBirthday] = useState(me?.birthDate?.toString());
+  const [updatedGender, setUpdatedGender] = useState(EGender[me?.gender ?? 0]);
   const [underlineUserName, setUnderlineUserName] = useState("changeUsername overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]");
   const [underlineFirstName, setUnderlineFirstName] = useState("changeFirstName overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]");
   const [underlineLastName, setUnderlineLastName] = useState("changeLastName overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none");
@@ -39,7 +42,21 @@ export default function UserProfile() {
   const [emailIcon, setEmailIcon] = useState(false);
   const [birthdayIcon, setBirthdayIcon] = useState(false);
   const [genderIcon, setGenderIcon] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
+
+  function updateProfile() {
+    apiRequest<TUpdateUser, TUser>(`api/user/${me?.id}`, 'PUT', {
+      fullName: updatedUserName!,
+      email: updatedEmailAddress!,
+      firstName: updatedFirstName ?? null,
+      lastName: updatedLastName ?? null,
+      birthDate: updatedBirthday ? new Date(updatedBirthday) : null,
+      gender: updatedGender? parseInt(Object.entries(EGender).find(([key,value]) => value === updatedGender)![0]) : 0
+    }).then((response) => {
+      console.log(response.response);
+      setMe(response.response);
+      window.location.reload();
+    })
+  }
 
   const modifyUsername = () => {
     const mod = document.getElementById("usernameField") as HTMLInputElement;
@@ -54,9 +71,8 @@ export default function UserProfile() {
     } else {
       mod.setAttribute('readonly', "true");
       setUserNameIcon(false);
-      setUserName(updatedUserName);
       setUnderlineUserName("changeUsername overflow-y-hidden text-[110%] font-extralight h-[40px] leading-[40px] outline-none resize-none mb-[45px]");
-
+      updateProfile()
     }
   };
   const modifyFirstName = () => {
@@ -72,8 +88,8 @@ export default function UserProfile() {
     } else {
       mod.setAttribute('readonly', "true");
       setFirstNameIcon(false);
-      setFirstName(updatedFirstName);
       setUnderlineFirstName("changeFirstName overflow-y-hidden text-[110%] font-extralight mr-[18px] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+      updateProfile()
     }
   };
 
@@ -90,8 +106,8 @@ export default function UserProfile() {
     } else {
       mod.setAttribute('readonly', "true");
       setLastNameIcon(false);
-      setLastName(updatedLastName);
       setUnderlineLastName("changeLastName overflow-y-hidden text-[110%] font-extralight mr-[18px] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+      updateProfile()
     }
   };
 
@@ -108,8 +124,8 @@ export default function UserProfile() {
     } else {
       mod.setAttribute('readonly', "true");
       setEmailIcon(false);
-      setEmailAddress(updatedEmailAddress);
       setUnderlineEmailAddress("changeEmailAddress overflow-y-hidden text-[110%] font-extralight mr-[55px] h-[40px] leading-[40px] outline-none resize-none mb-[45px] w-[312px]")
+      updateProfile();
     }
   };
 
@@ -121,8 +137,8 @@ export default function UserProfile() {
       setBirthdayIcon(true);
     } else {
       setBirthdayIcon(false);
-      setBirthday(updatedBirthday);
       setUnderlineBirthday("changeBirthday text-[110%] font-extralight mr-[175px] h-[40px] leading-[40px] outline-none resize-none mb-[45px]")
+      updateProfile();
     }
   };
 
@@ -164,54 +180,44 @@ export default function UserProfile() {
     setUpdatedGender(event.target.value);
     setGenderHidden(true);
     setShowGender("genderSelectionMenu hidden w-[250px] rounded-[10px] p-[25px] border-[1px] border-[solid] border-[black] text-[115%] font-light leading-[40px]");
-    setGender(updatedGender)
     setGenderIcon(false);
+    updateProfile();
   };
 
   const logOut = () => {
-    console.log("log out")
-    console.log(userName);
-    console.log(firstName);
-    console.log(lastName);
-    console.log(emailAddress);
-    console.log(birthday);
-    console.log(gender);
     localStorage.removeItem('jwt');
     localStorage.removeItem('expire');
-    window.location.reload();
+    navigator('/login');
+
   };
 
   const deleteAccount = () => {
-    console.log("delete account")
-    apiRequest<null, null>('deleteAccount', 'DELETE').then(() => {
+    apiRequest<null, null>(`api/user/${me?.id}`, 'DELETE').then(() => {
       localStorage.removeItem('jwt');
       localStorage.removeItem('expire');
       window.location.reload();
+      navigator('/login');
     })
   };
 
   return (
     <>
-      <div>
-        <label htmlFor={"profilePage"}>Voir la page de profil</label>
-        <input type={"checkbox"} id={"profilePage"} onClick={() => setShowProfile(!showProfile)}/>
-      </div>
       <div className="greeting w-[75%] mx-[auto] flex mt-[85px] mb-[60px]">
         <h1 className="text-[300%] mr-[30px]"> &#128075;</h1>
         <h1 className="text-[200%] font-light pt-[12px]"> Bonjour, {me?.fullName} !</h1>
       </div>
       <div className="sections w-[83%] mx-[auto] flex justify-between mb-[250px] pl-[3%]">
 
-        <div className={clsx("sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]", !showProfile && "hidden")}>
+        <div className={"sectionOne text-black w-[26%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]"}>
 
           <h1 className="text-[120%] mb-[5px]"> Nom d'utilisateur </h1>
           <div className="editUsername flex items-start w-[68%]">
-                    <textarea readOnly={true}
-                              className={underlineUserName}
-                              id="usernameField"
-                              onChange={changeUserName}>
-                        {userName}
-                    </textarea>
+            <input readOnly={true}
+                   className={underlineUserName}
+                   id="usernameField"
+                   onChange={changeUserName}
+                   value={updatedUserName!}
+            />
             <img src={userNameIcon ? saveCheckIcon : modifyIcon}
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="usernameButton"
@@ -222,12 +228,12 @@ export default function UserProfile() {
 
           <h1 className="text-[120%] mb-[5px]"> Prénom </h1>
           <div className="editFirstName flex items-start w-[68%]">
-                    <textarea readOnly={true}
-                              className={underlineFirstName}
-                              id="firstNameField"
-                              onChange={changeFirstName}>
-                        {firstName}
-                    </textarea>
+            <input readOnly={true}
+                   className={underlineFirstName}
+                   id="firstNameField"
+                   onChange={changeFirstName}
+                   value={updatedFirstName ?? ""}
+            />
             <img src={firstNameIcon ? saveCheckIcon : modifyIcon}
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="firstNameButton"
@@ -238,12 +244,12 @@ export default function UserProfile() {
 
           <h1 className="text-[120%] mb-[5px]"> Nom </h1>
           <div className="editLastName flex items-start w-[68%]">
-                    <textarea readOnly={true}
-                              className={underlineLastName}
-                              id="lastNameField"
-                              onChange={changeLastName}>
-                        {lastName}
-                    </textarea>
+            <input readOnly={true}
+                   className={underlineLastName}
+                   id="lastNameField"
+                   onChange={changeLastName}
+                   value={updatedLastName ?? ""}
+            />
             <img src={lastNameIcon ? saveCheckIcon : modifyIcon}
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="lastNameButton"
@@ -253,15 +259,15 @@ export default function UserProfile() {
           </div>
         </div>
 
-        <div className={clsx("sectionTwo text-[black] w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]", !showProfile && "hidden")}>
+        <div className={"sectionTwo text-[black] w-[34%] border-r-[3px] border-r-[black] border-r-[solid] py-[50px]"}>
           <h1 className="text-[120%] mb-[5px]"> Email </h1>
           <div className="editEmailAddress flex items-start w-[75%]">
-                    <textarea readOnly={true}
+                    <input    readOnly={true}
                               className={underlineEmailAddress}
                               id="emailAddressField"
-                              onChange={changeEmailAddress}>
-                        {emailAddress}
-                    </textarea>
+                              onChange={changeEmailAddress}
+                              value={updatedEmailAddress}
+                    />
             <img src={emailIcon ? saveCheckIcon : modifyIcon}
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
                  id="emailAddressButton"
@@ -276,7 +282,7 @@ export default function UserProfile() {
                    className={underlineBirthday}
                    id="birthdayField"
                    onChange={changeBirthday}
-                   value={updatedBirthday}
+                   value={updatedBirthday ? new Date(updatedBirthday!).toISOString().split('T')[0]: ""}
             />
             <img src={birthdayIcon ? saveCheckIcon : modifyIcon}
                  className="editPencil w-[20px] h-[auto] pt-[11px]"
@@ -301,21 +307,21 @@ export default function UserProfile() {
             />
           </div>
           <form className={showGender}>
-            <input type="radio" id="femaleButton" value="Female" name="genderSelectionMenu" onClick={selectGender}/>
-            <label htmlFor="femaleButton" className="ml-[15px] text-[black]"> {gender} </label>
+            <input type="radio" id="femaleButton" value={EGender[0]} name="genderSelectionMenu" onClick={selectGender} checked={EGender[0] === updatedGender}/>
+            <label htmlFor="femaleButton" className="ml-[15px] text-[black]"> Femme </label>
             <br/>
-            <input type="radio" id="maleButton" value="Male" name="genderSelectionMenu" onClick={selectGender}/>
+            <input type="radio" id="maleButton" value={EGender[1]} name="genderSelectionMenu" onClick={selectGender} checked={EGender[1] === updatedGender}/>
             <label htmlFor="maleButton" className="ml-[15px]"> Homme </label>
             <br/>
-            <input type="radio" id="nonBinaryeButton" value="Non-Binary" name="genderSelectionMenu" onClick={selectGender}/>
+            <input type="radio" id="nonBinaryeButton" value={EGender[2]} name="genderSelectionMenu" onClick={selectGender} checked={EGender[2] === updatedGender}/>
             <label htmlFor="nonBinaryButton" className="ml-[15px]"> Non-Binaire </label>
             <br/>
-            <input type="radio" id="otherButton" value="Other" name="genderSelectionMenu" onClick={selectGender}/>
+            <input type="radio" id="otherButton" value={EGender[3]} name="genderSelectionMenu" onClick={selectGender} checked={EGender[3] === updatedGender}/>
             <label htmlFor="otherButton" className="ml-[15px]"> Autre </label>
           </form>
         </div>
 
-        <div className={clsx("sectionThree w-[34%] justify-center py-[50px] pl-[1%]", !showProfile && "m-auto")}>
+        <div className={"sectionThree w-[34%] justify-center py-[50px] pl-[1%]"}>
           <div className="flex w-[90%] justify-center">
             <img src="/src/assets/emailIcon.png"
                  className="w-[80px] h-[auto]"
@@ -331,7 +337,7 @@ export default function UserProfile() {
           <button className="logOut font-medium text-[106%] w-[90%] mb-[25px]" onClick={logOut}>
             Se déconnecter
           </button>
-          {showProfile && <button className="deleteAccount font-medium text-[106%] text-red-600 w-[90%]" onClick={deleteAccount}>Supprimer le compte</button>}
+          <button className="deleteAccount font-medium text-[106%] text-red-600 w-[90%]" onClick={deleteAccount}>Supprimer le compte</button>
 
 
         </div>
